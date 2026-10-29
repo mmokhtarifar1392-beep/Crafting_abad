@@ -17,7 +17,8 @@ nav a{color:white;text-decoration:none;padding:7px 12px;border-radius:9px;backgr
 main{max-width:950px;margin:auto;padding:18px}
 .hero,.panel,.card{background:var(--panel);border:1px solid #293a50;border-radius:16px;padding:20px;margin-bottom:18px}
 .hero{text-align:center;background:linear-gradient(145deg,#173a35,#17233b)}
-h1{font-size:27px}h2{color:var(--green);font-size:21px}
+h1{font-size:27px}
+h2{color:var(--green);font-size:21px}
 button,.btn{border:0;border-radius:10px;padding:11px 16px;background:var(--green);color:#092016;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .card{margin:0}
@@ -26,6 +27,9 @@ small,.muted{color:var(--muted)}
 input,textarea,select{width:100%;padding:12px;margin:6px 0 14px;border-radius:9px;border:1px solid #34465d;background:#0b1422;color:white;font:inherit}
 footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #293a50}
 .notice{padding:12px;background:#273221;border-radius:10px;color:#d9f7c2}
+.pack-title{font-size:30px!important;font-weight:900;letter-spacing:1px;margin:8px 0}
+.pack-items{font-size:18px;white-space:pre-line;line-height:2.1}
+.pack-price{font-size:24px;color:var(--green);font-weight:bold}
 </style>
 </head>
 <body>
@@ -34,6 +38,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
   <p>ماجراجویی تو از اینجا شروع می‌شود!</p>
   <span>🌍 بقا • 🏰 امپراتوری‌ها • ⚔️ رقابت</span>
 </header>
+
 <nav>
   <a href="#home">خانه</a>
   <a href="#store">فروشگاه</a>
@@ -41,38 +46,61 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
   <a href="#rules">قوانین</a>
   <a href="#report">گزارش به مدیریت</a>
 </nav>
+
 <main>
 <section class="hero" id="home">
   <div class="emoji">🏰🌲⛏️</div>
   <h1>به Crafting Abad خوش آمدی</h1>
   <p>قلمرو خودت را بساز، متحد پیدا کن و در دنیای ماجراجویی پیشرفت کن!</p>
-  <p class="notice">آدرس سرور:craftingabad.pfmc.ir</p>
+  <p class="notice">آدرس سرور: craftingabad.pfmc.ir</p>
   <p class="muted">نسخه‌ی وب‌سایت در حال آماده‌سازی است.</p>
 </section>
 
 <section id="store" class="panel">
   <h2>🛒 فروشگاه سرور</h2>
-  <div class="grid">
-    <article class="card"><div class="emoji">🌟</div><h3>VIP</h3><p>Full set iron armor and tools
-64 bread
-32 oak log</p><small>قیمت: به‌زودی</small></article>
-    <article class="card"><div class="emoji">💎</div><h3> sponsor</h3><p> Full set diamond armor and tools(protection III)
-32 pumpkin pie 🥧 </p><small>قیمت: به‌زودی</small></article>
-    <article class="card"><div class="emoji">👑</div><h3>crafting</h3><p>  FULL SET DIAMOND ARMOR AND TOOLS (PROTECTION IV)
-32 GOLDEN CARROT
-1 NETHERITE INGOT
-1 god apple </p><small>قیمت: به‌زودی</small></article>
 
-    <!-- آیتم جدید: آمیتیستی پیک‌اکس اجاره‌ای -->
+  <div class="grid">
+    <article class="card">
+      <div class="emoji">🌟</div>
+      <h3 class="pack-title">VIP</h3>
+      <p class="pack-items">FULL SET IRON ARMOR AND TOOLS
+
+64 BREAD
+
+32 OAK LOG</p>
+      <div class="pack-price">۳۰٬۰۰۰ تومان</div>
+    </article>
+
+    <article class="card">
+      <div class="emoji">💎</div>
+      <h3 class="pack-title">LEGEND</h3>
+      <p class="pack-items">FULL SET DIAMOND ARMOR AND TOOLS (PROTECTION III)
+
+32 PUMPKIN PIE 🥧</p>
+      <div class="pack-price">۱۰۰٬۰۰۰ تومان</div>
+    </article>
+
+    <article class="card">
+      <div class="emoji">👑</div>
+      <h3 class="pack-title">CRAFTING</h3>
+      <p class="pack-items">FULL SET DIAMOND ARMOR AND TOOLS (PROTECTION IV)
+
+32 GOLDEN CARROT
+
+1 NETHERITE INGOT
+
+1 GOD APPLE</p>
+      <div class="pack-price">۱۶۰٬۰۰۰ تومان</div>
+    </article>
+
     <article class="card">
       <div class="emoji">⛏️</div>
       <h3>Amethyst Pickaxe اجاره‌ای</h3>
       <p>اجاره‌ی آمیتیستی پیک‌اکس برای استفاده در سرور</p>
-      <small>قیمت اجاره: روزی ۵٬۰۰۰ تومان</small>
+      <div class="pack-price">روزی ۵٬۰۰۰ تومان</div>
     </article>
   </div>
 
-  <!-- بخش جدید: میستری باکس‌ها -->
   <h2 style="margin-top:28px">🎁 Mystery Box | میستری باکس</h2>
   <div class="grid">
     <article class="card">
@@ -103,9 +131,26 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 <section id="empires" class="panel">
   <h2>🏯 سه امپراتوری</h2>
   <div class="grid">
-    <article class="card"><div class="emoji">🔥</div><h3>امپراتوری کرفتینگ</h3><p>اعضا: هنوز ثبت نشده</p><p>منابع: هنوز ثبت نشده</p></article>
-    <article class="card"><div class="emoji">🌊</div><h3>امپراتوری نواکس</h3><p>اعضا: هنوز ثبت نشده</p><p>منابع: هنوز ثبت نشده</p></article>
-    <article class="card"><div class="emoji">🌿</div><h3>امپراتوری پارسیان</h3><p>اعضا: هنوز ثبت نشده</p><p>منابع: هنوز ثبت نشده</p></article>
+    <article class="card">
+      <div class="emoji">🔥</div>
+      <h3>امپراتوری کرفتینگ</h3>
+      <p>اعضا: هنوز ثبت نشده</p>
+      <p>منابع: هنوز ثبت نشده</p>
+    </article>
+
+    <article class="card">
+      <div class="emoji">🌊</div>
+      <h3>امپراتوری نواکس</h3>
+      <p>اعضا: هنوز ثبت نشده</p>
+      <p>منابع: هنوز ثبت نشده</p>
+    </article>
+
+    <article class="card">
+      <div class="emoji">🌿</div>
+      <h3>امپراتوری پارسیان</h3>
+      <p>اعضا: هنوز ثبت نشده</p>
+      <p>منابع: هنوز ثبت نشده</p>
+    </article>
   </div>
 </section>
 
@@ -123,9 +168,11 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 <section id="report" class="panel">
   <h2>📨 گزارش به مدیریت</h2>
   <p>فرم فعلاً نمایشی است؛ اطلاعات جایی ارسال یا ذخیره نمی‌شود.</p>
+
   <form id="reportForm">
     <label for="player">نام بازیکن</label>
     <input id="player" required maxlength="40" placeholder="نام داخل بازی">
+
     <label for="type">موضوع</label>
     <select id="type">
       <option>گزارش بازیکن</option>
@@ -133,14 +180,19 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <option>پیشنهاد</option>
       <option>مشکل فنی</option>
     </select>
+
     <label for="message">توضیحات</label>
     <textarea id="message" required maxlength="1000" rows="4" placeholder="پیامت را بنویس..."></textarea>
+
     <button type="submit">ثبت آزمایشی گزارش</button>
   </form>
+
   <p id="result" role="status"></p>
 </section>
 </main>
+
 <footer>© Crafting Abad — ساخته‌شده برای جامعه‌ی بازیکنان</footer>
+
 <script>
 document.getElementById('reportForm').addEventListener('submit',function(e){
   e.preventDefault();
@@ -149,3 +201,4 @@ document.getElementById('reportForm').addEventListener('submit',function(e){
 </script>
 </body>
 </html>
+

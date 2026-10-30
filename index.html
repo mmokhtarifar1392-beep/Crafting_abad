@@ -4,8 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050b15">
-<meta name="description" content="CRAFTING ABAD - دنیای ماجراجویی، بقا و امپراتوری‌ها در ماینکرفت">
 <title>CRAFTING ABAD | Minecraft Server</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,17 +23,13 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-}
-
-html {
   scroll-behavior:smooth;
-  scroll-padding-top:85px;
 }
 
 body {
   font-family:'Vazirmatn',sans-serif;
   color:white;
-  background:var(--bg);
+  background:#050b15;
   overflow-x:hidden;
   min-height:100vh;
 }
@@ -52,7 +46,6 @@ body {
     radial-gradient(ellipse at 10% 75%,#073b35 0%,transparent 45%),
     radial-gradient(ellipse at 90% 65%,#102c56 0%,transparent 45%),
     linear-gradient(180deg,#020611 0%,#071628 48%,#061b20 100%);
-  pointer-events:none;
 }
 
 .stars {
@@ -67,12 +60,11 @@ body {
   background-size:320px 230px;
   opacity:.8;
   animation:starsMove 90s linear infinite;
-  will-change:transform;
 }
 
 @keyframes starsMove {
-  from {transform:translate3d(0,0,0)}
-  to {transform:translate3d(0,230px,0)}
+  from {transform:translateY(0)}
+  to {transform:translateY(230px)}
 }
 
 .moon {
@@ -88,9 +80,7 @@ body {
 }
 
 @keyframes moonGlow {
-  to {
-    box-shadow:0 0 55px #b6eaff,0 0 130px #62c9ff99;
-  }
+  to {box-shadow:0 0 55px #b6eaff,0 0 130px #62c9ff99}
 }
 
 .aurora {
@@ -103,12 +93,11 @@ body {
   filter:blur(65px);
   transform:rotate(-12deg);
   animation:aurora 12s ease-in-out infinite alternate;
-  will-change:transform;
 }
 
 @keyframes aurora {
-  from {transform:translate3d(-8%,0,0) rotate(-12deg)}
-  to {transform:translate3d(8%,0,0) rotate(12deg)}
+  from {transform:translateX(-8%) rotate(-12deg)}
+  to {transform:translateX(8%) rotate(12deg)}
 }
 
 /* MOUNTAINS */
@@ -147,7 +136,6 @@ body {
   background:linear-gradient(135deg,#35ff9b55,#087c6b66);
   box-shadow:0 0 25px #00ff7744,inset 0 0 12px #ffffff20;
   animation:floatPixel 12s ease-in-out infinite;
-  backface-visibility:hidden;
 }
 
 .pixel:nth-child(1){top:20%;left:8%}
@@ -157,8 +145,8 @@ body {
 .pixel:nth-child(5){top:65%;right:8%;animation-delay:-4s;width:45px;height:45px}
 
 @keyframes floatPixel {
-  0%,100% {transform:translate3d(0,0,0) rotate(0deg)}
-  50% {transform:translate3d(0,-65px,0) rotate(25deg)}
+  0%,100% {transform:translateY(0) rotate(0deg)}
+  50% {transform:translateY(-65px) rotate(25deg)}
 }
 
 /* GLOWING PARTICLES */
@@ -169,7 +157,6 @@ body {
   pointer-events:none;
   z-index:-1;
   overflow:hidden;
-  contain:layout style paint;
 }
 
 .particle {
@@ -181,14 +168,13 @@ body {
   background:#69ffb0;
   box-shadow:0 0 10px #00ff99,0 0 22px #00ff99;
   animation:particleUp linear infinite;
-  backface-visibility:hidden;
 }
 
 @keyframes particleUp {
-  from {transform:translate3d(0,0,0);opacity:0}
+  from {transform:translateY(0);opacity:0}
   15% {opacity:1}
   85% {opacity:.8}
-  to {transform:translate3d(0,-110vh,0);opacity:0}
+  to {transform:translateY(-110vh);opacity:0}
 }
 
 /* GENERAL */
@@ -257,7 +243,6 @@ nav {
   background:#06101ddd;
   border-top:1px solid #55ff9b22;
   border-bottom:1px solid #55ff9b33;
-  -webkit-backdrop-filter:blur(16px);
   backdrop-filter:blur(16px);
 }
 
@@ -266,7 +251,7 @@ nav a {
   text-decoration:none;
   padding:9px 17px;
   border-radius:10px;
-  transition:color .3s,background .3s,box-shadow .3s,transform .3s;
+  transition:.3s;
   font-weight:700;
 }
 
@@ -316,7 +301,7 @@ nav a:hover {
   font-family:inherit;
   font-weight:900;
   cursor:pointer;
-  transition:transform .3s,box-shadow .3s,background .3s;
+  transition:.3s;
   box-shadow:0 0 20px #00ff7744;
 }
 
@@ -411,7 +396,7 @@ section {
   background:linear-gradient(145deg,rgba(17,43,55,.95),rgba(10,18,36,.95));
   border:1px solid #55ff9b35;
   box-shadow:0 10px 35px #0007,inset 0 0 25px #00ff9908;
-  transition:transform .35s,border-color .35s,box-shadow .35s;
+  transition:.35s;
 }
 
 .card::before {
@@ -489,7 +474,7 @@ section {
   border:1px solid #55ff9b33;
   border-radius:12px;
   color:#d9e9ed;
-  transition:border-color .3s,transform .3s;
+  transition:.3s;
 }
 
 .rule:hover {
@@ -553,16 +538,14 @@ footer strong {
 
 .reveal {
   opacity:0;
-  transform:translate3d(0,35px,0);
-  transition:opacity .8s ease,transform .8s ease;
+  transform:translateY(35px);
+  transition:opacity .8s,transform .8s;
 }
 
 .reveal.show {
   opacity:1;
-  transform:translate3d(0,0,0);
+  transform:translateY(0);
 }
-
-/* MOBILE OPTIMIZATION */
 
 @media(max-width:600px) {
   header {padding-top:45px}
@@ -571,27 +554,6 @@ footer strong {
   .moon {width:75px;height:75px}
   .section-title {font-size:25px}
   .card {padding:22px 18px}
-  .aurora {filter:blur(50px)}
-  .mountain {filter:drop-shadow(0 0 9px #00ff9918)}
-  .server-panel {width:94%;padding:22px 15px}
-}
-
-/* ACCESSIBILITY */
-
-@media(prefers-reduced-motion:reduce) {
-  html {scroll-behavior:auto}
-
-  *,*::before,*::after {
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
-    transition-duration:.01ms !important;
-  }
-
-  .reveal {
-    opacity:1;
-    transform:none;
-  }
 }
 
 </style>
@@ -665,7 +627,7 @@ footer strong {
 
     <div class="card">
       <span class="tag">VIP</span>
-      <h3>🪓🎽 VIP</h3>
+      <h3>👑 VIP</h3>
       <p>
         فول آیرون آرمور<br>
         ابزارهای آهنی<br>
@@ -677,7 +639,7 @@ footer strong {
 
     <div class="card">
       <span class="tag">LEGEND</span>
-      <h3>🥋⛏️ LEGEND</h3>
+      <h3>💠 LEGEND</h3>
       <p>
         فول دایموند آرمور<br>
         ابزارهای الماسی<br>
@@ -689,7 +651,7 @@ footer strong {
 
     <div class="card">
       <span class="tag">SPECIAL</span>
-      <h3>👔👑 CRAFTING</h3>
+      <h3>🔥 CRAFTING</h3>
       <p>
         فول دایموند آرمور و ابزار<br>
         Protection IV<br>
@@ -709,14 +671,14 @@ footer strong {
 
     <div class="card">
       <span class="tag">MYSTERY BOX</span>
-      <h3>📦 Mystery Box Simple</h3>
+      <h3>🎁 Mystery Box Simple</h3>
       <p>یک جعبه شانسی برای دریافت آیتم‌های مختلف!</p>
       <div class="price">۳۰,۰۰۰ تومان</div>
     </div>
 
     <div class="card">
       <span class="tag">RARE</span>
-      <h3>🎁 Mystery Box Rare</h3>
+      <h3>💜 Mystery Box Rare</h3>
       <p>شانس دریافت جایزه‌های کمیاب‌تر و ارزشمندتر</p>
       <div class="price">۵۰,۰۰۰ تومان</div>
     </div>
@@ -769,19 +731,19 @@ footer strong {
 
   <div class="grid">
     <div class="card">
-      <div class="empire-icon">🔱</div>
+      <div class="empire-icon">🟢</div>
       <h3>CRAFTING</h3>
       <p>قدرت، اتحاد و پیشرفت؛ امپراتوری اصلی دنیای Crafting Abad.</p>
     </div>
 
     <div class="card">
-      <div class="empire-icon">❇️</div>
+      <div class="empire-icon">🔵</div>
       <h3>NOVAX</h3>
       <p>امپراتوری ماجراجویان و جنگجویان قدرتمند.</p>
     </div>
 
     <div class="card">
-      <div class="empire-icon">♟️</div>
+      <div class="empire-icon">🟣</div>
       <h3>PARSIAN</h3>
       <p>سرزمینی برای بازیکنان باهوش و استراتژیست.</p>
     </div>
@@ -808,10 +770,10 @@ footer strong {
   <div class="report-box">
     <form id="reportForm">
 
-      <label for="playerName">نام بازیکن متخلف</label>
+      <label>نام بازیکن متخلف</label>
       <input type="text" id="playerName" placeholder="نام بازیکن..." required>
 
-      <label for="reportType">نوع تخلف</label>
+      <label>نوع تخلف</label>
       <select id="reportType" required>
         <option value="">انتخاب نوع تخلف</option>
         <option>استفاده از چیت</option>
@@ -821,11 +783,11 @@ footer strong {
         <option>سایر موارد</option>
       </select>
 
-      <label for="reportMessage">توضیحات گزارش</label>
+      <label>توضیحات گزارش</label>
       <textarea id="reportMessage" placeholder="توضیحات خود را بنویسید..." required></textarea>
 
       <button type="submit" class="btn">ثبت گزارش</button>
-      <p id="reportStatus" aria-live="polite"></p>
+      <p id="reportStatus"></p>
 
     </form>
   </div>
@@ -842,47 +804,37 @@ footer strong {
 </footer>
 
 <script>
-"use strict";
 
-/* PARTICLES - OPTIMIZED, ALL 75 PRESERVED */
+/* PARTICLES */
 
 const particleContainer = document.getElementById("particles");
-const particleFragment = document.createDocumentFragment();
 
 for(let i=0;i<75;i++){
   const p=document.createElement("div");
   p.className="particle";
-
-  p.style.left=(Math.random()*100)+"%";
+  p.style.left=Math.random()*100+"%";
   p.style.animationDuration=(7+Math.random()*15)+"s";
   p.style.animationDelay=(-Math.random()*20)+"s";
-
-  const size=(2+Math.random()*4)+"px";
-  p.style.width=size;
-  p.style.height=size;
-
+  p.style.width=(2+Math.random()*4)+"px";
+  p.style.height=p.style.width;
   if(Math.random()>.5){
     p.style.background="#43c9ff";
     p.style.boxShadow="0 0 12px #43c9ff";
   }
-
-  particleFragment.appendChild(p);
+  particleContainer.appendChild(p);
 }
-
-particleContainer.appendChild(particleFragment);
 
 /* COPY SERVER IP */
 
-async function copyIP(){
+function copyIP(){
   const ip="craftingabad.pfmc.ir";
 
   if(navigator.clipboard && window.isSecureContext){
-    try{
-      await navigator.clipboard.writeText(ip);
+    navigator.clipboard.writeText(ip).then(()=>{
       alert("آدرس سرور کپی شد! 🎮");
-    }catch(error){
+    }).catch(()=>{
       fallbackCopy(ip);
-    }
+    });
   }else{
     fallbackCopy(ip);
   }
@@ -890,25 +842,14 @@ async function copyIP(){
 
 function fallbackCopy(text){
   const area=document.createElement("textarea");
-
   area.value=text;
-  area.setAttribute("readonly","");
-  area.style.position="fixed";
-  area.style.opacity="0";
-  area.style.pointerEvents="none";
-
   document.body.appendChild(area);
   area.select();
 
   try{
-    const successful=document.execCommand("copy");
-
-    if(successful){
-      alert("آدرس سرور کپی شد! 🎮");
-    }else{
-      alert("آدرس سرور: "+text);
-    }
-  }catch(error){
+    document.execCommand("copy");
+    alert("آدرس سرور کپی شد! 🎮");
+  }catch(e){
     alert("آدرس سرور: "+text);
   }
 
@@ -917,10 +858,40 @@ function fallbackCopy(text){
 
 /* REPORT FORM - DEMO ONLY */
 
-const reportForm=document.getElementById("reportForm");
-const reportStatus=document.getElementById("reportStatus");
-
-reportForm.addEventListener("submit",function(e){
+document.getElementById("reportForm").addEventListener("submit",function(e){
   e.preventDefault();
 
-  c
+  const name=document.getElementById("playerName").value.trim();
+  const type=document.getElementById("reportType").value;
+  const message=document.getElementById("reportMessage").value.trim();
+
+  if(!name || !type || !message){
+    document.getElementById("reportStatus").textContent="لطفاً همه قسمت‌ها را کامل کنید.";
+    return;
+  }
+
+  document.getElementById("reportStatus").textContent=
+    "گزارش شما در حالت نمایشی ثبت شد. برای ارسال واقعی باید سیستم گزارش‌گیری به سرور متصل شود. ✅";
+
+  this.reset();
+});
+
+/* SCROLL REVEAL */
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:.08});
+
+document.querySelectorAll(".reveal").forEach(el=>{
+  observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
+

@@ -3,592 +3,589 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crafting Abad | سرور ماینکرفت</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRAFTING ABAD | Minecraft Server</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#07111d;
-  --panel:#131f30;
-  --green:#54e38e;
-  --gold:#f6c85f;
-  --muted:#aab8ca;
+:root {
+  --green:#55ff9b;
+  --blue:#43c9ff;
+  --purple:#bd72ff;
+  --bg:#050b15;
+  --card:rgba(13,27,43,.88);
 }
 
-*{box-sizing:border-box}
-
-html{
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
   scroll-behavior:smooth;
-  scroll-padding-top:78px;
 }
 
-body{
-  margin:0;
+body {
+  font-family:'Vazirmatn',sans-serif;
+  color:white;
+  background:#050b15;
   overflow-x:hidden;
-  background:#07111d;
-  background-image:
-    radial-gradient(ellipse at 50% 100%,rgba(0,255,130,.16),transparent 55%),
-    radial-gradient(circle at 15% 20%,rgba(0,150,255,.16),transparent 30%),
-    radial-gradient(circle at 85% 15%,rgba(90,255,170,.12),transparent 28%),
-    linear-gradient(180deg,#050b18,#0b1b2a 55%,#07111d);
-  background-attachment:fixed;
-  color:#f5f7fb;
-  font-family:Tahoma,Arial,sans-serif;
-  line-height:1.9;
+  min-height:100vh;
 }
 
-/* هدر */
-header{
-  position:relative;
-  isolation:isolate;
+/* BACKGROUND WORLD */
+
+.world-bg {
+  position:fixed;
+  inset:0;
+  z-index:-5;
   overflow:hidden;
-  padding:26px 16px;
-  text-align:center;
-  background:linear-gradient(125deg,#123c32,#17233b,#123c32);
-  background-size:220% 220%;
-  animation:headerShift 12s ease infinite;
+  background:
+    radial-gradient(ellipse at 50% 15%,#173c57 0%,transparent 42%),
+    radial-gradient(ellipse at 10% 75%,#073b35 0%,transparent 45%),
+    radial-gradient(ellipse at 90% 65%,#102c56 0%,transparent 45%),
+    linear-gradient(180deg,#020611 0%,#071628 48%,#061b20 100%);
 }
 
-header:before,
-header:after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  border-radius:50%;
-  filter:blur(2px);
-  pointer-events:none;
-}
-
-header:before{
-  width:240px;
-  height:240px;
-  top:-150px;
-  right:8%;
-  background:rgba(84,227,142,.18);
-  box-shadow:0 0 70px 35px rgba(84,227,142,.12);
-}
-
-header:after{
-  width:200px;
-  height:200px;
-  bottom:-150px;
-  left:10%;
-  background:rgba(75,145,255,.16);
-  box-shadow:0 0 70px 35px rgba(75,145,255,.10);
-}
-
-.logo{
-  font-size:30px;
-  font-weight:bold;
-  color:var(--green);
-  text-shadow:0 0 10px rgba(84,227,142,.55);
-  animation:logoGlow 3s ease-in-out infinite alternate;
-}
-
-header p{color:#d7e7e0}
-
-/* منو */
-nav{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  flex-wrap:wrap;
-  padding:12px;
-  position:sticky;
-  top:0;
-  z-index:20;
-  backdrop-filter:blur(14px);
-  background:rgba(10,20,34,.92);
-  border-bottom:1px solid rgba(84,227,142,.14);
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  padding:7px 12px;
-  border-radius:9px;
-  background:#1c2a3e;
-  font-size:13px;
-  border:1px solid transparent;
-  transition:.25s;
-}
-
-nav a:hover,
-nav a:focus-visible{
-  transform:translateY(-3px);
-  background:#234b42;
-  border-color:rgba(84,227,142,.5);
-  box-shadow:0 0 18px rgba(84,227,142,.22);
-  outline:none;
-}
-
-/* محتوای اصلی */
-main{
-  max-width:950px;
-  margin:auto;
-  padding:18px;
-}
-
-.hero,.panel,.card{
-  background:var(--panel);
-  border:1px solid #293a50;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:18px;
-  box-shadow:0 10px 28px rgba(0,0,0,.16);
-  transition:border-color .3s,box-shadow .3s,transform .3s;
-}
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-  background:linear-gradient(145deg,#173a35,#17233b);
-  border-color:rgba(84,227,142,.28);
-}
-
-.hero:after{
-  content:"";
-  position:absolute;
-  inset:-70% -30%;
-  background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.045) 50%,transparent 57%);
-  transform:translateX(-60%);
-  animation:heroShine 9s ease-in-out infinite;
-  pointer-events:none;
-}
-
-h1{font-size:27px}
-
-h2{
-  color:var(--green);
-  font-size:21px;
-  text-shadow:0 0 16px rgba(84,227,142,.15);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
-}
-
-.card{
-  position:relative;
-  overflow:hidden;
-  margin:0;
-  background:linear-gradient(145deg,#17283a,#111e2e);
-  transform-style:preserve-3d;
-}
-
-.card:before{
-  content:"";
+.stars {
   position:absolute;
   inset:0;
-  border-radius:inherit;
-  padding:1px;
-  background:linear-gradient(135deg,rgba(84,227,142,.42),transparent 42%,rgba(90,150,255,.25));
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
-  pointer-events:none;
-  opacity:.55;
-  transition:opacity .3s;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px,#fff 98%,transparent),
+    radial-gradient(1px 1px at 90px 80px,#8feaff 98%,transparent),
+    radial-gradient(2px 2px at 160px 150px,#fff 98%,transparent),
+    radial-gradient(1px 1px at 220px 40px,#9affd1 98%,transparent),
+    radial-gradient(2px 2px at 280px 190px,#fff 98%,transparent);
+  background-size:320px 230px;
+  opacity:.8;
+  animation:starsMove 90s linear infinite;
 }
 
-.card:hover{
-  transform:translateY(-7px) perspective(800px) rotateX(1deg);
-  border-color:rgba(84,227,142,.48);
-  box-shadow:0 18px 35px rgba(0,0,0,.30),0 0 24px rgba(84,227,142,.10);
+@keyframes starsMove {
+  from {transform:translateY(0)}
+  to {transform:translateY(230px)}
 }
 
-.card:hover:before{opacity:1}
-
-.emoji{
-  font-size:34px;
-  display:inline-block;
-}
-
-.card .emoji{
-  filter:drop-shadow(0 0 8px rgba(84,227,142,.18));
-  transition:.3s;
-}
-
-.card:hover .emoji{
-  transform:translateY(-4px) scale(1.12);
-  filter:drop-shadow(0 0 12px rgba(84,227,142,.45));
-}
-
-small,.muted{color:var(--muted)}
-
-.pack-title{
-  font-size:30px!important;
-  font-weight:900;
-  letter-spacing:1px;
-  margin:8px 0;
-}
-
-.pack-items{
-  font-size:18px;
-  white-space:pre-line;
-  line-height:2.1;
-}
-
-.pack-price{
-  font-size:24px;
-  color:var(--green);
-  font-weight:bold;
-  text-shadow:0 0 14px rgba(84,227,142,.20);
-}
-
-.notice{
-  padding:12px;
-  background:#273221;
-  border-radius:10px;
-  color:#d9f7c2;
-  border:1px solid rgba(84,227,142,.25);
-  box-shadow:inset 0 0 18px rgba(84,227,142,.05);
-}
-
-/* پنل آی پی سرور */
-.server-panel{
-  max-width:500px;
-  margin:20px auto;
-  padding:24px 18px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(145deg,#172d25,#101a27);
-  border:2px solid #42e88b;
-  border-radius:12px;
-  box-shadow:0 0 20px #20ff7950,inset 0 0 18px #20ff7920;
-  transition:.35s;
-  animation:serverGlow 3s infinite alternate;
-}
-
-.server-panel:hover{
-  transform:perspective(800px) rotateX(3deg) rotateY(-3deg) scale(1.02);
-  box-shadow:0 0 35px #20ff79a0;
-}
-
-.server-status{
-  color:#55ff9b;
-  font-weight:bold;
-  margin-bottom:12px;
-}
-
-.status-dot{
-  display:inline-block;
-  width:10px;
-  height:10px;
-  background:#35ff85;
+.moon {
+  position:absolute;
+  width:125px;
+  height:125px;
   border-radius:50%;
-  box-shadow:0 0 12px #35ff85;
-  margin-left:7px;
-  animation:pulse 1.2s infinite;
+  background:radial-gradient(circle at 35% 35%,#fff 0%,#d9f7ff 40%,#8bc7e5 75%);
+  top:90px;
+  left:12%;
+  box-shadow:0 0 35px #b6eaff,0 0 90px #62c9ff77,0 0 160px #62c9ff44;
+  animation:moonGlow 5s ease-in-out infinite alternate;
 }
 
-.server-ip-title{
-  color:#b8d9c5;
-  margin-bottom:5px;
+@keyframes moonGlow {
+  to {box-shadow:0 0 55px #b6eaff,0 0 130px #62c9ff99}
 }
 
-.server-ip{
-  color:#fff;
-  font-size:21px;
-  font-weight:bold;
-  text-shadow:0 0 12px #43ff9b;
-  direction:ltr;
-  overflow-wrap:anywhere;
+.aurora {
+  position:absolute;
+  width:120%;
+  height:350px;
+  top:100px;
+  left:-10%;
+  background:linear-gradient(110deg,transparent,#00ff9955,#00bfff33,#9b59ff33,transparent);
+  filter:blur(65px);
+  transform:rotate(-12deg);
+  animation:aurora 12s ease-in-out infinite alternate;
 }
 
-.server-version{
-  margin-top:10px;
-  color:#b9d9ff;
-  font-size:14px;
+@keyframes aurora {
+  from {transform:translateX(-8%) rotate(-12deg)}
+  to {transform:translateX(8%) rotate(12deg)}
 }
 
-.server-version strong{
-  color:#61eaff;
-  text-shadow:0 0 10px #00bfff;
-}
+/* MOUNTAINS */
 
-.copy-ip-btn{
-  margin-top:18px;
-  padding:13px 23px;
-  color:white;
-  font-size:15px;
-  font-weight:bold;
-  background:linear-gradient(180deg,#39c96d,#168342);
-  border:2px solid #8affaa;
-  border-bottom:5px solid #10552b;
-  border-radius:5px;
-  cursor:pointer;
-  box-shadow:0 0 15px #35ff7860;
-  transition:.2s;
-}
-
-.copy-ip-btn:hover{
-  transform:translateY(-4px);
-  filter:brightness(1.2);
-  box-shadow:0 0 25px #35ff78;
-}
-
-.copy-ip-btn:active{
-  transform:translateY(3px);
-  border-bottom-width:2px;
-}
-
-.copy-message{
-  min-height:25px;
-  margin-top:10px;
-  color:#72ffad;
-  font-size:13px;
-}
-
-/* دکمه ها */
-button,.btn{
-  border:0;
-  border-radius:10px;
-  padding:11px 16px;
-  background:var(--green);
-  color:#092016;
-  font-weight:bold;
-  cursor:pointer;
-  text-decoration:none;
-  display:inline-block;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 5px 16px rgba(84,227,142,.14);
-  transition:transform .2s,box-shadow .2s,filter .2s;
-}
-
-button:hover,.btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.08);
-  box-shadow:0 8px 24px rgba(84,227,142,.28);
-}
-
-button:active,.btn:active{
-  transform:translateY(0) scale(.98);
-}
-
-/* فرم */
-input,textarea,select{
+.mountains {
+  position:absolute;
+  bottom:0;
   width:100%;
-  padding:12px;
-  margin:6px 0 14px;
-  border-radius:9px;
-  border:1px solid #34465d;
-  background:#0b1422;
-  color:white;
-  font:inherit;
-  transition:.2s;
+  height:280px;
+  opacity:.85;
 }
 
-input:focus,textarea:focus,select:focus{
-  outline:none;
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(84,227,142,.12),0 0 16px rgba(84,227,142,.08);
+.mountain {
+  position:absolute;
+  bottom:0;
+  width:0;
+  height:0;
+  border-left:180px solid transparent;
+  border-right:180px solid transparent;
+  border-bottom:260px solid #071b27;
+  filter:drop-shadow(0 0 15px #00ff9920);
 }
 
-footer{
-  text-align:center;
-  padding:25px;
-  color:var(--muted);
-  border-top:1px solid #293a50;
-  background:linear-gradient(180deg,transparent,rgba(19,31,48,.35));
+.mountain:nth-child(1){left:-80px;border-bottom-color:#0a2530}
+.mountain:nth-child(2){left:220px;border-bottom-color:#0b1e31;border-bottom-width:190px}
+.mountain:nth-child(3){right:180px;border-bottom-color:#092b2d}
+.mountain:nth-child(4){right:-100px;border-bottom-color:#0b2036;border-bottom-width:230px}
+
+/* PIXEL BLOCKS */
+
+.pixel {
+  position:absolute;
+  width:35px;
+  height:35px;
+  border:2px solid #ffffff22;
+  background:linear-gradient(135deg,#35ff9b55,#087c6b66);
+  box-shadow:0 0 25px #00ff7744,inset 0 0 12px #ffffff20;
+  animation:floatPixel 12s ease-in-out infinite;
 }
 
-/* پس زمینه متحرک دنیای ماینکرافت */
-.world-bg{
+.pixel:nth-child(1){top:20%;left:8%}
+.pixel:nth-child(2){top:45%;left:90%;animation-delay:-3s;width:50px;height:50px}
+.pixel:nth-child(3){top:72%;left:17%;animation-delay:-6s}
+.pixel:nth-child(4){top:30%;right:20%;animation-delay:-8s;width:25px;height:25px}
+.pixel:nth-child(5){top:65%;right:8%;animation-delay:-4s;width:45px;height:45px}
+
+@keyframes floatPixel {
+  0%,100% {transform:translateY(0) rotate(0deg)}
+  50% {transform:translateY(-65px) rotate(25deg)}
+}
+
+/* GLOWING PARTICLES */
+
+.particles {
   position:fixed;
   inset:0;
-  z-index:0;
-  overflow:hidden;
   pointer-events:none;
-  background-image:
-    radial-gradient(2px 2px at 10% 20%,#fff,transparent),
-    radial-gradient(2px 2px at 35% 70%,#aaffdd,transparent),
-    radial-gradient(2px 2px at 75% 30%,#fff,transparent),
-    radial-gradient(2px 2px at 90% 80%,#9bdcff,transparent);
-  background-size:180px 180px;
-  animation:starMove 35s linear infinite;
-}
-
-/* محتوا بالای پس زمینه */
-body > :not(.world-bg){
-  position:relative;
-  z-index:1;
-}
-
-/* نورهای رنگی پس زمینه */
-.world-bg::before,
-.world-bg::after{
-  content:"";
-  position:absolute;
-  width:360px;
-  height:360px;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:.22;
-  animation:lightFloat 12s ease-in-out infinite alternate;
-}
-
-.world-bg::before{
-  background:#00ff88;
-  left:-140px;
-  top:20%;
-}
-
-.world-bg::after{
-  background:#087dff;
-  right:-140px;
-  bottom:10%;
-  animation-delay:-6s;
-}
-
-/* بلوک های شناور */
-.pixel-block{
-  position:absolute;
-  bottom:-60px;
-  width:22px;
-  height:22px;
-  border:1px solid rgba(150,255,190,.4);
-  background:linear-gradient(135deg,rgba(60,255,130,.18),rgba(20,100,180,.12));
-  box-shadow:0 0 15px rgba(70,255,150,.2);
-  transform:rotate(25deg);
-  animation:blockRise linear infinite;
-}
-
-/* ذرات نور */
-.world-particle{
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#8affbd;
-  box-shadow:0 0 12px 3px rgba(80,255,150,.5);
-  animation:particleRise linear infinite;
-}
-
-/* ذرات قبلی */
-.sparkle-layer{
-  position:fixed;
-  inset:0;
-  z-index:0;
+  z-index:-1;
   overflow:hidden;
-  pointer-events:none;
 }
 
-.sparkle{
+.particle {
   position:absolute;
   bottom:-20px;
   width:4px;
   height:4px;
   border-radius:50%;
-  background:#8fffb8;
-  opacity:0;
-  box-shadow:0 0 9px 2px rgba(84,227,142,.5);
-  animation:floatSpark linear infinite;
+  background:#69ffb0;
+  box-shadow:0 0 10px #00ff99,0 0 22px #00ff99;
+  animation:particleUp linear infinite;
 }
 
-/* ظاهر شدن بخش ها هنگام اسکرول */
-.reveal-ready .reveal{
-  opacity:0;
-  transform:translateY(22px);
-  transition:opacity .7s ease,transform .7s ease;
+@keyframes particleUp {
+  from {transform:translateY(0);opacity:0}
+  15% {opacity:1}
+  85% {opacity:.8}
+  to {transform:translateY(-110vh);opacity:0}
 }
 
-.reveal-ready .reveal.is-visible{
+/* GENERAL */
+
+.container {
+  width:min(1150px,92%);
+  margin:auto;
+  position:relative;
+}
+
+header {
+  text-align:center;
+  padding:65px 15px 45px;
+  position:relative;
+}
+
+.logo {
+  font-family:'Orbitron','Vazirmatn',sans-serif;
+  font-size:clamp(32px,7vw,68px);
+  font-weight:900;
+  letter-spacing:3px;
+  color:#eafff4;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 18px #00ff88,
+    0 0 38px #00ff88,
+    0 0 75px #00ccff;
+  animation:logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  to {
+    text-shadow:0 0 12px white,0 0 30px #00ff88,
+    0 0 65px #00ff88,0 0 100px #00bfff;
+  }
+}
+
+.subtitle {
+  margin-top:15px;
+  color:#b4d9df;
+  font-size:16px;
+  letter-spacing:1px;
+}
+
+.logo-line {
+  width:180px;
+  height:3px;
+  margin:22px auto 0;
+  border-radius:10px;
+  background:linear-gradient(90deg,transparent,#55ff9b,#43c9ff,transparent);
+  box-shadow:0 0 20px #55ff9b;
+}
+
+/* NAVIGATION */
+
+nav {
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:13px;
+  background:#06101ddd;
+  border-top:1px solid #55ff9b22;
+  border-bottom:1px solid #55ff9b33;
+  backdrop-filter:blur(16px);
+}
+
+nav a {
+  color:#d9fff0;
+  text-decoration:none;
+  padding:9px 17px;
+  border-radius:10px;
+  transition:.3s;
+  font-weight:700;
+}
+
+nav a:hover {
+  color:#06120c;
+  background:var(--green);
+  box-shadow:0 0 22px #55ff9b88;
+  transform:translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:70px 15px 55px;
+}
+
+.hero h2 {
+  font-size:clamp(25px,5vw,40px);
+  color:#8dffc1;
+  text-shadow:0 0 25px #00ff7777;
+  margin-bottom:18px;
+}
+
+.hero p {
+  color:#c5dce5;
+  font-size:17px;
+  line-height:2;
+}
+
+.hero-buttons {
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  border:1px solid #55ff9b88;
+  color:#06140d;
+  background:linear-gradient(135deg,#55ff9b,#20c9a0);
+  border-radius:12px;
+  padding:12px 25px;
+  font-family:inherit;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 0 20px #00ff7744;
+}
+
+.btn:hover {
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 0 35px #00ff99aa;
+}
+
+.btn.secondary {
+  color:#dfffea;
+  background:#102b36;
+}
+
+/* SERVER PANEL */
+
+.server-panel {
+  max-width:650px;
+  margin:0 auto 65px;
+  padding:25px;
+  text-align:center;
+  border:1px solid #55ff9b77;
+  border-radius:20px;
+  background:linear-gradient(135deg,#102c36e8,#10162de8);
+  box-shadow:0 0 35px #00ff9922,inset 0 0 30px #00bfff0b;
+}
+
+.server-panel h3 {
+  color:#72ffae;
+  font-size:23px;
+  margin-bottom:15px;
+}
+
+.server-ip {
+  direction:ltr;
+  font-family:'Orbitron',sans-serif;
+  color:#fff;
+  font-size:clamp(16px,4vw,25px);
+  text-shadow:0 0 15px #00ff99;
+  margin:12px 0;
+  overflow-wrap:anywhere;
+}
+
+.version {
+  color:#8bdfff;
+  margin:12px 0 18px;
+}
+
+.status {
+  color:#8dffb5;
+  font-size:13px;
+  margin-top:12px;
+}
+
+/* SECTIONS */
+
+section {
+  padding:55px 0;
+}
+
+.section-title {
+  text-align:center;
+  color:#78ffb0;
+  font-size:30px;
+  margin-bottom:35px;
+  text-shadow:0 0 20px #00ff6655;
+}
+
+.section-title::after {
+  content:"";
+  display:block;
+  width:90px;
+  height:3px;
+  margin:12px auto;
+  background:linear-gradient(90deg,#55ff9b,#43c9ff);
+  border-radius:10px;
+  box-shadow:0 0 15px #55ff9b;
+}
+
+/* CARDS */
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr));
+  gap:22px;
+}
+
+.card {
+  position:relative;
+  overflow:hidden;
+  padding:25px 22px;
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(17,43,55,.95),rgba(10,18,36,.95));
+  border:1px solid #55ff9b35;
+  box-shadow:0 10px 35px #0007,inset 0 0 25px #00ff9908;
+  transition:.35s;
+}
+
+.card::before {
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#55ff9b,#43c9ff,transparent);
+  opacity:.8;
+}
+
+.card:hover {
+  transform:translateY(-9px);
+  border-color:#55ff9b;
+  box-shadow:0 15px 45px #00ff9925,0 0 25px #00bfff22;
+}
+
+.card h3 {
+  color:#8dffc1;
+  font-size:21px;
+  margin-bottom:12px;
+}
+
+.card p {
+  color:#d0e2e8;
+  line-height:2;
+  font-size:14px;
+}
+
+.price {
+  color:#ffe48a;
+  font-size:21px;
+  font-weight:900;
+  margin:17px 0;
+  text-shadow:0 0 15px #ffce5555;
+}
+
+.tag {
+  display:inline-block;
+  color:#06140d;
+  background:#55ff9b;
+  border-radius:20px;
+  padding:5px 12px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.card .btn {
+  width:100%;
+  margin-top:12px;
+}
+
+/* EMPIRES */
+
+.empire-icon {
+  font-size:38px;
+  margin-bottom:15px;
+}
+
+/* RULES */
+
+.rules-list {
+  max-width:850px;
+  margin:auto;
+  display:grid;
+  gap:12px;
+}
+
+.rule {
+  padding:16px 20px;
+  background:#102534dd;
+  border:1px solid #55ff9b33;
+  border-radius:12px;
+  color:#d9e9ed;
+  transition:.3s;
+}
+
+.rule:hover {
+  border-color:#55ff9b;
+  transform:translateX(-5px);
+}
+
+/* REPORT */
+
+.report-box {
+  max-width:650px;
+  margin:auto;
+  padding:28px;
+  background:#102534ee;
+  border:1px solid #55ff9b55;
+  border-radius:20px;
+}
+
+input,select,textarea {
+  width:100%;
+  padding:13px;
+  margin:9px 0 17px;
+  border:1px solid #456b72;
+  border-radius:10px;
+  outline:none;
+  background:#071522;
+  color:white;
+  font-family:inherit;
+}
+
+input:focus,select:focus,textarea:focus {
+  border-color:#55ff9b;
+  box-shadow:0 0 12px #55ff9b33;
+}
+
+textarea {
+  min-height:120px;
+  resize:vertical;
+}
+
+#reportStatus {
+  color:#8dffb5;
+  margin-top:15px;
+  line-height:2;
+}
+
+footer {
+  text-align:center;
+  padding:30px 15px;
+  color:#92aeb8;
+  border-top:1px solid #55ff9b33;
+  background:#040b13bb;
+  line-height:2;
+}
+
+footer strong {
+  color:#72ffb0;
+}
+
+/* REVEAL ANIMATION */
+
+.reveal {
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity .8s,transform .8s;
+}
+
+.reveal.show {
   opacity:1;
   transform:translateY(0);
 }
 
-/* انیمیشن ها */
-@keyframes headerShift{
-  0%,100%{background-position:0% 50%}
-  50%{background-position:100% 50%}
+@media(max-width:600px) {
+  header {padding-top:45px}
+  nav {gap:4px}
+  nav a {padding:8px 10px;font-size:13px}
+  .moon {width:75px;height:75px}
+  .section-title {font-size:25px}
+  .card {padding:22px 18px}
 }
 
-@keyframes logoGlow{
-  from{filter:brightness(1);text-shadow:0 0 8px rgba(84,227,142,.35)}
-  to{filter:brightness(1.18);text-shadow:0 0 15px rgba(84,227,142,.75),0 0 32px rgba(84,227,142,.3)}
-}
-
-@keyframes heroShine{
-  0%,55%{transform:translateX(-65%)}
-  85%,100%{transform:translateX(65%)}
-}
-
-@keyframes pulse{
-  50%{opacity:.35;transform:scale(.7)}
-}
-
-@keyframes serverGlow{
-  from{box-shadow:0 0 10px #20ff7940}
-  to{box-shadow:0 0 28px #20ff7990}
-}
-
-@keyframes starMove{
-  from{background-position:0 0}
-  to{background-position:180px 180px}
-}
-
-@keyframes lightFloat{
-  from{transform:translate(0,0) scale(.8)}
-  to{transform:translate(80px,-50px) scale(1.2)}
-}
-
-@keyframes blockRise{
-  0%{transform:translateY(0) rotate(25deg);opacity:0}
-  15%{opacity:.7}
-  85%{opacity:.45}
-  100%{transform:translateY(-115vh) rotate(220deg);opacity:0}
-}
-
-@keyframes particleRise{
-  0%{transform:translateY(0);opacity:0}
-  15%{opacity:.8}
-  85%{opacity:.5}
-  100%{transform:translateY(-110vh);opacity:0}
-}
-
-@keyframes floatSpark{
-  0%{transform:translateY(0) scale(.5);opacity:0}
-  12%{opacity:.65}
-  85%{opacity:.45}
-  100%{transform:translateY(-105vh) scale(1.2);opacity:0}
-}
-
-/* موبایل */
-@media(max-width:600px){
-  header{padding:22px 12px}
-  .logo{font-size:25px}
-  main{padding:12px}
-  .hero,.panel{padding:16px}
-  .pack-items{font-size:15px}
-  .card:hover{transform:translateY(-3px)}
-  .server-ip{font-size:18px}
-}
-
-/* کاهش انیمیشن برای تنظیمات دسترس پذیری */
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{
-    scroll-behavior:auto!important;
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.01ms!important;
-  }
-}
 </style>
 </head>
 
 <body>
 
+<div class="world-bg">
+  <div class="stars"></div>
+  <div class="aurora"></div>
+  <div class="moon"></div>
+
+  <div class="mountains">
+    <div class="mountain"></div>
+    <div class="mountain"></div>
+    <div class="mountain"></div>
+    <div class="mountain"></div>
+  </div>
+
+  <div class="pixel"></div>
+  <div class="pixel"></div>
+  <div class="pixel"></div>
+  <div class="pixel"></div>
+  <div class="pixel"></div>
+</div>
+
+<div class="particles" id="particles"></div>
+
 <header>
   <div class="logo">⛏ CRAFTING ABAD</div>
-  <p>ماجراجویی تو از اینجا شروع می‌شود!</p>
-  <span>🌍 بقا • 🏰 امپراتوری‌ها • ⚔️ رقابت</span>
+  <p class="subtitle">دنیای ماجراجویی، بقا و امپراتوری‌ها</p>
+  <div class="logo-line"></div>
 </header>
 
 <nav>
@@ -596,306 +593,305 @@ body > :not(.world-bg){
   <a href="#store">فروشگاه</a>
   <a href="#empires">امپراتوری‌ها</a>
   <a href="#rules">قوانین</a>
-  <a href="#report">گزارش به مدیریت</a>
+  <a href="#report">گزارش بازیکن</a>
 </nav>
 
-<main>
+<main class="container">
 
-<section class="hero" id="home">
-  <div class="emoji">🏰🌲⛏️</div>
-  <h1>به Crafting Abad خوش آمدی</h1>
-  <p>قلمرو خودت را بساز، متحد پیدا کن و در دنیای ماجراجویی پیشرفت کن!</p>
+<section id="home" class="hero reveal">
+  <h2>به دنیای CRAFTING ABAD خوش آمدید!</h2>
+  <p>
+    اینجا جایی برای ساختن، جنگیدن، پیشرفت کردن و تبدیل شدن به قدرتمندترین بازیکن است.
+    <br>
+    امپراتوری خودت را بساز و افسانه خودت را رقم بزن!
+  </p>
 
-  <div class="server-panel">
-    <div class="server-status">
-      <span class="status-dot"></span>
-      وضعیت سرور
+  <div class="hero-buttons">
+    <a href="#store" class="btn">مشاهده فروشگاه</a>
+    <a href="#empires" class="btn secondary">امپراتوری‌ها</a>
+  </div>
+</section>
+
+<div class="server-panel reveal">
+  <h3>⚔️ اطلاعات سرور</h3>
+  <div class="server-ip" id="serverIP">craftingabad.pfmc.ir</div>
+  <div class="version">نسخه سرور: 26.3</div>
+  <button class="btn" onclick="copyIP()">کپی آدرس سرور 📋</button>
+  <div class="status">✦ آماده ورود به دنیای Crafting Abad ✦</div>
+</div>
+
+<section id="store" class="reveal">
+  <h2 class="section-title">💎 فروشگاه سرور</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <span class="tag">VIP</span>
+      <h3>👑 VIP</h3>
+      <p>
+        فول آیرون آرمور<br>
+        ابزارهای آهنی<br>
+        ۶۴ عدد نان<br>
+        ۳۲ عدد چوب بلوط
+      </p>
+      <div class="price">۳۰,۰۰۰ تومان</div>
     </div>
 
-    <div class="server-ip-title">آدرس سرور</div>
-    <div class="server-ip" id="serverIP">craftingabad.pfmc.ir</div>
-
-    <div class="server-version">
-      ⚒ نسخه سرور: <strong>26.3</strong>
+    <div class="card">
+      <span class="tag">LEGEND</span>
+      <h3>💠 LEGEND</h3>
+      <p>
+        فول دایموند آرمور<br>
+        ابزارهای الماسی<br>
+        Protection III<br>
+        ۳۲ عدد Pumpkin Pie
+      </p>
+      <div class="price">۱۰۰,۰۰۰ تومان</div>
     </div>
 
-    <button type="button" class="copy-ip-btn" onclick="copyServerIP()">
-      📋 کپی آدرس سرور
-    </button>
+    <div class="card">
+      <span class="tag">SPECIAL</span>
+      <h3>🔥 CRAFTING</h3>
+      <p>
+        فول دایموند آرمور و ابزار<br>
+        Protection IV<br>
+        ۳۲ عدد Golden Carrot<br>
+        یک Netherite Ingot<br>
+        یک God Apple
+      </p>
+      <div class="price">۱۶۰,۰۰۰ تومان</div>
+    </div>
 
-    <div id="copyMessage" class="copy-message" role="status"></div>
+    <div class="card">
+      <span class="tag">RENT</span>
+      <h3>⛏ Amethyst Pickaxe</h3>
+      <p>اجاره کلنگ آمتیست برای استخراج و ماجراجویی</p>
+      <div class="price">۵,۰۰۰ تومان / روز</div>
+    </div>
+
+    <div class="card">
+      <span class="tag">MYSTERY BOX</span>
+      <h3>🎁 Mystery Box Simple</h3>
+      <p>یک جعبه شانسی برای دریافت آیتم‌های مختلف!</p>
+      <div class="price">۳۰,۰۰۰ تومان</div>
+    </div>
+
+    <div class="card">
+      <span class="tag">RARE</span>
+      <h3>💜 Mystery Box Rare</h3>
+      <p>شانس دریافت جایزه‌های کمیاب‌تر و ارزشمندتر</p>
+      <div class="price">۵۰,۰۰۰ تومان</div>
+    </div>
+
+    <div class="card">
+      <span class="tag">LEGENDARY</span>
+      <h3>🌟 Mystery Box Legend</h3>
+      <p>جعبه ویژه با جوایز سطح لجند و آیتم‌های خاص</p>
+      <div class="price">۱۰۰,۰۰۰ تومان</div>
+    </div>
+
   </div>
-
-  <p class="muted">نسخه‌ی وب‌سایت در حال آماده‌سازی است.</p>
 </section>
 
-<section id="store" class="panel">
-  <h2>🛒 فروشگاه سرور</h2>
+<section id="house-limit" class="reveal">
+  <h2 class="section-title">🏡 افزایش لیمیت خانه</h2>
+
+  <p style="text-align:center;color:#c8e4e9;margin:-15px 0 30px;line-height:2">
+    خانه‌های بیشتری بساز و قلمرو خودت را گسترش بده!
+  </p>
 
   <div class="grid">
-    <article class="card">
-      <div class="emoji">🌟</div>
-      <h3 class="pack-title">VIP</h3>
-      <p class="pack-items">FULL SET IRON ARMOR AND TOOLS
 
-64 BREAD
+    <div class="card">
+      <span class="tag">+2 خانه</span>
+      <h3>🏠 دو خانه بیشتر</h3>
+      <p>افزایش ظرفیت خانه‌های قابل ثبت به تعداد ۲ خانه</p>
+      <div class="price">۲۰,۰۰۰ تومان</div>
+    </div>
 
-32 OAK LOG</p>
-      <div class="pack-price">۳۰٬۰۰۰ تومان</div>
-    </article>
+    <div class="card">
+      <span class="tag">+4 خانه</span>
+      <h3>🏘 چهار خانه بیشتر</h3>
+      <p>افزایش ظرفیت خانه‌های قابل ثبت به تعداد ۴ خانه</p>
+      <div class="price">۴۰,۰۰۰ تومان</div>
+    </div>
 
-    <article class="card">
-      <div class="emoji">💎</div>
-      <h3 class="pack-title">LEGEND</h3>
-      <p class="pack-items">FULL SET DIAMOND ARMOR AND TOOLS (PROTECTION III)
+    <div class="card">
+      <span class="tag">+6 خانه</span>
+      <h3>🏰 شش خانه بیشتر</h3>
+      <p>افزایش ظرفیت خانه‌های قابل ثبت به تعداد ۶ خانه</p>
+      <div class="price">۶۰,۰۰۰ تومان</div>
+    </div>
 
-32 PUMPKIN PIE 🥧</p>
-      <div class="pack-price">۱۰۰٬۰۰۰ تومان</div>
-    </article>
-
-    <article class="card">
-      <div class="emoji">👑</div>
-      <h3 class="pack-title">CRAFTING</h3>
-      <p class="pack-items">FULL SET DIAMOND ARMOR AND TOOLS (PROTECTION IV)
-
-32 GOLDEN CARROT
-
-1 NETHERITE INGOT
-
-1 GOD APPLE</p>
-      <div class="pack-price">۱۶۰٬۰۰۰ تومان</div>
-    </article>
-
-    <article class="card">
-      <div class="emoji">⛏️</div>
-      <h3>Amethyst Pickaxe اجاره‌ای</h3>
-      <p>اجاره‌ی آمیتیستی پیک‌اکس برای استفاده در سرور</p>
-      <div class="pack-price">روزی ۵٬۰۰۰ تومان</div>
-    </article>
   </div>
+</section>
 
-  <h2 style="margin-top:28px">🎁 Mystery Box | میستری باکس</h2>
+<section id="empires" class="reveal">
+  <h2 class="section-title">⚔️ امپراتوری‌های سرور</h2>
 
   <div class="grid">
-    <article class="card">
-      <div class="emoji">📦</div>
-      <h3>Mystery Box Simple</h3>
-      <p>میستری باکس ساده</p>
-      <small>قیمت: به‌زودی</small>
-    </article>
+    <div class="card">
+      <div class="empire-icon">🟢</div>
+      <h3>CRAFTING</h3>
+      <p>قدرت، اتحاد و پیشرفت؛ امپراتوری اصلی دنیای Crafting Abad.</p>
+    </div>
 
-    <article class="card">
-      <div class="emoji">🎁</div>
-      <h3>Mystery Box Rare</h3>
-      <p>میستری باکس کمیاب</p>
-      <small>قیمت: به‌زودی</small>
-    </article>
+    <div class="card">
+      <div class="empire-icon">🔵</div>
+      <h3>NOVAX</h3>
+      <p>امپراتوری ماجراجویان و جنگجویان قدرتمند.</p>
+    </div>
 
-    <article class="card">
-      <div class="emoji">✨</div>
-      <h3>Mystery Box Legend</h3>
-      <p>میستری باکس افسانه‌ای</p>
-      <small>قیمت: به‌زودی</small>
-    </article>
-  </div>
-
-  <p class="muted">این فروشگاه فعلاً نمایشی است و پرداختی انجام نمی‌دهد.</p>
-</section>
-
-<section id="empires" class="panel">
-  <h2>🏯 سه امپراتوری</h2>
-
-  <div class="grid">
-    <article class="card">
-      <div class="emoji">🔱</div>
-      <h3>امپراتوری کرفتینگ</h3>
-      <p>اعضا: هنوز ثبت نشده</p>
-      <p>منابع: هنوز ثبت نشده</p>
-    </article>
-
-    <article class="card">
-      <div class="emoji">❇️</div>
-      <h3>امپراتوری نواکس</h3>
-      <p>اعضا: هنوز ثبت نشده</p>
-      <p>منابع: هنوز ثبت نشده</p>
-    </article>
-
-    <article class="card">
-      <div class="emoji">♟️</div>
-      <h3>امپراتوری پارسیان</h3>
-      <p>اعضا: هنوز ثبت نشده</p>
-      <p>منابع: هنوز ثبت نشده</p>
-    </article>
+    <div class="card">
+      <div class="empire-icon">🟣</div>
+      <h3>PARSIAN</h3>
+      <p>سرزمینی برای بازیکنان باهوش و استراتژیست.</p>
+    </div>
   </div>
 </section>
 
-<section id="rules" class="panel">
-  <h2>📜 قوانین سرور</h2>
-  <ol>
-    <li>با بازیکنان دیگر محترمانه رفتار کنید.</li>
-    <li>از تقلب و سوءاستفاده از باگ‌ها خودداری کنید.</li>
-    <li>بدون اجازه وارد قلمرو دیگران نشوید.</li>
-    <li>از اسپم و تبلیغات ناخواسته خودداری کنید.</li>
-    <li>دستورهای مدیران را در چارچوب قوانین رعایت کنید.</li>
-  </ol>
+<section id="rules" class="reveal">
+  <h2 class="section-title">📜 قوانین سرور</h2>
+
+  <div class="rules-list">
+    <div class="rule">۱. احترام به تمام بازیکنان الزامی است.</div>
+    <div class="rule">۲. استفاده از چیت و هک ممنوع است.</div>
+    <div class="rule">۳. توهین و فحاشی ممنوع است.</div>
+    <div class="rule">۴. تبلیغ سرورهای دیگر بدون اجازه ممنوع است.</div>
+    <div class="rule">۵. سوءاستفاده از باگ‌های سرور ممنوع است.</div>
+    <div class="rule">۶. دستورات و قوانین ادمین‌ها باید رعایت شوند.</div>
+    <div class="rule">۷. کلاهبرداری و فریب بازیکنان ممنوع است.</div>
+  </div>
 </section>
 
-<section id="report" class="panel">
-  <h2>📨 گزارش به مدیریت</h2>
-  <p>فرم فعلاً نمایشی است؛ اطلاعات جایی ارسال یا ذخیره نمی‌شود.</p>
+<section id="report" class="reveal">
+  <h2 class="section-title">🚨 گزارش بازیکن</h2>
 
-  <form id="reportForm">
-    <label for="player">نام بازیکن</label>
-    <input id="player" required maxlength="40" placeholder="نام داخل بازی">
+  <div class="report-box">
+    <form id="reportForm">
 
-    <label for="type">موضوع</label>
-    <select id="type">
-      <option>گزارش بازیکن</option>
-      <option>درخواست کمک</option>
-      <option>پیشنهاد</option>
-      <option>مشکل فنی</option>
-    </select>
+      <label>نام بازیکن متخلف</label>
+      <input type="text" id="playerName" placeholder="نام بازیکن..." required>
 
-    <label for="message">توضیحات</label>
-    <textarea id="message" required maxlength="1000" rows="4" placeholder="پیامت را بنویس..."></textarea>
+      <label>نوع تخلف</label>
+      <select id="reportType" required>
+        <option value="">انتخاب نوع تخلف</option>
+        <option>استفاده از چیت</option>
+        <option>توهین و فحاشی</option>
+        <option>کلاهبرداری</option>
+        <option>تبلیغات</option>
+        <option>سایر موارد</option>
+      </select>
 
-    <button type="submit">ثبت آزمایشی گزارش</button>
-  </form>
+      <label>توضیحات گزارش</label>
+      <textarea id="reportMessage" placeholder="توضیحات خود را بنویسید..." required></textarea>
 
-  <p id="result" role="status"></p>
+      <button type="submit" class="btn">ثبت گزارش</button>
+      <p id="reportStatus"></p>
+
+    </form>
+  </div>
 </section>
 
 </main>
 
 <footer>
-  © Crafting Abad — ساخته‌شده برای جامعه‌ی بازیکنان
+  <strong>⛏ CRAFTING ABAD</strong>
+  <br>
+  ساخته شده برای ماجراجویان دنیای ماینکرفت
+  <br>
+  © CRAFTING ABAD - All Rights Reserved
 </footer>
 
 <script>
-/* کپی آی پی سرور */
-function copyServerIP(){
-  const ip = "craftingabad.pfmc.ir";
-  const message = document.getElementById("copyMessage");
+
+/* PARTICLES */
+
+const particleContainer = document.getElementById("particles");
+
+for(let i=0;i<75;i++){
+  const p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(7+Math.random()*15)+"s";
+  p.style.animationDelay=(-Math.random()*20)+"s";
+  p.style.width=(2+Math.random()*4)+"px";
+  p.style.height=p.style.width;
+  if(Math.random()>.5){
+    p.style.background="#43c9ff";
+    p.style.boxShadow="0 0 12px #43c9ff";
+  }
+  particleContainer.appendChild(p);
+}
+
+/* COPY SERVER IP */
+
+function copyIP(){
+  const ip="craftingabad.pfmc.ir";
 
   if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(ip)
-      .then(function(){
-        message.textContent = "✅ آدرس سرور کپی شد!";
-      })
-      .catch(function(){
-        manualCopy(ip,message);
-      });
+    navigator.clipboard.writeText(ip).then(()=>{
+      alert("آدرس سرور کپی شد! 🎮");
+    }).catch(()=>{
+      fallbackCopy(ip);
+    });
   }else{
-    manualCopy(ip,message);
+    fallbackCopy(ip);
   }
 }
 
-function manualCopy(ip,message){
-  const temp = document.createElement("textarea");
-  temp.value = ip;
-  temp.style.position = "fixed";
-  temp.style.opacity = "0";
-  document.body.appendChild(temp);
-  temp.select();
+function fallbackCopy(text){
+  const area=document.createElement("textarea");
+  area.value=text;
+  document.body.appendChild(area);
+  area.select();
 
   try{
-    const success = document.execCommand("copy");
-    message.textContent = success
-      ? "✅ آدرس سرور کپی شد!"
-      : "لطفاً آدرس را دستی کپی کن.";
-  }catch(error){
-    message.textContent = "لطفاً آدرس را دستی کپی کن.";
+    document.execCommand("copy");
+    alert("آدرس سرور کپی شد! 🎮");
+  }catch(e){
+    alert("آدرس سرور: "+text);
   }
 
-  temp.remove();
+  area.remove();
 }
 
-/* فرم گزارش آزمایشی */
-document.getElementById('reportForm').addEventListener('submit',function(e){
+/* REPORT FORM - DEMO ONLY */
+
+document.getElementById("reportForm").addEventListener("submit",function(e){
   e.preventDefault();
 
-  document.getElementById('result').textContent =
-    'آزمایش موفق بود؛ این گزارش ارسال نشده است. برای ارسال واقعی باید سیستم مدیریت متصل شود.';
+  const name=document.getElementById("playerName").value.trim();
+  const type=document.getElementById("reportType").value;
+  const message=document.getElementById("reportMessage").value.trim();
+
+  if(!name || !type || !message){
+    document.getElementById("reportStatus").textContent="لطفاً همه قسمت‌ها را کامل کنید.";
+    return;
+  }
+
+  document.getElementById("reportStatus").textContent=
+    "گزارش شما در حالت نمایشی ثبت شد. برای ارسال واقعی باید سیستم گزارش‌گیری به سرور متصل شود. ✅";
+
+  this.reset();
 });
 
-/* پس زمینه شب ماینکرافتی */
-(function(){
-  const world = document.createElement("div");
-  world.className = "world-bg";
-  world.setAttribute("aria-hidden","true");
-  document.body.prepend(world);
+/* SCROLL REVEAL */
 
-  /* بلوک های نورانی شناور */
-  for(let i=0;i<18;i++){
-    const block = document.createElement("span");
-    block.className = "pixel-block";
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:.08});
 
-    block.style.left = Math.random()*100+"%";
-    block.style.animationDuration = (12+Math.random()*18)+"s";
-    block.style.animationDelay = (-Math.random()*25)+"s";
+document.querySelectorAll(".reveal").forEach(el=>{
+  observer.observe(el);
+});
 
-    const size = 12+Math.random()*24;
-    block.style.width = size+"px";
-    block.style.height = size+"px";
+</script>
 
-    world.appendChild(block);
-  }
+</body>
+</html>
 
-  /* ذرات نورانی کوچک */
-  for(let i=0;i<35;i++){
-    const particle = document.createElement("span");
-    particle.className = "world-particle";
-
-    particle.style.left = Math.random()*100+"%";
-    particle.style.animationDuration = (8+Math.random()*15)+"s";
-    particle.style.animationDelay = (-Math.random()*20)+"s";
-
-    world.appendChild(particle);
-  }
-
-  /* ذرات نور قبلی */
-  const layer = document.createElement("div");
-  layer.className = "sparkle-layer";
-  layer.setAttribute("aria-hidden","true");
-  document.body.appendChild(layer);
-
-  for(let i=0;i<24;i++){
-    const dot = document.createElement("span");
-    dot.className = "sparkle";
-
-    dot.style.left = Math.random()*100+"%";
-    dot.style.animationDuration = (9+Math.random()*13)+"s";
-    dot.style.animationDelay = (-Math.random()*18)+"s";
-
-    const size = 2+Math.random()*3;
-    dot.style.width = size+"px";
-    dot.style.height = size+"px";
-
-    layer.appendChild(dot);
-  }
-
-  /* نمایش نرم بخش ها هنگام اسکرول */
-  const sections = document.querySelectorAll("main > section");
-
-  if("IntersectionObserver" in window){
-    document.body.classList.add("reveal-ready");
-
-    sections.forEach(function(section){
-      section.classList.add("reveal");
-    });
-
-    const observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },{threshold:.08});
-
-    sections.forEach(function(section){
-      observer.observe(section);
-    });
-  }else{
-    sections.forEach(function(section){
-      section.classList.add("

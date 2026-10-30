@@ -58,7 +58,6 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 
 <section id="store" class="panel">
   <h2>🛒 فروشگاه سرور</h2>
-
   <div class="grid">
     <article class="card">
       <div class="emoji">🌟</div>
@@ -67,7 +66,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 
 64 BREAD
 
-32 OAK LOG 🎽🪓</p>
+32 OAK LOG</p>
       <div class="pack-price">۳۰٬۰۰۰ تومان</div>
     </article>
 
@@ -76,7 +75,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <h3 class="pack-title">LEGEND</h3>
       <p class="pack-items">FULL SET DIAMOND ARMOR AND TOOLS (PROTECTION III)
 
-32 PUMPKIN PIE 🥧🥋</p>
+32 PUMPKIN PIE 🥧</p>
       <div class="pack-price">۱۰۰٬۰۰۰ تومان</div>
     </article>
 
@@ -89,7 +88,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 
 1 NETHERITE INGOT
 
-1 GOD APPLE👑👔</p>
+1 GOD APPLE</p>
       <div class="pack-price">۱۶۰٬۰۰۰ تومان</div>
     </article>
 
@@ -107,24 +106,23 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <div class="emoji">📦</div>
       <h3>Mystery Box Simple</h3>
       <p>میستری باکس ساده</p>
-      <div class="pack-price">۳۰٬۰۰۰ تومان</div>
+      <small>قیمت: به‌زودی</small>
     </article>
 
     <article class="card">
       <div class="emoji">🎁</div>
       <h3>Mystery Box Rare</h3>
       <p>میستری باکس کمیاب</p>
-      <div class="pack-price">۵۰٬۰۰۰ تومان</div>
+      <small>قیمت: به‌زودی</small>
     </article>
 
     <article class="card">
       <div class="emoji">✨</div>
       <h3>Mystery Box Legend</h3>
       <p>میستری باکس افسانه‌ای</p>
-      <div class="pack-price">۱۰۰٬۰۰۰ تومان</div>
+      <small>قیمت: به‌زودی</small>
     </article>
   </div>
-
   <p class="muted">این فروشگاه فعلاً نمایشی است و پرداختی انجام نمی‌دهد.</p>
 </section>
 
@@ -137,14 +135,12 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <p>اعضا: هنوز ثبت نشده</p>
       <p>منابع: هنوز ثبت نشده</p>
     </article>
-
     <article class="card">
       <div class="emoji">🌊</div>
       <h3>امپراتوری نواکس</h3>
       <p>اعضا: هنوز ثبت نشده</p>
       <p>منابع: هنوز ثبت نشده</p>
     </article>
-
     <article class="card">
       <div class="emoji">🌿</div>
       <h3>امپراتوری پارسیان</h3>
@@ -168,11 +164,9 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 <section id="report" class="panel">
   <h2>📨 گزارش به مدیریت</h2>
   <p>فرم فعلاً نمایشی است؛ اطلاعات جایی ارسال یا ذخیره نمی‌شود.</p>
-
   <form id="reportForm">
     <label for="player">نام بازیکن</label>
     <input id="player" required maxlength="40" placeholder="نام داخل بازی">
-
     <label for="type">موضوع</label>
     <select id="type">
       <option>گزارش بازیکن</option>
@@ -180,13 +174,10 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <option>پیشنهاد</option>
       <option>مشکل فنی</option>
     </select>
-
     <label for="message">توضیحات</label>
     <textarea id="message" required maxlength="1000" rows="4" placeholder="پیامت را بنویس..."></textarea>
-
     <button type="submit">ثبت آزمایشی گزارش</button>
   </form>
-
   <p id="result" role="status"></p>
 </section>
 </main>
@@ -199,5 +190,237 @@ document.getElementById('reportForm').addEventListener('submit',function(e){
   document.getElementById('result').textContent='آزمایش موفق بود؛ این گزارش ارسال نشده است. برای ارسال واقعی باید سیستم مدیریت متصل شود.';
 });
 </script>
+
+<!-- افکت‌های زیبایی اضافه‌شده -->
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+ overflow-x:hidden;
+ background-image:
+ radial-gradient(ellipse at 12% 8%,rgba(84,227,142,.10),transparent 35%),
+ radial-gradient(ellipse at 88% 28%,rgba(65,145,255,.10),transparent 32%),
+ linear-gradient(180deg,#0b1220,#0a1420 55%,#0b1220);
+}
+header{
+ position:relative;isolation:isolate;overflow:hidden;
+ background:linear-gradient(125deg,#123c32,#17233b,#123c32);
+ background-size:220% 220%;
+ animation:headerShift 12s ease infinite;
+}
+header:before,header:after{
+ content:"";position:absolute;z-index:-1;border-radius:50%;
+ filter:blur(2px);pointer-events:none;
+}
+header:before{
+ width:240px;height:240px;top:-150px;right:8%;
+ background:rgba(84,227,142,.18);
+ box-shadow:0 0 70px 35px rgba(84,227,142,.12);
+}
+header:after{
+ width:200px;height:200px;bottom:-150px;left:10%;
+ background:rgba(75,145,255,.16);
+ box-shadow:0 0 70px 35px rgba(75,145,255,.10);
+}
+.logo{
+ text-shadow:0 0 10px rgba(84,227,142,.55),0 0 28px rgba(84,227,142,.25);
+ animation:logoGlow 3s ease-in-out infinite alternate;
+}
+nav{
+ z-index:20;backdrop-filter:blur(14px);
+ background:rgba(10,20,34,.88);
+ border-bottom:1px solid rgba(84,227,142,.14);
+ box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+nav a{
+ border:1px solid transparent;
+ transition:transform .25s ease,background .25s ease,box-shadow .25s ease;
+}
+nav a:hover,nav a:focus-visible{
+ transform:translateY(-3px);background:#234b42;
+ border-color:rgba(84,227,142,.5);
+ box-shadow:0 0 18px rgba(84,227,142,.22);
+ outline:none;
+}
+.hero,.panel,.card{
+ box-shadow:0 10px 28px rgba(0,0,0,.16);
+ transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease;
+}
+.hero{
+ position:relative;overflow:hidden;
+ border-color:rgba(84,227,142,.28);
+ box-shadow:0 12px 35px rgba(0,0,0,.22);
+}
+.hero:after{
+ content:"";position:absolute;inset:-70% -30%;
+ background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.045) 50%,transparent 57%);
+ transform:translateX(-60%);
+ animation:heroShine 9s ease-in-out infinite;
+ pointer-events:none;
+}
+.panel{
+ background:linear-gradient(145deg,rgba(19,31,48,.97),rgba(15,29,43,.97));
+ border-color:rgba(105,145,174,.24);
+}
+.panel:hover{
+ border-color:rgba(84,227,142,.32);
+ box-shadow:0 14px 34px rgba(0,0,0,.22);
+}
+.card{
+ position:relative;overflow:hidden;
+ background:linear-gradient(145deg,#17283a,#111e2e);
+ transform-style:preserve-3d;
+}
+.card:before{
+ content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+ background:linear-gradient(135deg,rgba(84,227,142,.42),transparent 42%,rgba(90,150,255,.25));
+ -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+ -webkit-mask-composite:xor;mask-composite:exclude;
+ pointer-events:none;opacity:.55;transition:opacity .3s ease;
+}
+.card:hover{
+ transform:translateY(-7px) perspective(800px) rotateX(1deg);
+ border-color:rgba(84,227,142,.48);
+ box-shadow:0 18px 35px rgba(0,0,0,.30),0 0 24px rgba(84,227,142,.10);
+}
+.card:hover:before{opacity:1}
+.card .emoji{
+ display:inline-block;
+ filter:drop-shadow(0 0 8px rgba(84,227,142,.18));
+ transition:transform .3s ease,filter .3s ease;
+}
+.card:hover .emoji{
+ transform:translateY(-4px) scale(1.12);
+ filter:drop-shadow(0 0 12px rgba(84,227,142,.45));
+}
+.pack-price{text-shadow:0 0 14px rgba(84,227,142,.20)}
+button,.btn{
+ position:relative;overflow:hidden;
+ box-shadow:0 5px 16px rgba(84,227,142,.14);
+ transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+}
+button:before,.btn:before{
+ content:"";position:absolute;top:-50%;left:-70%;
+ width:45%;height:200%;background:rgba(255,255,255,.35);
+ transform:rotate(25deg);transition:left .55s ease;
+}
+button:hover,.btn:hover{
+ transform:translateY(-2px);filter:brightness(1.08);
+ box-shadow:0 8px 24px rgba(84,227,142,.28);
+}
+button:hover:before,.btn:hover:before{left:130%}
+button:active,.btn:active{transform:translateY(0) scale(.98)}
+input,textarea,select{transition:border-color .2s ease,box-shadow .2s ease}
+input:focus,textarea:focus,select:focus{
+ outline:none;border-color:var(--green);
+ box-shadow:0 0 0 3px rgba(84,227,142,.12),0 0 16px rgba(84,227,142,.08);
+}
+.notice{
+ border:1px solid rgba(84,227,142,.25);
+ box-shadow:inset 0 0 18px rgba(84,227,142,.05);
+}
+h2{text-shadow:0 0 16px rgba(84,227,142,.15)}
+footer{background:linear-gradient(180deg,transparent,rgba(19,31,48,.35))}
+.sparkle-layer{
+ position:fixed;inset:0;z-index:-1;
+ overflow:hidden;pointer-events:none;
+}
+.sparkle{
+ position:absolute;bottom:-20px;width:4px;height:4px;
+ border-radius:50%;background:#8fffb8;opacity:0;
+ box-shadow:0 0 9px 2px rgba(84,227,142,.5);
+ animation:floatSpark linear infinite;
+}
+.reveal-ready .reveal{
+ opacity:0;transform:translateY(22px);
+ transition:opacity .7s ease,transform .7s ease;
+}
+.reveal-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
+@keyframes headerShift{
+ 0%,100%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+}
+@keyframes logoGlow{
+ from{filter:brightness(1);text-shadow:0 0 8px rgba(84,227,142,.35)}
+ to{filter:brightness(1.18);text-shadow:0 0 15px rgba(84,227,142,.75),0 0 32px rgba(84,227,142,.3)}
+}
+@keyframes heroShine{
+ 0%,55%{transform:translateX(-65%)}
+ 85%,100%{transform:translateX(65%)}
+}
+@keyframes floatSpark{
+ 0%{transform:translateY(0) scale(.5);opacity:0}
+ 12%{opacity:.65}
+ 85%{opacity:.45}
+ 100%{transform:translateY(-105vh) scale(1.2);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{
+  scroll-behavior:auto!important;
+  animation-duration:.01ms!important;
+  animation-iteration-count:1!important;
+  transition-duration:.01ms!important;
+ }
+}
+@media(max-width:600px){
+ header{padding:22px 12px}
+ .logo{font-size:25px}
+ main{padding:12px}
+ .hero,.panel{padding:16px}
+ .pack-items{font-size:15px}
+ .card:hover{transform:translateY(-3px)}
+}
+</style>
+
+<script>
+(function(){
+  // ذرات نورانی پس‌زمینه
+  var layer=document.createElement('div');
+  layer.className='sparkle-layer';
+  layer.setAttribute('aria-hidden','true');
+  document.body.appendChild(layer);
+
+  for(var i=0;i<24;i++){
+    var dot=document.createElement('span');
+    dot.className='sparkle';
+    dot.style.left=(Math.random()*100)+'%';
+    dot.style.animationDuration=(9+Math.random()*13)+'s';
+    dot.style.animationDelay=(-Math.random()*18)+'s';
+    dot.style.opacity=(.2+Math.random()*.5).toString();
+    var size=2+Math.random()*3;
+    dot.style.width=size+'px';
+    dot.style.height=size+'px';
+    layer.appendChild(dot);
+  }
+
+  // نمایش نرم بخش‌ها هنگام اسکرول
+  var sections=document.querySelectorAll('main > section');
+
+  if('IntersectionObserver' in window){
+    document.body.classList.add('reveal-ready');
+
+    sections.forEach(function(section){
+      section.classList.add('reveal');
+    });
+
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.08});
+
+    sections.forEach(function(section){
+      observer.observe(section);
+    });
+  }else{
+    sections.forEach(function(section){
+      section.classList.add('is-visible');
+    });
+  }
+})();
+</script>
 </body>
 </html>
+

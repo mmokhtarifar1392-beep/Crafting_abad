@@ -5,34 +5,493 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Crafting Abad | سرور ماینکرفت</title>
+
 <style>
-:root{--bg:#0b1220;--panel:#131f30;--green:#54e38e;--gold:#f6c85f;--muted:#aab8ca}
+:root{
+  --bg:#0b1220;
+  --panel:#131f30;
+  --green:#54e38e;
+  --gold:#f6c85f;
+  --muted:#aab8ca;
+}
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#f5f7fb;font-family:Tahoma,Arial,sans-serif;line-height:1.9}
-header{padding:26px 16px;text-align:center;background:linear-gradient(135deg,#123c32,#17233b)}
-.logo{font-size:30px;font-weight:bold;color:var(--green)}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:78px;
+}
+
+body{
+  margin:0;
+  overflow-x:hidden;
+  background:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 12% 8%,rgba(84,227,142,.10),transparent 35%),
+    radial-gradient(ellipse at 88% 28%,rgba(65,145,255,.10),transparent 32%),
+    linear-gradient(180deg,#0b1220,#0a1420 55%,#0b1220);
+  background-attachment:fixed;
+  color:#f5f7fb;
+  font-family:Tahoma,Arial,sans-serif;
+  line-height:1.9;
+}
+
+header{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:26px 16px;
+  text-align:center;
+  background:linear-gradient(125deg,#123c32,#17233b,#123c32);
+  background-size:220% 220%;
+  animation:headerShift 12s ease infinite;
+}
+
+header:before,
+header:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  border-radius:50%;
+  filter:blur(2px);
+  pointer-events:none;
+}
+
+header:before{
+  width:240px;
+  height:240px;
+  top:-150px;
+  right:8%;
+  background:rgba(84,227,142,.18);
+  box-shadow:0 0 70px 35px rgba(84,227,142,.12);
+}
+
+header:after{
+  width:200px;
+  height:200px;
+  bottom:-150px;
+  left:10%;
+  background:rgba(75,145,255,.16);
+  box-shadow:0 0 70px 35px rgba(75,145,255,.10);
+}
+
+.logo{
+  font-size:30px;
+  font-weight:bold;
+  color:var(--green);
+  text-shadow:0 0 10px rgba(84,227,142,.55);
+  animation:logoGlow 3s ease-in-out infinite alternate;
+}
+
 header p{color:#d7e7e0}
-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#0e1827;position:sticky;top:0}
-nav a{color:white;text-decoration:none;padding:7px 12px;border-radius:9px;background:#1c2a3e;font-size:13px}
-main{max-width:950px;margin:auto;padding:18px}
-.hero,.panel,.card{background:var(--panel);border:1px solid #293a50;border-radius:16px;padding:20px;margin-bottom:18px}
-.hero{text-align:center;background:linear-gradient(145deg,#173a35,#17233b)}
+
+nav{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:12px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(14px);
+  background:rgba(10,20,34,.92);
+  border-bottom:1px solid rgba(84,227,142,.14);
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:7px 12px;
+  border-radius:9px;
+  background:#1c2a3e;
+  font-size:13px;
+  border:1px solid transparent;
+  transition:.25s;
+}
+
+nav a:hover,
+nav a:focus-visible{
+  transform:translateY(-3px);
+  background:#234b42;
+  border-color:rgba(84,227,142,.5);
+  box-shadow:0 0 18px rgba(84,227,142,.22);
+  outline:none;
+}
+
+main{
+  max-width:950px;
+  margin:auto;
+  padding:18px;
+}
+
+.hero,.panel,.card{
+  background:var(--panel);
+  border:1px solid #293a50;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16);
+  transition:border-color .3s,box-shadow .3s,transform .3s;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  background:linear-gradient(145deg,#173a35,#17233b);
+  border-color:rgba(84,227,142,.28);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:-70% -30%;
+  background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.045) 50%,transparent 57%);
+  transform:translateX(-60%);
+  animation:heroShine 9s ease-in-out infinite;
+  pointer-events:none;
+}
+
 h1{font-size:27px}
-h2{color:var(--green);font-size:21px}
-button,.btn{border:0;border-radius:10px;padding:11px 16px;background:var(--green);color:#092016;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.card{margin:0}
-.emoji{font-size:34px}
+
+h2{
+  color:var(--green);
+  font-size:21px;
+  text-shadow:0 0 16px rgba(84,227,142,.15);
+}
+
+button,.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  background:var(--green);
+  color:#092016;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+  margin:0;
+  background:linear-gradient(145deg,#17283a,#111e2e);
+  transform-style:preserve-3d;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(135deg,rgba(84,227,142,.42),transparent 42%,rgba(90,150,255,.25));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+  opacity:.55;
+  transition:opacity .3s;
+}
+
+.card:hover{
+  transform:translateY(-7px) perspective(800px) rotateX(1deg);
+  border-color:rgba(84,227,142,.48);
+  box-shadow:0 18px 35px rgba(0,0,0,.30),0 0 24px rgba(84,227,142,.10);
+}
+
+.card:hover:before{opacity:1}
+
+.emoji{
+  font-size:34px;
+  display:inline-block;
+}
+
+.card .emoji{
+  filter:drop-shadow(0 0 8px rgba(84,227,142,.18));
+  transition:.3s;
+}
+
+.card:hover .emoji{
+  transform:translateY(-4px) scale(1.12);
+  filter:drop-shadow(0 0 12px rgba(84,227,142,.45));
+}
+
 small,.muted{color:var(--muted)}
-input,textarea,select{width:100%;padding:12px;margin:6px 0 14px;border-radius:9px;border:1px solid #34465d;background:#0b1422;color:white;font:inherit}
-footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #293a50}
-.notice{padding:12px;background:#273221;border-radius:10px;color:#d9f7c2}
-.pack-title{font-size:30px!important;font-weight:900;letter-spacing:1px;margin:8px 0}
-.pack-items{font-size:18px;white-space:pre-line;line-height:2.1}
-.pack-price{font-size:24px;color:var(--green);font-weight:bold}
+
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:6px 0 14px;
+  border-radius:9px;
+  border:1px solid #34465d;
+  background:#0b1422;
+  color:white;
+  font:inherit;
+  transition:.2s;
+}
+
+input:focus,textarea:focus,select:focus{
+  outline:none;
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(84,227,142,.12),0 0 16px rgba(84,227,142,.08);
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  border-top:1px solid #293a50;
+  background:linear-gradient(180deg,transparent,rgba(19,31,48,.35));
+}
+
+.notice{
+  padding:12px;
+  background:#273221;
+  border-radius:10px;
+  color:#d9f7c2;
+  border:1px solid rgba(84,227,142,.25);
+  box-shadow:inset 0 0 18px rgba(84,227,142,.05);
+}
+
+.pack-title{
+  font-size:30px!important;
+  font-weight:900;
+  letter-spacing:1px;
+  margin:8px 0;
+}
+
+.pack-items{
+  font-size:18px;
+  white-space:pre-line;
+  line-height:2.1;
+}
+
+.pack-price{
+  font-size:24px;
+  color:var(--green);
+  font-weight:bold;
+  text-shadow:0 0 14px rgba(84,227,142,.20);
+}
+
+/* پنل آی پی سرور */
+
+.server-panel{
+  max-width:500px;
+  margin:20px auto;
+  padding:24px 18px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#172d25,#101a27);
+  border:2px solid #42e88b;
+  border-radius:12px;
+  box-shadow:0 0 20px #20ff7950,inset 0 0 18px #20ff7920;
+  transition:.35s;
+  animation:serverGlow 3s infinite alternate;
+}
+
+.server-panel:hover{
+  transform:perspective(800px) rotateX(3deg) rotateY(-3deg) scale(1.02);
+  box-shadow:0 0 35px #20ff79a0;
+}
+
+.server-status{
+  color:#55ff9b;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.status-dot{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  background:#35ff85;
+  border-radius:50%;
+  box-shadow:0 0 12px #35ff85;
+  margin-left:7px;
+  animation:pulse 1.2s infinite;
+}
+
+.server-ip-title{
+  color:#b8d9c5;
+  margin-bottom:5px;
+}
+
+.server-ip{
+  color:#fff;
+  font-size:21px;
+  font-weight:bold;
+  text-shadow:0 0 12px #43ff9b;
+  direction:ltr;
+  overflow-wrap:anywhere;
+}
+
+.server-version{
+  margin-top:10px;
+  color:#b9d9ff;
+  font-size:14px;
+}
+
+.server-version strong{
+  color:#61eaff;
+  text-shadow:0 0 10px #00bfff;
+}
+
+.copy-ip-btn{
+  margin-top:18px;
+  padding:13px 23px;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+  background:linear-gradient(180deg,#39c96d,#168342);
+  border:2px solid #8affaa;
+  border-bottom:5px solid #10552b;
+  border-radius:5px;
+  cursor:pointer;
+  box-shadow:0 0 15px #35ff7860;
+  transition:.2s;
+  position:relative;
+  overflow:hidden;
+}
+
+.copy-ip-btn:hover{
+  transform:translateY(-4px);
+  filter:brightness(1.2);
+  box-shadow:0 0 25px #35ff78;
+}
+
+.copy-ip-btn:active{
+  transform:translateY(3px);
+  border-bottom-width:2px;
+}
+
+.copy-message{
+  min-height:25px;
+  margin-top:10px;
+  color:#72ffad;
+  font-size:13px;
+}
+
+/* نور دکمه ها */
+
+button,.btn{
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 5px 16px rgba(84,227,142,.14);
+  transition:transform .2s,box-shadow .2s,filter .2s;
+}
+
+button:hover,.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+  box-shadow:0 8px 24px rgba(84,227,142,.28);
+}
+
+button:active,.btn:active{
+  transform:translateY(0) scale(.98);
+}
+
+/* ذرات نور پس زمینه */
+
+.sparkle-layer{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.sparkle{
+  position:absolute;
+  bottom:-20px;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#8fffb8;
+  opacity:0;
+  box-shadow:0 0 9px 2px rgba(84,227,142,.5);
+  animation:floatSpark linear infinite;
+}
+
+/* ظاهر شدن بخش ها */
+
+.reveal-ready .reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal-ready .reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* انیمیشن ها */
+
+@keyframes headerShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+
+@keyframes logoGlow{
+  from{filter:brightness(1);text-shadow:0 0 8px rgba(84,227,142,.35)}
+  to{filter:brightness(1.18);text-shadow:0 0 15px rgba(84,227,142,.75),0 0 32px rgba(84,227,142,.3)}
+}
+
+@keyframes heroShine{
+  0%,55%{transform:translateX(-65%)}
+  85%,100%{transform:translateX(65%)}
+}
+
+@keyframes floatSpark{
+  0%{transform:translateY(0) scale(.5);opacity:0}
+  12%{opacity:.65}
+  85%{opacity:.45}
+  100%{transform:translateY(-105vh) scale(1.2);opacity:0}
+}
+
+@keyframes pulse{
+  50%{opacity:.35;transform:scale(.7)}
+}
+
+@keyframes serverGlow{
+  from{box-shadow:0 0 10px #20ff7940}
+  to{box-shadow:0 0 28px #20ff7990}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+
+@media(max-width:600px){
+  header{padding:22px 12px}
+  .logo{font-size:25px}
+  main{padding:12px}
+  .hero,.panel{padding:16px}
+  .pack-items{font-size:15px}
+  .card:hover{transform:translateY(-3px)}
+  .server-ip{font-size:18px}
+}
 </style>
 </head>
+
 <body>
+
 <header>
   <div class="logo">⛏ CRAFTING ABAD</div>
   <p>ماجراجویی تو از اینجا شروع می‌شود!</p>
@@ -48,16 +507,39 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 </nav>
 
 <main>
+
 <section class="hero" id="home">
   <div class="emoji">🏰🌲⛏️</div>
   <h1>به Crafting Abad خوش آمدی</h1>
   <p>قلمرو خودت را بساز، متحد پیدا کن و در دنیای ماجراجویی پیشرفت کن!</p>
-  <p class="notice">آدرس سرور: craftingabad.pfmc.ir</p>
+
+  <!-- پنل جدید سرور -->
+  <div class="server-panel">
+    <div class="server-status">
+      <span class="status-dot"></span>
+      وضعیت سرور
+    </div>
+
+    <div class="server-ip-title">آدرس سرور</div>
+    <div class="server-ip" id="serverIP">craftingabad.pfmc.ir</div>
+
+    <div class="server-version">
+      ⚒ نسخه سرور: <strong>26.3</strong>
+    </div>
+
+    <button type="button" class="copy-ip-btn" onclick="copyServerIP()">
+      📋 کپی آدرس سرور
+    </button>
+
+    <div id="copyMessage" class="copy-message" role="status"></div>
+  </div>
+
   <p class="muted">نسخه‌ی وب‌سایت در حال آماده‌سازی است.</p>
 </section>
 
 <section id="store" class="panel">
   <h2>🛒 فروشگاه سرور</h2>
+
   <div class="grid">
     <article class="card">
       <div class="emoji">🌟</div>
@@ -101,6 +583,7 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
   </div>
 
   <h2 style="margin-top:28px">🎁 Mystery Box | میستری باکس</h2>
+
   <div class="grid">
     <article class="card">
       <div class="emoji">📦</div>
@@ -123,11 +606,13 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <small>قیمت: به‌زودی</small>
     </article>
   </div>
+
   <p class="muted">این فروشگاه فعلاً نمایشی است و پرداختی انجام نمی‌دهد.</p>
 </section>
 
 <section id="empires" class="panel">
   <h2>🏯 سه امپراتوری</h2>
+
   <div class="grid">
     <article class="card">
       <div class="emoji">🔥</div>
@@ -135,12 +620,14 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <p>اعضا: هنوز ثبت نشده</p>
       <p>منابع: هنوز ثبت نشده</p>
     </article>
+
     <article class="card">
       <div class="emoji">🌊</div>
       <h3>امپراتوری نواکس</h3>
       <p>اعضا: هنوز ثبت نشده</p>
       <p>منابع: هنوز ثبت نشده</p>
     </article>
+
     <article class="card">
       <div class="emoji">🌿</div>
       <h3>امپراتوری پارسیان</h3>
@@ -164,9 +651,11 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
 <section id="report" class="panel">
   <h2>📨 گزارش به مدیریت</h2>
   <p>فرم فعلاً نمایشی است؛ اطلاعات جایی ارسال یا ذخیره نمی‌شود.</p>
+
   <form id="reportForm">
     <label for="player">نام بازیکن</label>
     <input id="player" required maxlength="40" placeholder="نام داخل بازی">
+
     <label for="type">موضوع</label>
     <select id="type">
       <option>گزارش بازیکن</option>
@@ -174,226 +663,92 @@ footer{text-align:center;padding:25px;color:var(--muted);border-top:1px solid #2
       <option>پیشنهاد</option>
       <option>مشکل فنی</option>
     </select>
+
     <label for="message">توضیحات</label>
     <textarea id="message" required maxlength="1000" rows="4" placeholder="پیامت را بنویس..."></textarea>
+
     <button type="submit">ثبت آزمایشی گزارش</button>
   </form>
+
   <p id="result" role="status"></p>
 </section>
+
 </main>
 
-<footer>© Crafting Abad — ساخته‌شده برای جامعه‌ی بازیکنان</footer>
+<footer>
+  © Crafting Abad — ساخته‌شده برای جامعه‌ی بازیکنان
+</footer>
 
 <script>
+/* کپی آی پی سرور */
+function copyServerIP(){
+  const ip = "craftingabad.pfmc.ir";
+  const message = document.getElementById("copyMessage");
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(ip)
+      .then(function(){
+        message.textContent = "✅ آدرس سرور کپی شد!";
+      })
+      .catch(function(){
+        manualCopy(ip,message);
+      });
+  }else{
+    manualCopy(ip,message);
+  }
+}
+
+function manualCopy(ip,message){
+  const temp = document.createElement("textarea");
+  temp.value = ip;
+  temp.style.position = "fixed";
+  temp.style.opacity = "0";
+  document.body.appendChild(temp);
+  temp.select();
+
+  try{
+    const success = document.execCommand("copy");
+    message.textContent = success
+      ? "✅ آدرس سرور کپی شد!"
+      : "لطفاً آدرس را دستی کپی کن.";
+  }catch(error){
+    message.textContent = "لطفاً آدرس را دستی کپی کن.";
+  }
+
+  temp.remove();
+}
+
+/* فرم گزارش آزمایشی */
 document.getElementById('reportForm').addEventListener('submit',function(e){
   e.preventDefault();
-  document.getElementById('result').textContent='آزمایش موفق بود؛ این گزارش ارسال نشده است. برای ارسال واقعی باید سیستم مدیریت متصل شود.';
+
+  document.getElementById('result').textContent =
+    'آزمایش موفق بود؛ این گزارش ارسال نشده است. برای ارسال واقعی باید سیستم مدیریت متصل شود.';
 });
-</script>
 
-<!-- افکت‌های زیبایی اضافه‌شده -->
-<style>
-html{scroll-behavior:smooth;scroll-padding-top:78px}
-body{
- overflow-x:hidden;
- background-image:
- radial-gradient(ellipse at 12% 8%,rgba(84,227,142,.10),transparent 35%),
- radial-gradient(ellipse at 88% 28%,rgba(65,145,255,.10),transparent 32%),
- linear-gradient(180deg,#0b1220,#0a1420 55%,#0b1220);
-}
-header{
- position:relative;isolation:isolate;overflow:hidden;
- background:linear-gradient(125deg,#123c32,#17233b,#123c32);
- background-size:220% 220%;
- animation:headerShift 12s ease infinite;
-}
-header:before,header:after{
- content:"";position:absolute;z-index:-1;border-radius:50%;
- filter:blur(2px);pointer-events:none;
-}
-header:before{
- width:240px;height:240px;top:-150px;right:8%;
- background:rgba(84,227,142,.18);
- box-shadow:0 0 70px 35px rgba(84,227,142,.12);
-}
-header:after{
- width:200px;height:200px;bottom:-150px;left:10%;
- background:rgba(75,145,255,.16);
- box-shadow:0 0 70px 35px rgba(75,145,255,.10);
-}
-.logo{
- text-shadow:0 0 10px rgba(84,227,142,.55),0 0 28px rgba(84,227,142,.25);
- animation:logoGlow 3s ease-in-out infinite alternate;
-}
-nav{
- z-index:20;backdrop-filter:blur(14px);
- background:rgba(10,20,34,.88);
- border-bottom:1px solid rgba(84,227,142,.14);
- box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-nav a{
- border:1px solid transparent;
- transition:transform .25s ease,background .25s ease,box-shadow .25s ease;
-}
-nav a:hover,nav a:focus-visible{
- transform:translateY(-3px);background:#234b42;
- border-color:rgba(84,227,142,.5);
- box-shadow:0 0 18px rgba(84,227,142,.22);
- outline:none;
-}
-.hero,.panel,.card{
- box-shadow:0 10px 28px rgba(0,0,0,.16);
- transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease;
-}
-.hero{
- position:relative;overflow:hidden;
- border-color:rgba(84,227,142,.28);
- box-shadow:0 12px 35px rgba(0,0,0,.22);
-}
-.hero:after{
- content:"";position:absolute;inset:-70% -30%;
- background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.045) 50%,transparent 57%);
- transform:translateX(-60%);
- animation:heroShine 9s ease-in-out infinite;
- pointer-events:none;
-}
-.panel{
- background:linear-gradient(145deg,rgba(19,31,48,.97),rgba(15,29,43,.97));
- border-color:rgba(105,145,174,.24);
-}
-.panel:hover{
- border-color:rgba(84,227,142,.32);
- box-shadow:0 14px 34px rgba(0,0,0,.22);
-}
-.card{
- position:relative;overflow:hidden;
- background:linear-gradient(145deg,#17283a,#111e2e);
- transform-style:preserve-3d;
-}
-.card:before{
- content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
- background:linear-gradient(135deg,rgba(84,227,142,.42),transparent 42%,rgba(90,150,255,.25));
- -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
- -webkit-mask-composite:xor;mask-composite:exclude;
- pointer-events:none;opacity:.55;transition:opacity .3s ease;
-}
-.card:hover{
- transform:translateY(-7px) perspective(800px) rotateX(1deg);
- border-color:rgba(84,227,142,.48);
- box-shadow:0 18px 35px rgba(0,0,0,.30),0 0 24px rgba(84,227,142,.10);
-}
-.card:hover:before{opacity:1}
-.card .emoji{
- display:inline-block;
- filter:drop-shadow(0 0 8px rgba(84,227,142,.18));
- transition:transform .3s ease,filter .3s ease;
-}
-.card:hover .emoji{
- transform:translateY(-4px) scale(1.12);
- filter:drop-shadow(0 0 12px rgba(84,227,142,.45));
-}
-.pack-price{text-shadow:0 0 14px rgba(84,227,142,.20)}
-button,.btn{
- position:relative;overflow:hidden;
- box-shadow:0 5px 16px rgba(84,227,142,.14);
- transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
-}
-button:before,.btn:before{
- content:"";position:absolute;top:-50%;left:-70%;
- width:45%;height:200%;background:rgba(255,255,255,.35);
- transform:rotate(25deg);transition:left .55s ease;
-}
-button:hover,.btn:hover{
- transform:translateY(-2px);filter:brightness(1.08);
- box-shadow:0 8px 24px rgba(84,227,142,.28);
-}
-button:hover:before,.btn:hover:before{left:130%}
-button:active,.btn:active{transform:translateY(0) scale(.98)}
-input,textarea,select{transition:border-color .2s ease,box-shadow .2s ease}
-input:focus,textarea:focus,select:focus{
- outline:none;border-color:var(--green);
- box-shadow:0 0 0 3px rgba(84,227,142,.12),0 0 16px rgba(84,227,142,.08);
-}
-.notice{
- border:1px solid rgba(84,227,142,.25);
- box-shadow:inset 0 0 18px rgba(84,227,142,.05);
-}
-h2{text-shadow:0 0 16px rgba(84,227,142,.15)}
-footer{background:linear-gradient(180deg,transparent,rgba(19,31,48,.35))}
-.sparkle-layer{
- position:fixed;inset:0;z-index:-1;
- overflow:hidden;pointer-events:none;
-}
-.sparkle{
- position:absolute;bottom:-20px;width:4px;height:4px;
- border-radius:50%;background:#8fffb8;opacity:0;
- box-shadow:0 0 9px 2px rgba(84,227,142,.5);
- animation:floatSpark linear infinite;
-}
-.reveal-ready .reveal{
- opacity:0;transform:translateY(22px);
- transition:opacity .7s ease,transform .7s ease;
-}
-.reveal-ready .reveal.is-visible{opacity:1;transform:translateY(0)}
-@keyframes headerShift{
- 0%,100%{background-position:0% 50%}
- 50%{background-position:100% 50%}
-}
-@keyframes logoGlow{
- from{filter:brightness(1);text-shadow:0 0 8px rgba(84,227,142,.35)}
- to{filter:brightness(1.18);text-shadow:0 0 15px rgba(84,227,142,.75),0 0 32px rgba(84,227,142,.3)}
-}
-@keyframes heroShine{
- 0%,55%{transform:translateX(-65%)}
- 85%,100%{transform:translateX(65%)}
-}
-@keyframes floatSpark{
- 0%{transform:translateY(0) scale(.5);opacity:0}
- 12%{opacity:.65}
- 85%{opacity:.45}
- 100%{transform:translateY(-105vh) scale(1.2);opacity:0}
-}
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{
-  scroll-behavior:auto!important;
-  animation-duration:.01ms!important;
-  animation-iteration-count:1!important;
-  transition-duration:.01ms!important;
- }
-}
-@media(max-width:600px){
- header{padding:22px 12px}
- .logo{font-size:25px}
- main{padding:12px}
- .hero,.panel{padding:16px}
- .pack-items{font-size:15px}
- .card:hover{transform:translateY(-3px)}
-}
-</style>
-
-<script>
+/* افکت های پس زمینه و اسکرول */
 (function(){
-  // ذرات نورانی پس‌زمینه
-  var layer=document.createElement('div');
-  layer.className='sparkle-layer';
+  const layer = document.createElement('div');
+  layer.className = 'sparkle-layer';
   layer.setAttribute('aria-hidden','true');
   document.body.appendChild(layer);
 
-  for(var i=0;i<24;i++){
-    var dot=document.createElement('span');
-    dot.className='sparkle';
-    dot.style.left=(Math.random()*100)+'%';
-    dot.style.animationDuration=(9+Math.random()*13)+'s';
-    dot.style.animationDelay=(-Math.random()*18)+'s';
-    dot.style.opacity=(.2+Math.random()*.5).toString();
-    var size=2+Math.random()*3;
-    dot.style.width=size+'px';
-    dot.style.height=size+'px';
+  for(let i=0;i<24;i++){
+    const dot = document.createElement('span');
+    dot.className = 'sparkle';
+    dot.style.left = (Math.random()*100)+'%';
+    dot.style.animationDuration = (9+Math.random()*13)+'s';
+    dot.style.animationDelay = (-Math.random()*18)+'s';
+
+    const size = 2+Math.random()*3;
+    dot.style.width = size+'px';
+    dot.style.height = size+'px';
+
     layer.appendChild(dot);
   }
 
-  // نمایش نرم بخش‌ها هنگام اسکرول
-  var sections=document.querySelectorAll('main > section');
+  /* نمایش نرم بخش ها */
+  const sections = document.querySelectorAll('main > section');
 
   if('IntersectionObserver' in window){
     document.body.classList.add('reveal-ready');
@@ -402,7 +757,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(19,31,48,.35))}
       section.classList.add('reveal');
     });
 
-    var observer=new IntersectionObserver(function(entries){
+    const observer = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
           entry.target.classList.add('is-visible');
@@ -421,6 +776,6 @@ footer{background:linear-gradient(180deg,transparent,rgba(19,31,48,.35))}
   }
 })();
 </script>
+
 </body>
 </html>
-

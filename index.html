@@ -6,64 +6,108 @@
 <title>CRAFTING ABAD | سرور ماینکرفت</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#07110f;--panel:#101d19;--panel2:#142720;--green:#5ce0a0;--mint:#a3ffd0;--gold:#e6c36a;--text:#eaf7ef;--muted:#a5b9ad;--line:#284338;--red:#ff7777}
+:root{
+  --bg:#07110f;--green:#5ce0a0;--mint:#a3ffd0;
+  --gold:#e6c36a;--text:#eaf7ef;--muted:#a5b9ad;
+  --line:#284338;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 50% -15%,#1b4936 0,transparent 48%),linear-gradient(180deg,#081512,#050b0a 75%);color:var(--text);font-family:Vazirmatn,sans-serif;min-height:100vh;position:relative;isolation:isolate}
-body:before{
-content:"";
-position:fixed;
-inset:-20%;
-z-index:-1;
-pointer-events:none;
-background:
-radial-gradient(circle at 20% 25%,#42d99512 0,transparent 22%),
-radial-gradient(circle at 80% 65%,#39c98512 0,transparent 25%),
-radial-gradient(circle at 55% 90%,#b0ffd00a 0,transparent 20%);
-animation:ambientMove 24s ease-in-out infinite alternate;
-will-change:transform;
+body{
+  margin:0;
+  background:linear-gradient(145deg,#07130f,#0b2018 48%,#050b09);
+  color:var(--text);
+  font-family:Vazirmatn,sans-serif;
+  min-height:100vh;
+  position:relative;
+  isolation:isolate;
 }
-@keyframes ambientMove{
-0%{transform:translate3d(-1%,0,0) scale(1)}
-50%{transform:translate3d(1%,1%,0) scale(1.025)}
-100%{transform:translate3d(0,-1%,0) scale(1)}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 15% 20%,#39bd7918,transparent 35%),
+    radial-gradient(ellipse at 85% 75%,#39bd7915,transparent 35%);
+  animation:ambient 25s ease-in-out infinite alternate;
+}
+@keyframes ambient{
+  from{background-position:0 0,100% 100%}
+  to{background-position:100% 100%,0 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;scroll-behavior:auto!important}
 }
 button,input,select,textarea{font:inherit}
 button{cursor:pointer;border:0}
 .wrap{width:min(1120px,92%);margin:auto}
-.top{position:sticky;top:0;z-index:20;background:#07110fe8;backdrop-filter:blur(14px);border-bottom:1px solid #284338}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
-.brand{font:800 19px Orbitron,sans-serif;color:var(--mint);letter-spacing:1px}
+.top{
+  position:sticky;top:0;z-index:20;
+  background:#07110fee;backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding:14px 0
+}
+.brand{font:800 19px Orbitron,sans-serif;color:var(--mint)}
 .brand span{color:white}
 .links{display:flex;gap:16px;flex-wrap:wrap}
 .links a{color:var(--muted);text-decoration:none;font-size:13px}
 .links a:hover{color:var(--mint)}
-.btn{background:linear-gradient(135deg,#61e4a2,#2ba96d);color:#062016;padding:10px 17px;border-radius:11px;font-weight:800;box-shadow:0 7px 25px #2bb87525}
-.btn.alt{background:#1b3028;color:var(--text);border:1px solid var(--line);box-shadow:none}
-.btn.danger{background:#4a2222;color:#ffdede;box-shadow:none}
-.hero{padding:86px 0 70px;text-align:center;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;width:460px;height:220px;border-radius:50%;background:#40d58a18;filter:blur(65px);left:calc(50% - 230px);top:50px}
+.btn{
+  background:linear-gradient(135deg,#61e4a2,#2ba96d);
+  color:#062016;padding:10px 17px;border-radius:11px;
+  font-weight:800;transition:.18s
+}
+.btn.alt{background:#1b3028;color:var(--text);border:1px solid var(--line)}
+.btn.danger{background:#4a2222;color:#ffdede}
+button:focus-visible,.btn.is-selected{
+  outline:2px solid #8affbd;outline-offset:3px;
+  box-shadow:0 0 0 4px #5ce0a026,0 0 22px #5ce0a044
+}
+.btn:active{transform:translateY(1px)}
+.hero{padding:85px 0 70px;text-align:center}
 .eyebrow{color:var(--green);font-size:13px;letter-spacing:2px}
-.hero h1{font:800 clamp(34px,7vw,70px) Orbitron,sans-serif;margin:15px 0;color:#f3fff7;text-shadow:0 0 30px #5ce0a044}
+.hero h1{
+  font:800 clamp(34px,7vw,70px) Orbitron,sans-serif;
+  margin:15px 0;color:#f3fff7;text-shadow:0 0 30px #5ce0a044
+}
 .hero h1 span{color:var(--green)}
 .hero p{color:var(--muted);max-width:650px;margin:0 auto 24px;line-height:2}
-.ip{display:inline-flex;align-items:center;gap:12px;border:1px solid #3a6954;background:#10231b;padding:12px 17px;border-radius:12px;color:var(--mint);font:700 14px Orbitron,sans-serif;direction:ltr}
+.ip{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid #3a6954;background:#10231b;
+  padding:12px 17px;border-radius:12px;color:var(--mint);
+  font:700 14px Orbitron,sans-serif;direction:ltr
+}
 .section{padding:48px 0}
 .heading{text-align:center;margin-bottom:25px}
 .heading h2{font-size:27px;margin:0 0 8px}
 .heading p{color:var(--muted);font-size:13px;margin:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card{background:linear-gradient(145deg,#14251e,#0d1915);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 15px 35px #0002}
+.card{
+  background:linear-gradient(145deg,#14251e,#0d1915);
+  border:1px solid var(--line);border-radius:17px;
+  padding:20px;box-shadow:0 15px 35px #0002;
+  transition:border-color .18s,box-shadow .18s
+}
 .card h3{margin:0 0 9px;color:var(--mint)}
 .card p{color:var(--muted);line-height:1.9;font-size:13px}
+.card.is-selected{
+  border:2px solid #8affbd;
+  box-shadow:0 0 0 3px #5ce0a026,0 0 24px #5ce0a044
+}
 .price{color:var(--gold);font-weight:800}
 .tag{display:inline-block;color:var(--mint);background:#1c392b;padding:4px 9px;border-radius:20px;font-size:11px}
 .rules{line-height:2.1;color:var(--muted);padding-right:20px}
 .formbox{max-width:680px;margin:auto}
 .field{display:grid;gap:6px;margin:12px 0}
 .field label{font-size:13px;color:#c8ddd0}
-.field input,.field select,.field textarea{width:100%;background:#091510;color:var(--text);border:1px solid #345244;border-radius:10px;padding:11px;outline:none}
+.field input,.field select,.field textarea{
+  width:100%;background:#091510;color:var(--text);
+  border:1px solid #345244;border-radius:10px;padding:11px;outline:none
+}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
 textarea{min-height:100px;resize:vertical}
 .row{display:flex;gap:10px;flex-wrap:wrap}
@@ -72,10 +116,15 @@ textarea{min-height:100px;resize:vertical}
 .hidden{display:none!important}
 .status{padding:10px 12px;border-radius:10px;background:#142b20;color:var(--mint);font-size:13px;margin:10px 0}
 .status.err{background:#3b2020;color:#ffb8b8}
-.status.warn{background:#342d18;color:#ffe19a}
 .divider{height:1px;background:var(--line);margin:18px 0}
-.modal{position:fixed;inset:0;z-index:50;background:#000b;display:grid;place-items:center;padding:15px}
-.modalbox{width:min(460px,100%);max-height:90vh;overflow:auto;background:#102019;border:1px solid #3c6953;border-radius:18px;padding:22px}
+.modal{
+  position:fixed;inset:0;z-index:50;background:#000b;
+  display:grid;place-items:center;padding:15px
+}
+.modalbox{
+  width:min(460px,100%);max-height:90vh;overflow:auto;
+  background:#102019;border:1px solid #3c6953;border-radius:18px;padding:22px
+}
 .modalhead{display:flex;justify-content:space-between;align-items:center}
 .close{background:none;color:white;font-size:24px}
 .tabs{display:flex;gap:8px;margin:14px 0}
@@ -87,548 +136,453 @@ textarea{min-height:100px;resize:vertical}
 .item-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
 .item-actions .btn{padding:7px 11px;font-size:12px}
 .footer{border-top:1px solid var(--line);padding:25px 0;text-align:center;color:var(--muted);font-size:12px}
-#dashboard{padding-top:20px}
-.dashgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
 .notice{border-right:3px solid var(--green);padding:10px 13px;background:#10251b;color:var(--muted);font-size:12px;line-height:1.8;margin:12px 0}
-@media(max-width:650px){.nav{align-items:flex-start;flex-direction:column}.links{gap:12px}.hero{padding:60px 0}.hero h1{font-size:34px}}
-@media(prefers-reduced-motion:reduce){
-html{scroll-behavior:auto}
-body:before{animation:none}
+@media(max-width:650px){
+  .nav{align-items:flex-start;flex-direction:column}
+  .links{gap:12px}
+  .hero{padding:60px 0}
+  .hero h1{font-size:34px}
 }
 </style>
 </head>
-<body>
 
+<body>
 <header class="top">
-<div class="wrap nav">
-<div class="brand">CRAFTING <span>ABAD</span></div>
-<nav class="links">
-<a href="#home">خانه</a>
-<a href="#empires">امپراطوری‌ها</a>
-<a href="#store">فروشگاه</a>
-<a href="#rules">قوانین</a>
-<a href="#report">گزارش</a>
-</nav>
-<button class="btn" id="authOpen">ورود / ثبت‌نام</button>
-</div>
+  <div class="wrap nav">
+    <div class="brand">CRAFTING <span>ABAD</span></div>
+    <nav class="links">
+      <a href="#home">خانه</a>
+      <a href="#empires">امپراطوری‌ها</a>
+      <a href="#store">فروشگاه</a>
+      <a href="#rules">قوانین</a>
+      <a href="#report">گزارش</a>
+      <a href="#coming-soon">به‌زودی</a>
+    </nav>
+    <button class="btn" id="authOpen">ورود / ثبت‌نام</button>
+  </div>
 </header>
 
 <main>
 <section class="hero" id="home">
-<div class="wrap">
-<div class="eyebrow">MINECRAFT SURVIVAL EXPERIENCE</div>
-<h1>CRAFTING <span>ABAD</span></h1>
-<p>به دنیای کرافتینگ آباد خوش اومدی؛ جایی برای ساختن، رقابت، همکاری و شکل دادن به امپراطوری خودت.</p>
-<div class="ip">
-<span>craftingabad.pfmc.ir</span>
-<button class="btn" id="copyIp">کپی IP</button>
-</div>
-<p class="muted">نسخه سرور: 26.3</p>
-</div>
+  <div class="wrap">
+    <div class="eyebrow">MINECRAFT SURVIVAL EXPERIENCE</div>
+    <h1>CRAFTING <span>ABAD</span></h1>
+    <p>به دنیای کرافتینگ آباد خوش اومدی؛ جایی برای ساختن، رقابت، همکاری و شکل دادن به امپراطوری خودت.</p>
+    <div class="ip">
+      <span>craftingabad.pfmc.ir</span>
+      <button class="btn" id="copyIp">کپی IP</button>
+    </div>
+    <p class="muted">نسخه سرور: 26.3</p>
+  </div>
 </section>
 
 <section class="section" id="empires">
 <div class="wrap">
-<div class="heading">
-<h2>سه امپراطوری، یک دنیا رقابت</h2>
-<p>امپراطوری موردنظرت رو انتخاب کن و درخواست عضویت بفرست.</p>
-</div>
-<div class="grid" id="empireCards">
-<div class="card">
-<span class="tag">EMPIRE 01</span>
-<h3>Crafting</h3>
-<p>امپراطوری Crafting</p>
-<button class="btn" onclick="requestJoin('crafting')">درخواست عضویت</button>
-</div>
-<div class="card">
-<span class="tag">EMPIRE 02</span>
-<h3>Novax</h3>
-<p>امپراطوری Novax</p>
-<button class="btn" onclick="requestJoin('novax')">درخواست عضویت</button>
-</div>
-<div class="card">
-<span class="tag">EMPIRE 03</span>
-<h3>Parsian</h3>
-<p>امپراطوری Parsian</p>
-<button class="btn" onclick="requestJoin('parsian')">درخواست عضویت</button>
-</div>
-</div>
-<div id="empireStatus" aria-live="polite"></div>
+  <div class="heading">
+    <h2>سه امپراطوری، یک دنیا رقابت</h2>
+    <p>امپراطوری موردنظرت رو انتخاب کن و درخواست عضویت بفرست.</p>
+  </div>
+  <div class="grid" id="empireCards">
+    <div class="card"><span class="tag">EMPIRE 01</span><h3>Crafting</h3><p>امپراطوری Crafting</p><button class="btn" onclick="requestJoin('crafting')">درخواست عضویت</button></div>
+    <div class="card"><span class="tag">EMPIRE 02</span><h3>Novax</h3><p>امپراطوری Novax</p><button class="btn" onclick="requestJoin('novax')">درخواست عضویت</button></div>
+    <div class="card"><span class="tag">EMPIRE 03</span><h3>Parsian</h3><p>امپراطوری Parsian</p><button class="btn" onclick="requestJoin('parsian')">درخواست عضویت</button></div>
+  </div>
+  <div id="empireStatus" aria-live="polite"></div>
 </div>
 </section>
 
 <section class="section" id="store">
 <div class="wrap">
-<div class="heading">
-<h2>فروشگاه سرور</h2>
-<p>قیمت‌های فروشگاه</p>
-</div>
-<div class="grid">
-<div class="card">
-<h3>VIP</h3>
-<p class="price">۳۰٬۰۰۰ تومان</p>
-<p>محتویات رنک:</p>
-<ul class="rules">
-<li>Full set iron armor and tools</li>
-<li>64 bread</li>
-<li>32 oak log</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>SPONSER</h3>
-<p class="price">۱۰۰٬۰۰۰ تومان</p>
-<p>محتویات رنک:</p>
-<ul class="rules">
-<li>Full set diamond armor and tools (Protection III)</li>
-<li>32 pumpkin pie 🥧</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>CRAFTING</h3>
-<p class="price">۱۶۰٬۰۰۰ تومان</p>
-<p>محتویات رنک:</p>
-<ul class="rules">
-<li>Full set diamond armor and tools (Protection IV)</li>
-<li>32 golden carrot</li>
-<li>1 netherite ingot</li>
-<li>1 god apple</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>Amethyst Pickaxe</h3>
-<p class="price">۵٬۰۰۰ تومان / هر روز</p>
-<p>اجاره آمیتیست پیک‌اکس به‌صورت روزانه</p>
-</div>
-
-<div class="card"><h3>Mystery Box Simple</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>Mystery Box Rare</h3><p class="price">۵۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>Mystery Box Legend</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>افزایش محدودیت خانه +2</h3><p class="price">۲۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>افزایش محدودیت خانه +4</h3><p class="price">۴۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>افزایش محدودیت خانه +6</h3><p class="price">۶۰٬۰۰۰ تومان</p></div>
-</div>
+  <div class="heading"><h2>فروشگاه سرور</h2><p>قیمت‌های فروشگاه</p></div>
+  <div class="grid">
+    <div class="card"><h3>VIP</h3><p class="price">۳۰٬۰۰۰ تومان</p><p>محتویات رنک:</p><ul class="rules"><li>Full set iron armor and tools</li><li>64 bread</li><li>32 oak log</li></ul></div>
+    <div class="card"><h3>SPONSER</h3><p class="price">۱۰۰٬۰۰۰ تومان</p><p>محتویات رنک:</p><ul class="rules"><li>Full set diamond armor and tools (Protection III)</li><li>32 pumpkin pie 🥧</li></ul></div>
+    <div class="card"><h3>CRAFTING</h3><p class="price">۱۶۰٬۰۰۰ تومان</p><p>محتویات رنک:</p><ul class="rules"><li>Full set diamond armor and tools (Protection IV)</li><li>32 golden carrot</li><li>1 netherite ingot</li><li>1 god apple</li></ul></div>
+    <div class="card"><h3>Amethyst Pickaxe</h3><p class="price">۵٬۰۰۰ تومان / هر روز</p><p>اجاره آمیتیست پیک‌اکس به‌صورت روزانه</p></div>
+    <div class="card"><h3>Mystery Box Simple</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
+    <div class="card"><h3>Mystery Box Rare</h3><p class="price">۵۰٬۰۰۰ تومان</p></div>
+    <div class="card"><h3>Mystery Box Legend</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
+    <div class="card"><h3>افزایش محدودیت خانه +2</h3><p class="price">۲۰٬۰۰۰ تومان</p></div>
+    <div class="card"><h3>افزایش محدودیت خانه +4</h3><p class="price">۴۰٬۰۰۰ تومان</p></div>
+    <div class="card"><h3>افزایش محدودیت خانه +6</h3><p class="price">۶۰٬۰۰۰ تومان</p></div>
+  </div>
 </div>
 </section>
 
 <section class="section" id="rules">
 <div class="wrap">
-<div class="heading">
-<h2>قوانین سرور</h2>
-<p>برای تجربه بهتر همه بازیکنان، قوانین را رعایت کنید.</p>
-</div>
-<div class="card">
-<ol class="rules">
-<li>به بازیکنان دیگر احترام بگذارید.</li>
-<li>از توهین، تهدید و آزار دیگران خودداری کنید.</li>
-<li>استفاده از چیت، هک و ابزارهای غیرمجاز ممنوع است.</li>
-<li>از باگ‌ها سوءاستفاده نکنید و آن‌ها را گزارش دهید.</li>
-<li>تصمیم نهایی مدیریت سرور در موارد بررسی‌شده لازم‌الاجراست.</li>
-<li>وقتی صاحب بیس آفلاینه، رید کردن بیسش ممنوعه.</li>
-</ol>
-</div>
+  <div class="heading"><h2>قوانین سرور</h2><p>برای تجربه بهتر همه بازیکنان، قوانین را رعایت کنید.</p></div>
+  <div class="card">
+    <ol class="rules">
+      <li>به بازیکنان دیگر احترام بگذارید.</li>
+      <li>از توهین، تهدید و آزار دیگران خودداری کنید.</li>
+      <li>استفاده از چیت، هک و ابزارهای غیرمجاز ممنوع است.</li>
+      <li>از باگ‌ها سوءاستفاده نکنید و آن‌ها را گزارش دهید.</li>
+      <li>تصمیم نهایی مدیریت سرور در موارد بررسی‌شده لازم‌الاجراست.</li>
+      <li>وقتی صاحب بیس آفلاینه، رید کردن بیسش ممنوعه.</li>
+    </ol>
+  </div>
 </div>
 </section>
 
 <section class="section" id="report">
 <div class="wrap">
-<div class="heading">
-<h2>گزارش بازیکن</h2>
-<p>برای ثبت گزارش باید وارد حساب کاربری شده باشی.</p>
+  <div class="heading"><h2>گزارش بازیکن</h2><p>برای ثبت گزارش باید وارد حساب کاربری شده باشی.</p></div>
+  <div class="card formbox">
+    <form id="reportForm">
+      <div class="field"><label>نام بازیکن متخلف</label><input id="reportedPlayer" required maxlength="40" placeholder="نام بازیکن"></div>
+      <div class="field"><label>نوع گزارش</label><select id="reportType" required><option value="">انتخاب کن</option><option>چیت یا هک</option><option>توهین و آزار</option><option>خرابکاری</option><option>سوءاستفاده از باگ</option><option>مورد دیگر</option></select></div>
+      <div class="field"><label>توضیحات گزارش</label><textarea id="reportMessage" required maxlength="2000" placeholder="جزئیات اتفاق را بنویس..."></textarea></div>
+      <button class="btn" type="submit">ثبت گزارش</button>
+      <div id="reportStatus" aria-live="polite"></div>
+    </form>
+  </div>
 </div>
-<div class="card formbox">
-<form id="reportForm">
-<div class="field">
-<label>نام بازیکن متخلف</label>
-<input id="reportedPlayer" required maxlength="40" placeholder="نام بازیکن">
-</div>
-<div class="field">
-<label>نوع گزارش</label>
-<select id="reportType" required>
-<option value="">انتخاب کن</option>
-<option>چیت یا هک</option>
-<option>توهین و آزار</option>
-<option>خرابکاری</option>
-<option>سوءاستفاده از باگ</option>
-<option>مورد دیگر</option>
-</select>
-</div>
-<div class="field">
-<label>توضیحات گزارش</label>
-<textarea id="reportMessage" required maxlength="2000" placeholder="جزئیات اتفاق را بنویس..."></textarea>
-</div>
-<button class="btn" type="submit">ثبت گزارش</button>
-<div id="reportStatus" aria-live="polite"></div>
-</form>
-</div>
+</section>
+
+<section class="section" id="coming-soon">
+<div class="wrap">
+  <div class="card" style="text-align:center;padding:38px 20px">
+    <span class="tag">COMING SOON</span>
+    <h2 style="color:var(--mint);margin:14px 0 8px">به‌زودی</h2>
+    <p>به زودی این قسمت ساخته میشود</p>
+  </div>
 </div>
 </section>
 
 <section class="section hidden" id="dashboard">
 <div class="wrap">
-<div class="heading">
-<h2>پنل مدیریت</h2>
-<p id="welcome"></p>
-</div>
-<div id="dashNotice" class="notice"></div>
-<div id="dashContent"></div>
+  <div class="heading"><h2>پنل مدیریت</h2><p id="welcome"></p></div>
+  <div id="dashNotice" class="notice"></div>
+  <div id="dashContent"></div>
 </div>
 </section>
 </main>
 
-<footer class="footer">
-<div class="wrap">CRAFTING ABAD · سرور ماینکرفت · craftingabad.pfmc.ir</div>
-</footer>
+<footer class="footer"><div class="wrap">CRAFTING ABAD · سرور ماینکرفت · craftingabad.pfmc.ir</div></footer>
 
 <div class="modal hidden" id="authModal">
 <div class="modalbox">
-<div class="modalhead">
-<h3>حساب کاربری</h3>
-<button class="close" id="authClose">×</button>
-</div>
-<div class="tabs">
-<button class="btn" id="loginTab">ورود</button>
-<button class="btn alt" id="signupTab">ثبت‌نام</button>
-</div>
-<form id="authForm">
-<div class="field" id="usernameField">
-<label>نام کاربری</label>
-<input id="username" maxlength="24" autocomplete="username">
-</div>
-<div class="field">
-<label>ایمیل</label>
-<input id="email" type="email" required autocomplete="email">
-</div>
-<div class="field">
-<label>رمز عبور</label>
-<input id="password" type="password" minlength="8" required autocomplete="current-password">
-</div>
-<button class="btn" id="authSubmit" type="submit">ورود</button>
-<div id="authStatus" aria-live="polite"></div>
-</form>
-<div class="divider"></div>
-<div id="sessionArea" class="muted">برای استفاده از پنل‌ها وارد حساب شو.</div>
+  <div class="modalhead"><h3>حساب کاربری</h3><button class="close" id="authClose" type="button">×</button></div>
+  <div class="tabs"><button class="btn" id="loginTab" type="button">ورود</button><button class="btn alt" id="signupTab" type="button">ثبت‌نام</button></div>
+  <form id="authForm">
+    <div class="field" id="usernameField"><label>نام کاربری</label><input id="username" maxlength="24" autocomplete="username"></div>
+    <div class="field"><label>ایمیل</label><input id="email" type="email" required autocomplete="email"></div>
+    <div class="field"><label>رمز عبور</label><input id="password" type="password" minlength="8" required autocomplete="current-password"></div>
+    <button class="btn" id="authSubmit" type="submit">ورود</button>
+    <div id="authStatus" aria-live="polite"></div>
+  </form>
+  <div class="divider"></div>
+  <div id="sessionArea" class="muted">برای استفاده از پنل‌ها وارد حساب شو.</div>
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- بارگذاری امن Supabase با CDN پشتیبان -->
 <script>
-const SUPABASE_URL = 'https://ayletedbkwpwfsvkyprn.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_nfBiemi0RzmQiWg03cDHdA_4WKcQXeu';
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+(function loadSupabase(){
+  const sources=[
+    'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2',
+    'https://unpkg.com/@supabase/supabase-js@2'
+  ];
+  let index=0;
+  function next(){
+    if(index>=sources.length){
+      document.dispatchEvent(new CustomEvent('supabase-unavailable'));
+      return;
+    }
+    const script=document.createElement('script');
+    script.src=sources[index++];
+    script.onload=()=>{
+      if(window.supabase?.createClient){
+        document.dispatchEvent(new CustomEvent('supabase-ready'));
+      }else next();
+    };
+    script.onerror=next;
+    document.head.appendChild(script);
+  }
+  next();
+})();
+</script>
 
-let currentUser = null;
-let profile = null;
-let authMode = 'login';
-let empires = [];
+<script>
+const SUPABASE_URL='https://ayletedbkwpwfsvkyprn.supabase.co';
+const SUPABASE_KEY='sb_publishable_nfBiemi0RzmQiWg03cDHdA_4WKcQXeu';
 
-const $ = id => document.getElementById(id);
+let db=null;
+let currentUser=null;
+let profile=null;
+let authMode='login';
+let empires=[];
+let appStarted=false;
 
-function msg(id, text, error = false) {
-  const el = $(id);
-  if (el) {
-    el.textContent = text;
-    el.className = 'status' + (error ? ' err' : '');
+const $=id=>document.getElementById(id);
+
+function msg(id,text,error=false){
+  const el=$(id);
+  if(el){
+    el.textContent=text;
+    el.className='status'+(error?' err':'');
   }
 }
 
-function esc(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;'
+function esc(s){
+  return String(s??'').replace(/[&<>"']/g,c=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[c]));
 }
 
-$('copyIp').onclick = async () => {
-  try {
+function showAppError(text){
+  msg('authStatus',text,true);
+  msg('reportStatus',text,true);
+}
+
+document.addEventListener('supabase-unavailable',()=>{
+  showAppError('کتابخانه اتصال بارگذاری نشد. اینترنت یا مسدود نبودن CDN را بررسی کن و صفحه را دوباره بارگذاری کن.');
+});
+
+document.addEventListener('supabase-ready',()=>{
+  if(appStarted)return;
+  appStarted=true;
+  try{
+    db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+    startApp();
+  }catch(error){
+    showAppError('خطا در راه‌اندازی اتصال: '+error.message);
+  }
+});
+
+$('copyIp').onclick=async()=>{
+  try{
     await navigator.clipboard.writeText('craftingabad.pfmc.ir');
-    $('copyIp').textContent = 'کپی شد';
-    setTimeout(() => $('copyIp').textContent = 'کپی IP', 1500);
-  } catch (e) {
-    alert('IP: craftingabad.pfmc.ir');
+    $('copyIp').textContent='کپی شد';
+    setTimeout(()=>$('copyIp').textContent='کپی IP',1500);
+  }catch(error){
+    alert('IP سرور: craftingabad.pfmc.ir');
   }
 };
 
-$('authOpen').onclick = () => $('authModal').classList.remove('hidden');
-$('authClose').onclick = () => $('authModal').classList.add('hidden');
+$('authOpen').onclick=()=>{
+  $('authModal').classList.remove('hidden');
+};
+$('authClose').onclick=()=>{
+  $('authModal').classList.add('hidden');
+};
 
-$('loginTab').onclick = () => setAuthMode('login');
-$('signupTab').onclick = () => setAuthMode('signup');
+$('authModal').addEventListener('click',e=>{
+  if(e.target===$('authModal'))$('authModal').classList.add('hidden');
+});
 
-function setAuthMode(mode) {
-  authMode = mode;
-  $('usernameField').classList.toggle('hidden', mode === 'login');
-  $('username').required = mode === 'signup';
-  $('authSubmit').textContent = mode === 'login' ? 'ورود' : 'ساخت حساب';
-  $('loginTab').className = mode === 'login' ? 'btn' : 'btn alt';
-  $('signupTab').className = mode === 'signup' ? 'btn' : 'btn alt';
-  msg('authStatus', '');
+$('loginTab').onclick=()=>setAuthMode('login');
+$('signupTab').onclick=()=>setAuthMode('signup');
+
+function setAuthMode(mode){
+  authMode=mode;
+  $('usernameField').classList.toggle('hidden',mode==='login');
+  $('username').required=mode==='signup';
+  $('authSubmit').textContent=mode==='login'?'ورود':'ساخت حساب';
+  $('loginTab').className=mode==='login'?'btn':'btn alt';
+  $('signupTab').className=mode==='signup'?'btn':'btn alt';
+  msg('authStatus','');
 }
 
-$('authForm').onsubmit = async e => {
+$('authForm').onsubmit=async e=>{
   e.preventDefault();
-  msg('authStatus', 'در حال انجام...');
 
-  const email = $('email').value.trim();
-  const password = $('password').value;
+  if(!db){
+    msg('authStatus','اتصال هنوز آماده نشده؛ چند ثانیه صبر کن و دوباره امتحان کن.',true);
+    return;
+  }
 
-  try {
+  msg('authStatus','در حال انجام...');
+
+  const email=$('email').value.trim();
+  const password=$('password').value;
+
+  try{
     let result;
 
-    if (authMode === 'signup') {
-      const username = $('username').value.trim();
+    if(authMode==='signup'){
+      const username=$('username').value.trim();
 
-      if (username.length < 3) {
+      if(username.length<3){
         throw Error('نام کاربری باید حداقل ۳ حرف باشد.');
       }
 
-      result = await db.auth.signUp({
+      result=await db.auth.signUp({
         email,
         password,
-        options: {
-          data: { username }
-        }
+        options:{data:{username}}
       });
 
-      if (result.error) throw result.error;
+      if(result.error)throw result.error;
 
-      msg(
-        'authStatus',
-        'حساب ساخته شد. اگر تأیید ایمیل فعال باشد، ایمیلت را تأیید کن و سپس وارد شو.'
-      );
-    } else {
-      result = await db.auth.signInWithPassword({ email, password });
+      msg('authStatus','حساب ساخته شد. اگر تأیید ایمیل فعال باشد، ایمیلت را تأیید کن و سپس وارد شو.');
+    }else{
+      result=await db.auth.signInWithPassword({email,password});
+      if(result.error)throw result.error;
 
-      if (result.error) throw result.error;
-
-      msg('authStatus', 'با موفقیت وارد شدی.');
+      msg('authStatus','با موفقیت وارد شدی.');
     }
 
     await refreshSession();
-  } catch (err) {
-    msg('authStatus', err.message || 'خطا در ورود یا ثبت‌نام', true);
+  }catch(error){
+    msg('authStatus',error.message||'خطا در ورود یا ثبت‌نام',true);
   }
 };
 
-async function refreshSession() {
-  const { data: { session } } = await db.auth.getSession();
+async function refreshSession(){
+  if(!db)return;
 
-  currentUser = session?.user || null;
-  profile = null;
+  try{
+    const {data:{session},error}=await db.auth.getSession();
+    if(error)throw error;
 
-  if (currentUser) {
-    const { data, error } = await db
-      .from('profiles')
-      .select('id,username,role')
-      .eq('id', currentUser.id)
-      .single();
+    currentUser=session?.user||null;
+    profile=null;
 
-    if (!error) profile = data;
+    if(currentUser){
+      const {data,error:profileError}=await db
+        .from('profiles')
+        .select('id,username,role')
+        .eq('id',currentUser.id)
+        .single();
+
+      if(!profileError)profile=data;
+    }
+
+    renderSession();
+    await loadEmpires();
+    await renderDashboard();
+  }catch(error){
+    console.error('Session error:',error);
   }
-
-  renderSession();
-  await loadEmpires();
-  await renderDashboard();
 }
 
-db.auth.onAuthStateChange(() => setTimeout(refreshSession, 0));
+function startApp(){
+  setAuthMode('login');
+  refreshSession();
 
-function renderSession() {
-  if (currentUser) {
-    $('authOpen').textContent = 'پنل من';
+  db.auth.onAuthStateChange(()=>{
+    setTimeout(refreshSession,0);
+  });
+}
 
-    $('sessionArea').innerHTML =
-      `وارد شده‌ای: <b>${esc(profile?.username || currentUser.email)}</b> · نقش: ${esc(profile?.role || 'user')}<br>
-      <button class="btn alt" id="logoutBtn" style="margin-top:10px">خروج از حساب</button>`;
+function renderSession(){
+  if(currentUser){
+    $('authOpen').textContent='پنل من';
+    $('sessionArea').innerHTML=
+      `وارد شده‌ای: <b>${esc(profile?.username||currentUser.email)}</b> · نقش: ${esc(profile?.role||'user')}<br>
+      <button class="btn alt" id="logoutBtn" style="margin-top:10px" type="button">خروج از حساب</button>`;
 
-    $('logoutBtn').onclick = async () => {
-      await db.auth.signOut();
+    $('logoutBtn').onclick=async()=>{
+      const {error}=await db.auth.signOut();
+      if(error)alert(error.message);
       $('dashboard').classList.add('hidden');
     };
-  } else {
-    $('authOpen').textContent = 'ورود / ثبت‌نام';
-    $('sessionArea').textContent = 'برای استفاده از پنل‌ها وارد حساب شو.';
+  }else{
+    $('authOpen').textContent='ورود / ثبت‌نام';
+    $('sessionArea').textContent='برای استفاده از پنل‌ها وارد حساب شو.';
   }
 }
 
-async function loadEmpires() {
-  const { data, error } = await db
-    .from('empires')
-    .select('*')
-    .order('id');
+async function loadEmpires(){
+  if(!db)return;
 
-  if (!error && data) {
-    empires = data;
+  const {data,error}=await db.from('empires').select('*').order('id');
+
+  if(!error&&data){
+    empires=data;
     renderEmpires();
   }
 }
 
-function renderEmpires() {
-  const box = $('empireCards');
+function renderEmpires(){
+  const box=$('empireCards');
 
-  box.innerHTML = empires.map((e, i) => `
+  if(!empires.length)return;
+
+  box.innerHTML=empires.map((empire,index)=>`
     <article class="card">
-      <span class="tag">EMPIRE 0${i + 1}</span>
-      <h3>${esc(e.name)}</h3>
-      <p>${esc(e.description || '')}</p>
-      <button class="btn" onclick="requestJoin('${esc(e.id)}')">درخواست عضویت</button>
+      <span class="tag">EMPIRE 0${index+1}</span>
+      <h3>${esc(empire.name)}</h3>
+      <p>${esc(empire.description||'')}</p>
+      <button class="btn" onclick="requestJoin('${esc(empire.id)}')" type="button">درخواست عضویت</button>
     </article>
   `).join('');
 }
 
-window.requestJoin = async id => {
-  if (!currentUser) {
+window.requestJoin=async id=>{
+  if(!currentUser){
     $('authModal').classList.remove('hidden');
-    msg('authStatus', 'برای درخواست عضویت ابتدا وارد حساب شو.');
+    msg('authStatus','برای درخواست عضویت ابتدا وارد حساب شو.');
     return;
   }
 
-  msg('empireStatus', 'در حال ثبت درخواست...');
+  msg('empireStatus','در حال ثبت درخواست...');
 
-  const { error } = await db
-    .from('join_requests')
-    .insert({
-      empire_id: id,
-      user_id: currentUser.id,
-      status: 'pending'
-    });
+  const {error}=await db.from('join_requests').insert({
+    empire_id:id,
+    user_id:currentUser.id,
+    status:'pending'
+  });
 
-  if (error) {
-    msg(
-      'empireStatus',
-      error.code === '23505'
-        ? 'قبلاً برای این امپراطوری درخواست داده‌ای.'
-        : error.message,
-      true
-    );
-  } else {
-    msg(
-      'empireStatus',
-      'درخواست عضویت ثبت شد و برای مدیر همان امپراطوری ارسال شد.'
-    );
+  if(error){
+    msg('empireStatus',error.code==='23505'?'قبلاً برای این امپراطوری درخواست داده‌ای.':error.message,true);
+  }else{
+    msg('empireStatus','درخواست عضویت ثبت شد و برای مدیر همان امپراطوری ارسال شد.');
     await renderDashboard();
   }
 };
 
-$('reportForm').onsubmit = async e => {
+$('reportForm').onsubmit=async e=>{
   e.preventDefault();
 
-  if (!currentUser) {
+  if(!currentUser){
     $('authModal').classList.remove('hidden');
-    msg('reportStatus', 'برای ثبت گزارش ابتدا وارد حساب شو.', true);
+    msg('reportStatus','برای ثبت گزارش ابتدا وارد حساب شو.',true);
     return;
   }
 
-  msg('reportStatus', 'در حال ثبت گزارش...');
+  msg('reportStatus','در حال ثبت گزارش...');
 
-  const payload = {
-    reporter_id: currentUser.id,
-    reported_player: $('reportedPlayer').value.trim(),
-    report_type: $('reportType').value,
-    message: $('reportMessage').value.trim(),
-    status: 'pending'
+  const payload={
+    reporter_id:currentUser.id,
+    reported_player:$('reportedPlayer').value.trim(),
+    report_type:$('reportType').value,
+    message:$('reportMessage').value.trim(),
+    status:'pending'
   };
 
-  const { error } = await db.from('reports').insert(payload);
+  const {error}=await db.from('reports').insert(payload);
 
-  if (error) {
-    msg('reportStatus', error.message, true);
-  } else {
+  if(error){
+    msg('reportStatus',error.message,true);
+  }else{
     $('reportForm').reset();
-    msg('reportStatus', 'گزارش با موفقیت ثبت شد و برای ادمین ارسال شد.');
+    msg('reportStatus','گزارش با موفقیت ثبت شد و برای ادمین ارسال شد.');
   }
 };
 
-async function renderDashboard() {
-  if (!currentUser || !profile) {
+async function renderDashboard(){
+  if(!currentUser||!profile){
     $('dashboard').classList.add('hidden');
     return;
   }
 
   $('dashboard').classList.remove('hidden');
-  $('welcome').textContent = `خوش آمدی ${profile.username || ''}`;
+  $('welcome').textContent=`خوش آمدی ${profile.username||''}`;
 
-  const isAdmin = profile.role === 'admin';
-  const myEmpires = empires.filter(e => e.leader_id === currentUser.id);
+  const isAdmin=profile.role==='admin';
+  const myEmpires=empires.filter(empire=>empire.leader_id===currentUser.id);
 
-  if (!isAdmin && !myEmpires.length) {
-    $('dashContent').innerHTML =
-      '<div class="card"><p>پنل مدیریتی ویژه ادمین اصلی و رهبران امپراطوری‌هاست.</p></div>';
+  if(!isAdmin&&!myEmpires.length){
+    $('dashContent').innerHTML='<div class="card"><p>پنل مدیریتی ویژه ادمین اصلی و رهبران امپراطوری‌هاست.</p></div>';
     return;
   }
 
-  let out = '';
+  let output='';
 
-  if (isAdmin) {
-    out += await adminPanel();
-  }
+  if(isAdmin)output+=await adminPanel();
 
-  for (const empire of myEmpires) {
-    out += await leaderPanel(empire);
-  }
-
-  $('dashContent').innerHTML = out;
-  bindDashboard();
-}
-
-async function adminPanel() {
-  const [
-    { data: users, error: uerr },
-    { data: reports, error: rerr }
-  ] = await Promise.all([
-    db.from('profiles')
-      .select('id,username,role,created_at')
-      .order('created_at', { ascending: false }),
-
-    db.from('reports')
-      .select('*')
-      .order('created_at', { ascending: false })
-  ]);
-
-  let h = `
-    <div class="card admin">
-      <h3>پنل ادمین اصلی</h3>
-      <p>مدیریت کاربران، رهبران هر سه امپراطوری و گزارش‌ها.</p>
-      <div class="divider"></div>
-      <h4>تعیین رهبر امپراطوری</h4>
-  `;
-
-  h += empires.map(e => `
-    <div class="field">
-      <label>${esc(e.name)}</label>
-      <select id="leader-${esc(e.id)}">
-        <option value="">انتخاب کاربر</option>
-        ${(users || []).map(u => `
-          <option value="${u.id}" ${e.leader_id === u.id ? 'selected' : ''}>
-            ${esc(u.username)} · ${esc(u.role)}
-          </option>
-        `).join('')}
-      </select>
-      <button class="btn" onclick="assignLeader('${esc(e.id)}')">ثبت رهبر</button>
-    </div>
-  `).join('');
-
-  h += '<div class="divider"></div><h4>کاربران ثبت‌نام‌شده</h4>';
-
-  if (uerr) h += `<p class="muted">${esc(uerr.message)}</p>`;
-
-  h += (users || []).map(u => `
-    <div class="item">
-      <b>${esc(u.username)}</b>
-      <small>· ${esc(u.role)} · ${esc(u.id)}</small>
-    </div>
-  `).join('') || '<p class="muted">کاربری پیدا نشد.</p>';
-
-  h += '<div class="divider"></div><h4>گزارش‌های بازیکنان</h4>';
-
-  if (rerr) h += `<p class="muted">${esc(rerr.message)}</p>`;
-
-  h += (reports || []).map(r => `
-    <div class="item">
-      <b>${esc(r.reported_player)}</b>
-      
+  for(const empire of myEmpires){
+    output+=

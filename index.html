@@ -10,7 +10,25 @@
 :root{--bg:#07110f;--panel:#101d19;--panel2:#142720;--green:#5ce0a0;--mint:#a3ffd0;--gold:#e6c36a;--text:#eaf7ef;--muted:#a5b9ad;--line:#284338;--red:#ff7777}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 50% -15%,#1b4936 0,transparent 48%),linear-gradient(180deg,#081512,#050b0a 75%);color:var(--text);font-family:Vazirmatn,sans-serif;min-height:100vh}
+body{margin:0;background:radial-gradient(ellipse at 50% -15%,#1b4936 0,transparent 48%),linear-gradient(180deg,#081512,#050b0a 75%);color:var(--text);font-family:Vazirmatn,sans-serif;min-height:100vh;position:relative;isolation:isolate}
+body:before{
+content:"";
+position:fixed;
+inset:-20%;
+z-index:-1;
+pointer-events:none;
+background:
+radial-gradient(circle at 20% 25%,#42d99512 0,transparent 22%),
+radial-gradient(circle at 80% 65%,#39c98512 0,transparent 25%),
+radial-gradient(circle at 55% 90%,#b0ffd00a 0,transparent 20%);
+animation:ambientMove 24s ease-in-out infinite alternate;
+will-change:transform;
+}
+@keyframes ambientMove{
+0%{transform:translate3d(-1%,0,0) scale(1)}
+50%{transform:translate3d(1%,1%,0) scale(1.025)}
+100%{transform:translate3d(0,-1%,0) scale(1)}
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer;border:0}
 .wrap{width:min(1120px,92%);margin:auto}
@@ -73,6 +91,10 @@ textarea{min-height:100px;resize:vertical}
 .dashgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
 .notice{border-right:3px solid var(--green);padding:10px 13px;background:#10251b;color:var(--muted);font-size:12px;line-height:1.8;margin:12px 0}
 @media(max-width:650px){.nav{align-items:flex-start;flex-direction:column}.links{gap:12px}.hero{padding:60px 0}.hero h1{font-size:34px}}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+body:before{animation:none}
+}
 </style>
 </head>
 <body>
@@ -142,10 +164,45 @@ textarea{min-height:100px;resize:vertical}
 <p>قیمت‌های فروشگاه</p>
 </div>
 <div class="grid">
-<div class="card"><h3>VIP</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>LEGEND</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>CRAFTING</h3><p class="price">۱۶۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>Amethyst Pickaxe</h3><p class="price">۵٬۰۰۰ تومان / روز</p></div>
+<div class="card">
+<h3>VIP</h3>
+<p class="price">۳۰٬۰۰۰ تومان</p>
+<p>محتویات رنک:</p>
+<ul class="rules">
+<li>Full set iron armor and tools</li>
+<li>64 bread</li>
+<li>32 oak log</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>SPONSER</h3>
+<p class="price">۱۰۰٬۰۰۰ تومان</p>
+<p>محتویات رنک:</p>
+<ul class="rules">
+<li>Full set diamond armor and tools (Protection III)</li>
+<li>32 pumpkin pie 🥧</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>CRAFTING</h3>
+<p class="price">۱۶۰٬۰۰۰ تومان</p>
+<p>محتویات رنک:</p>
+<ul class="rules">
+<li>Full set diamond armor and tools (Protection IV)</li>
+<li>32 golden carrot</li>
+<li>1 netherite ingot</li>
+<li>1 god apple</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Amethyst Pickaxe</h3>
+<p class="price">۵٬۰۰۰ تومان / هر روز</p>
+<p>اجاره آمیتیست پیک‌اکس به‌صورت روزانه</p>
+</div>
+
 <div class="card"><h3>Mystery Box Simple</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
 <div class="card"><h3>Mystery Box Rare</h3><p class="price">۵۰٬۰۰۰ تومان</p></div>
 <div class="card"><h3>Mystery Box Legend</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
@@ -169,6 +226,7 @@ textarea{min-height:100px;resize:vertical}
 <li>استفاده از چیت، هک و ابزارهای غیرمجاز ممنوع است.</li>
 <li>از باگ‌ها سوءاستفاده نکنید و آن‌ها را گزارش دهید.</li>
 <li>تصمیم نهایی مدیریت سرور در موارد بررسی‌شده لازم‌الاجراست.</li>
+<li>وقتی صاحب بیس آفلاینه، رید کردن بیسش ممنوعه.</li>
 </ol>
 </div>
 </div>
@@ -573,199 +631,4 @@ async function adminPanel() {
   h += (reports || []).map(r => `
     <div class="item">
       <b>${esc(r.reported_player)}</b>
-      · ${esc(r.report_type)}
-      <span class="tag">${esc(r.status)}</span>
-      <p>${esc(r.message)}</p>
-      <small>${esc(r.created_at)}</small>
-      <div class="item-actions">
-        <button class="btn alt" onclick="setReportStatus(${r.id},'reviewed')">بررسی شد</button>
-        <button class="btn" onclick="setReportStatus(${r.id},'closed')">بستن گزارش</button>
-      </div>
-    </div>
-  `).join('') || '<p class="muted">گزارشی ثبت نشده.</p>';
-
-  return h + '</div>';
-}
-
-async function leaderPanel(empire) {
-  const [
-    { data: requests, error: re },
-    { data: members, error: me }
-  ] = await Promise.all([
-    db.from('join_requests')
-      .select('id,user_id,status,created_at')
-      .eq('empire_id', empire.id)
-      .order('created_at', { ascending: false }),
-
-    db.from('empire_members')
-      .select('user_id,joined_at')
-      .eq('empire_id', empire.id)
-  ]);
-
-  const ids = [
-    ...(requests || []).map(x => x.user_id),
-    ...(members || []).map(x => x.user_id)
-  ];
-
-  let profiles = [];
-
-  if (ids.length) {
-    const { data } = await db
-      .from('profiles')
-      .select('id,username')
-      .in('id', [...new Set(ids)]);
-
-    profiles = data || [];
-  }
-
-  const name = id =>
-    profiles.find(p => p.id === id)?.username || id;
-
-  let h = `
-    <div class="card admin" style="margin-top:15px">
-      <h3>پنل رهبر: ${esc(empire.name)}</h3>
-
-      <div class="row">
-        <div class="field">
-          <label>نام امپراطوری</label>
-          <input id="ename-${esc(empire.id)}" value="${esc(empire.name)}">
-        </div>
-
-        <div class="field">
-          <label>توضیحات</label>
-          <input id="edesc-${esc(empire.id)}" value="${esc(empire.description || '')}">
-        </div>
-      </div>
-
-      <button class="btn" onclick="saveEmpire('${esc(empire.id)}')">ذخیره اطلاعات</button>
-      <div class="divider"></div>
-      <h4>درخواست‌های عضویت</h4>
-  `;
-
-  if (re) h += `<p>${esc(re.message)}</p>`;
-
-  h += (requests || []).map(r => `
-    <div class="item">
-      <b>${esc(name(r.user_id))}</b>
-      · <small>${esc(r.status)} · ${esc(r.created_at)}</small>
-
-      ${r.status === 'pending' ? `
-        <div class="item-actions">
-          <button class="btn" onclick="decideRequest(${r.id},'accepted')">پذیرش</button>
-          <button class="btn danger" onclick="decideRequest(${r.id},'rejected')">رد درخواست</button>
-        </div>
-      ` : ''}
-    </div>
-  `).join('') || '<p class="muted">درخواستی وجود ندارد.</p>';
-
-  h += '<div class="divider"></div><h4>اعضای امپراطوری</h4>';
-
-  h += (members || []).map(m => `
-    <div class="item">
-      <b>${esc(name(m.user_id))}</b>
-      <small>${esc(m.user_id)}</small>
-      <div class="item-actions">
-        <button class="btn danger" onclick="removeMember('${esc(empire.id)}','${m.user_id}')">حذف عضو</button>
-      </div>
-    </div>
-  `).join('') || '<p class="muted">هنوز عضوی ثبت نشده.</p>';
-
-  h += `
-    <div class="field">
-      <label>افزودن عضو با شناسه کاربری (UUID)</label>
-      <input id="add-${esc(empire.id)}" placeholder="شناسه UUID کاربر">
-      <button class="btn alt" onclick="addMember('${esc(empire.id)}')">افزودن عضو</button>
-    </div>
-  </div>`;
-
-  return h;
-}
-
-function bindDashboard() {}
-
-window.assignLeader = async id => {
-  const target = $(`leader-${id}`).value;
-
-  if (!target) {
-    alert('یک کاربر انتخاب کن.');
-    return;
-  }
-
-  await action('assign_empire_leader', {
-    empire_key: id,
-    target_user: target
-  });
-};
-
-window.saveEmpire = async id => {
-  await action('update_empire_details', {
-    empire_key: id,
-    new_name: $(`ename-${id}`).value.trim(),
-    new_description: $(`edesc-${id}`).value.trim()
-  });
-};
-
-window.decideRequest = async (id, decision) => {
-  await action('decide_join_request', {
-    request_id: id,
-    decision
-  });
-};
-
-window.removeMember = async (empire_key, target_user) => {
-  if (confirm('این عضو از امپراطوری حذف شود؟')) {
-    await action('remove_empire_member', {
-      empire_key,
-      target_user
-    });
-  }
-};
-
-window.addMember = async id => {
-  const target = $(`add-${id}`).value.trim();
-
-  if (!target) {
-    alert('شناسه کاربر را وارد کن.');
-    return;
-  }
-
-  await action('add_empire_member', {
-    empire_key: id,
-    target_user: target
-  });
-};
-
-window.setReportStatus = async (id, status) => {
-  const { error } = await db
-    .from('reports')
-    .update({ status })
-    .eq('id', id);
-
-  if (error) {
-    alert(error.message);
-  } else {
-    await renderDashboard();
-  }
-};
-
-async function action(fn, args) {
-  const { error } = await db.rpc(fn, args);
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-
-  alert('با موفقیت انجام شد.');
-  await loadEmpires();
-  await renderDashboard();
-}
-
-(async () => {
-  setAuthMode('login');
-  await refreshSession();
-})();
-</script>
-</body>
-</html>
-
+      

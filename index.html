@@ -139,19 +139,76 @@ textarea{min-height:100px;resize:vertical}
 <div class="wrap">
 <div class="heading">
 <h2>فروشگاه سرور</h2>
-<p>قیمت‌های فروشگاه</p>
+<p>قیمت‌ها و محتویات پک‌های فروشگاه</p>
 </div>
+
 <div class="grid">
-<div class="card"><h3>VIP</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>LEGEND</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>CRAFTING</h3><p class="price">۱۶۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>Amethyst Pickaxe</h3><p class="price">۵٬۰۰۰ تومان / روز</p></div>
-<div class="card"><h3>Mystery Box Simple</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>Mystery Box Rare</h3><p class="price">۵۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>Mystery Box Legend</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>افزایش محدودیت خانه +2</h3><p class="price">۲۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>افزایش محدودیت خانه +4</h3><p class="price">۴۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>افزایش محدودیت خانه +6</h3><p class="price">۶۰٬۰۰۰ تومان</p></div>
+
+<div class="card">
+<h3>VIP</h3>
+<p class="price">۳۰٬۰۰۰ تومان</p>
+<div class="divider"></div>
+<p>🛡️ Full Iron Armor Set</p>
+<p>⚔️ Full Iron Tools Set</p>
+<p>🍞 64 Bread</p>
+<p>🪵 32 Oak Logs</p>
+</div>
+
+<div class="card">
+<h3>SPONSER</h3>
+<p class="price">۱۰۰٬۰۰۰ تومان</p>
+<div class="divider"></div>
+<p>💎 Full Diamond Armor Set (Protection III)</p>
+<p>⚔️ Full Diamond Tools Set</p>
+<p>🥧 32 Pumpkin Pies</p>
+</div>
+
+<div class="card">
+<h3>CRAFTING</h3>
+<p class="price">۱۶۰٬۰۰۰ تومان</p>
+<div class="divider"></div>
+<p>💎 Full Diamond Armor Set (Protection IV)</p>
+<p>⚔️ Full Diamond Tools Set</p>
+<p>🥕 32 Golden Carrots</p>
+<p>🟫 1 Netherite Ingot</p>
+<p>🍎 1 Enchanted Golden Apple</p>
+</div>
+
+<div class="card">
+<h3>Amethyst Pickaxe</h3>
+<p class="price">۵٬۰۰۰ تومان / روز</p>
+</div>
+
+<div class="card">
+<h3>Mystery Box Simple</h3>
+<p class="price">۳۰٬۰۰۰ تومان</p>
+</div>
+
+<div class="card">
+<h3>Mystery Box Rare</h3>
+<p class="price">۵۰٬۰۰۰ تومان</p>
+</div>
+
+<div class="card">
+<h3>Mystery Box Legend</h3>
+<p class="price">۱۰۰٬۰۰۰ تومان</p>
+</div>
+
+<div class="card">
+<h3>افزایش محدودیت خانه +2</h3>
+<p class="price">۲۰٬۰۰۰ تومان</p>
+</div>
+
+<div class="card">
+<h3>افزایش محدودیت خانه +4</h3>
+<p class="price">۴۰٬۰۰۰ تومان</p>
+</div>
+
+<div class="card">
+<h3>افزایش محدودیت خانه +6</h3>
+<p class="price">۶۰٬۰۰۰ تومان</p>
+</div>
+
 </div>
 </div>
 </section>
@@ -169,6 +226,7 @@ textarea{min-height:100px;resize:vertical}
 <li>استفاده از چیت، هک و ابزارهای غیرمجاز ممنوع است.</li>
 <li>از باگ‌ها سوءاستفاده نکنید و آن‌ها را گزارش دهید.</li>
 <li>تصمیم نهایی مدیریت سرور در موارد بررسی‌شده لازم‌الاجراست.</li>
+<li>وقتی صاحب بیس آفلاینه، رید کردن بیسش ممنوعه.</li>
 </ol>
 </div>
 </div>
@@ -296,7 +354,14 @@ $('copyIp').onclick = async () => {
   }
 };
 
-$('authOpen').onclick = () => $('authModal').classList.remove('hidden');
+$('authOpen').onclick = () => {
+  if (currentUser) {
+    $('dashboard').scrollIntoView({ behavior: 'smooth' });
+  } else {
+    $('authModal').classList.remove('hidden');
+  }
+};
+
 $('authClose').onclick = () => $('authModal').classList.add('hidden');
 
 $('loginTab').onclick = () => setAuthMode('login');
@@ -391,6 +456,7 @@ function renderSession() {
     $('logoutBtn').onclick = async () => {
       await db.auth.signOut();
       $('dashboard').classList.add('hidden');
+      $('authModal').classList.add('hidden');
     };
   } else {
     $('authOpen').textContent = 'ورود / ثبت‌نام';
@@ -578,193 +644,11 @@ async function adminPanel() {
       <p>${esc(r.message)}</p>
       <small>${esc(r.created_at)}</small>
       <div class="item-actions">
-        <button class="btn alt" onclick="setReportStatus(${r.id},'reviewed')">بررسی شد</button>
-        <button class="btn" onclick="setReportStatus(${r.id},'closed')">بستن گزارش</button>
+        <button class="btn alt" onclick="setReportStatus('${esc(r.id)}','reviewed')">بررسی شد</button>
+        <button class="btn" onclick="setReportStatus('${esc(r.id)}','closed')">بستن گزارش</button>
       </div>
     </div>
   `).join('') || '<p class="muted">گزارشی ثبت نشده.</p>';
 
   return h + '</div>';
-}
-
-async function leaderPanel(empire) {
-  const [
-    { data: requests, error: re },
-    { data: members, error: me }
-  ] = await Promise.all([
-    db.from('join_requests')
-      .select('id,user_id,status,created_at')
-      .eq('empire_id', empire.id)
-      .order('created_at', { ascending: false }),
-
-    db.from('empire_members')
-      .select('user_id,joined_at')
-      .eq('empire_id', empire.id)
-  ]);
-
-  const ids = [
-    ...(requests || []).map(x => x.user_id),
-    ...(members || []).map(x => x.user_id)
-  ];
-
-  let profiles = [];
-
-  if (ids.length) {
-    const { data } = await db
-      .from('profiles')
-      .select('id,username')
-      .in('id', [...new Set(ids)]);
-
-    profiles = data || [];
-  }
-
-  const name = id =>
-    profiles.find(p => p.id === id)?.username || id;
-
-  let h = `
-    <div class="card admin" style="margin-top:15px">
-      <h3>پنل رهبر: ${esc(empire.name)}</h3>
-
-      <div class="row">
-        <div class="field">
-          <label>نام امپراطوری</label>
-          <input id="ename-${esc(empire.id)}" value="${esc(empire.name)}">
-        </div>
-
-        <div class="field">
-          <label>توضیحات</label>
-          <input id="edesc-${esc(empire.id)}" value="${esc(empire.description || '')}">
-        </div>
-      </div>
-
-      <button class="btn" onclick="saveEmpire('${esc(empire.id)}')">ذخیره اطلاعات</button>
-      <div class="divider"></div>
-      <h4>درخواست‌های عضویت</h4>
-  `;
-
-  if (re) h += `<p>${esc(re.message)}</p>`;
-
-  h += (requests || []).map(r => `
-    <div class="item">
-      <b>${esc(name(r.user_id))}</b>
-      · <small>${esc(r.status)} · ${esc(r.created_at)}</small>
-
-      ${r.status === 'pending' ? `
-        <div class="item-actions">
-          <button class="btn" onclick="decideRequest(${r.id},'accepted')">پذیرش</button>
-          <button class="btn danger" onclick="decideRequest(${r.id},'rejected')">رد درخواست</button>
-        </div>
-      ` : ''}
-    </div>
-  `).join('') || '<p class="muted">درخواستی وجود ندارد.</p>';
-
-  h += '<div class="divider"></div><h4>اعضای امپراطوری</h4>';
-
-  h += (members || []).map(m => `
-    <div class="item">
-      <b>${esc(name(m.user_id))}</b>
-      <small>${esc(m.user_id)}</small>
-      <div class="item-actions">
-        <button class="btn danger" onclick="removeMember('${esc(empire.id)}','${m.user_id}')">حذف عضو</button>
-      </div>
-    </div>
-  `).join('') || '<p class="muted">هنوز عضوی ثبت نشده.</p>';
-
-  h += `
-    <div class="field">
-      <label>افزودن عضو با شناسه کاربری (UUID)</label>
-      <input id="add-${esc(empire.id)}" placeholder="شناسه UUID کاربر">
-      <button class="btn alt" onclick="addMember('${esc(empire.id)}')">افزودن عضو</button>
-    </div>
-  </div>`;
-
-  return h;
-}
-
-function bindDashboard() {}
-
-window.assignLeader = async id => {
-  const target = $(`leader-${id}`).value;
-
-  if (!target) {
-    alert('یک کاربر انتخاب کن.');
-    return;
-  }
-
-  await action('assign_empire_leader', {
-    empire_key: id,
-    target_user: target
-  });
-};
-
-window.saveEmpire = async id => {
-  await action('update_empire_details', {
-    empire_key: id,
-    new_name: $(`ename-${id}`).value.trim(),
-    new_description: $(`edesc-${id}`).value.trim()
-  });
-};
-
-window.decideRequest = async (id, decision) => {
-  await action('decide_join_request', {
-    request_id: id,
-    decision
-  });
-};
-
-window.removeMember = async (empire_key, target_user) => {
-  if (confirm('این عضو از امپراطوری حذف شود؟')) {
-    await action('remove_empire_member', {
-      empire_key,
-      target_user
-    });
-  }
-};
-
-window.addMember = async id => {
-  const target = $(`add-${id}`).value.trim();
-
-  if (!target) {
-    alert('شناسه کاربر را وارد کن.');
-    return;
-  }
-
-  await action('add_empire_member', {
-    empire_key: id,
-    target_user: target
-  });
-};
-
-window.setReportStatus = async (id, status) => {
-  const { error } = await db
-    .from('reports')
-    .update({ status })
-    .eq('id', id);
-
-  if (error) {
-    alert(error.message);
-  } else {
-    await renderDashboard();
-  }
-};
-
-async function action(fn, args) {
-  const { error } = await db.rpc(fn, args);
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-
-  alert('با موفقیت انجام شد.');
-  await loadEmpires();
-  await renderDashboard();
-}
-
-(async () => {
-  setAuthMode('login');
-  await refreshSession();
-})();
-</script>
-</body>
-</html>
+  

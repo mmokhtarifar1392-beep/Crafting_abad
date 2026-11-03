@@ -139,76 +139,19 @@ textarea{min-height:100px;resize:vertical}
 <div class="wrap">
 <div class="heading">
 <h2>فروشگاه سرور</h2>
-<p>قیمت‌ها و محتویات پک‌های فروشگاه</p>
+<p>قیمت‌های فروشگاه</p>
 </div>
-
 <div class="grid">
-
-<div class="card">
-<h3>VIP</h3>
-<p class="price">۳۰٬۰۰۰ تومان</p>
-<div class="divider"></div>
-<p>🛡️ Full Iron Armor Set</p>
-<p>⚔️ Full Iron Tools Set</p>
-<p>🍞 64 Bread</p>
-<p>🪵 32 Oak Logs</p>
-</div>
-
-<div class="card">
-<h3>SPONSER</h3>
-<p class="price">۱۰۰٬۰۰۰ تومان</p>
-<div class="divider"></div>
-<p>💎 Full Diamond Armor Set (Protection III)</p>
-<p>⚔️ Full Diamond Tools Set</p>
-<p>🥧 32 Pumpkin Pies</p>
-</div>
-
-<div class="card">
-<h3>CRAFTING</h3>
-<p class="price">۱۶۰٬۰۰۰ تومان</p>
-<div class="divider"></div>
-<p>💎 Full Diamond Armor Set (Protection IV)</p>
-<p>⚔️ Full Diamond Tools Set</p>
-<p>🥕 32 Golden Carrots</p>
-<p>🟫 1 Netherite Ingot</p>
-<p>🍎 1 Enchanted Golden Apple</p>
-</div>
-
-<div class="card">
-<h3>Amethyst Pickaxe</h3>
-<p class="price">۵٬۰۰۰ تومان / روز</p>
-</div>
-
-<div class="card">
-<h3>Mystery Box Simple</h3>
-<p class="price">۳۰٬۰۰۰ تومان</p>
-</div>
-
-<div class="card">
-<h3>Mystery Box Rare</h3>
-<p class="price">۵۰٬۰۰۰ تومان</p>
-</div>
-
-<div class="card">
-<h3>Mystery Box Legend</h3>
-<p class="price">۱۰۰٬۰۰۰ تومان</p>
-</div>
-
-<div class="card">
-<h3>افزایش محدودیت خانه +2</h3>
-<p class="price">۲۰٬۰۰۰ تومان</p>
-</div>
-
-<div class="card">
-<h3>افزایش محدودیت خانه +4</h3>
-<p class="price">۴۰٬۰۰۰ تومان</p>
-</div>
-
-<div class="card">
-<h3>افزایش محدودیت خانه +6</h3>
-<p class="price">۶۰٬۰۰۰ تومان</p>
-</div>
-
+<div class="card"><h3>VIP</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>LEGEND</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>CRAFTING</h3><p class="price">۱۶۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>Amethyst Pickaxe</h3><p class="price">۵٬۰۰۰ تومان / روز</p></div>
+<div class="card"><h3>Mystery Box Simple</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>Mystery Box Rare</h3><p class="price">۵۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>Mystery Box Legend</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>افزایش محدودیت خانه +2</h3><p class="price">۲۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>افزایش محدودیت خانه +4</h3><p class="price">۴۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>افزایش محدودیت خانه +6</h3><p class="price">۶۰٬۰۰۰ تومان</p></div>
 </div>
 </div>
 </section>
@@ -226,7 +169,6 @@ textarea{min-height:100px;resize:vertical}
 <li>استفاده از چیت، هک و ابزارهای غیرمجاز ممنوع است.</li>
 <li>از باگ‌ها سوءاستفاده نکنید و آن‌ها را گزارش دهید.</li>
 <li>تصمیم نهایی مدیریت سرور در موارد بررسی‌شده لازم‌الاجراست.</li>
-<li>وقتی صاحب بیس آفلاینه، رید کردن بیسش ممنوعه.</li>
 </ol>
 </div>
 </div>
@@ -354,14 +296,7 @@ $('copyIp').onclick = async () => {
   }
 };
 
-$('authOpen').onclick = () => {
-  if (currentUser) {
-    $('dashboard').scrollIntoView({ behavior: 'smooth' });
-  } else {
-    $('authModal').classList.remove('hidden');
-  }
-};
-
+$('authOpen').onclick = () => $('authModal').classList.remove('hidden');
 $('authClose').onclick = () => $('authModal').classList.add('hidden');
 
 $('loginTab').onclick = () => setAuthMode('login');
@@ -456,7 +391,6 @@ function renderSession() {
     $('logoutBtn').onclick = async () => {
       await db.auth.signOut();
       $('dashboard').classList.add('hidden');
-      $('authModal').classList.add('hidden');
     };
   } else {
     $('authOpen').textContent = 'ورود / ثبت‌نام';
@@ -644,11 +578,46 @@ async function adminPanel() {
       <p>${esc(r.message)}</p>
       <small>${esc(r.created_at)}</small>
       <div class="item-actions">
-        <button class="btn alt" onclick="setReportStatus('${esc(r.id)}','reviewed')">بررسی شد</button>
-        <button class="btn" onclick="setReportStatus('${esc(r.id)}','closed')">بستن گزارش</button>
+        <button class="btn alt" onclick="setReportStatus(${r.id},'reviewed')">بررسی شد</button>
+        <button class="btn" onclick="setReportStatus(${r.id},'closed')">بستن گزارش</button>
       </div>
     </div>
   `).join('') || '<p class="muted">گزارشی ثبت نشده.</p>';
 
   return h + '</div>';
+}
+
+async function leaderPanel(empire) {
+  const [
+    { data: requests, error: re },
+    { data: members, error: me }
+  ] = await Promise.all([
+    db.from('join_requests')
+      .select('id,user_id,status,created_at')
+      .eq('empire_id', empire.id)
+      .order('created_at', { ascending: false }),
+
+    db.from('empire_members')
+      .select('user_id,joined_at')
+      .eq('empire_id', empire.id)
+  ]);
+
+  const ids = [
+    ...(requests || []).map(x => x.user_id),
+    ...(members || []).map(x => x.user_id)
+  ];
+
+  let profiles = [];
+
+  if (ids.length) {
+    const { data } = await db
+      .from('profiles')
+      .select('id,username')
+      .in('id', [...new Set(ids)]);
+
+    profiles = data || [];
+  }
+
+  const name = id =>
+    profile
   

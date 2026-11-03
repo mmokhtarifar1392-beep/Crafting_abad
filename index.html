@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
@@ -6,6 +7,7 @@
 <title>CRAFTING ABAD | سرور ماینکرفت</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{--bg:#07110f;--panel:#101d19;--panel2:#142720;--green:#5ce0a0;--mint:#a3ffd0;--gold:#e6c36a;--text:#eaf7ef;--muted:#a5b9ad;--line:#284338;--red:#ff7777}
 *{box-sizing:border-box}
@@ -13,6 +15,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:radial-gradient(ellipse at 50% -15%,#1b4936 0,transparent 48%),linear-gradient(180deg,#081512,#050b0a 75%);color:var(--text);font-family:Vazirmatn,sans-serif;min-height:100vh}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer;border:0}
+button:disabled{opacity:.6;cursor:not-allowed}
 .wrap{width:min(1120px,92%);margin:auto}
 .top{position:sticky;top:0;z-index:20;background:#07110fe8;backdrop-filter:blur(14px);border-bottom:1px solid #284338}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
@@ -30,7 +33,7 @@ button{cursor:pointer;border:0}
 .hero h1{font:800 clamp(34px,7vw,70px) Orbitron,sans-serif;margin:15px 0;color:#f3fff7;text-shadow:0 0 30px #5ce0a044}
 .hero h1 span{color:var(--green)}
 .hero p{color:var(--muted);max-width:650px;margin:0 auto 24px;line-height:2}
-.ip{display:inline-flex;align-items:center;gap:12px;border:1px solid #3a6954;background:#10231b;padding:12px 17px;border-radius:12px;color:var(--mint);font:700 14px Orbitron,sans-serif;direction:ltr}
+.ip{display:inline-flex;align-items:center;gap:12px;border:1px solid #3a6954;background:#10231b;padding:12px 17px;border-radius:12px;color:var(--mint);font:700 14px Orbitron,sans-serif;direction:ltr;flex-wrap:wrap;justify-content:center}
 .section{padding:48px 0}
 .heading{text-align:center;margin-bottom:25px}
 .heading h2{font-size:27px;margin:0 0 8px}
@@ -39,7 +42,7 @@ button{cursor:pointer;border:0}
 .card{background:linear-gradient(145deg,#14251e,#0d1915);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 15px 35px #0002}
 .card h3{margin:0 0 9px;color:var(--mint)}
 .card p{color:var(--muted);line-height:1.9;font-size:13px}
-.price{color:var(--gold);font-weight:800}
+.price{color:var(--gold)!important;font-weight:800}
 .tag{display:inline-block;color:var(--mint);background:#1c392b;padding:4px 9px;border-radius:20px;font-size:11px}
 .rules{line-height:2.1;color:var(--muted);padding-right:20px}
 .formbox{max-width:680px;margin:auto}
@@ -49,10 +52,10 @@ button{cursor:pointer;border:0}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
 textarea{min-height:100px;resize:vertical}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.row>*{flex:1}
+.row>*{flex:1;min-width:0}
 .muted{color:var(--muted);font-size:12px}
 .hidden{display:none!important}
-.status{padding:10px 12px;border-radius:10px;background:#142b20;color:var(--mint);font-size:13px;margin:10px 0}
+.status{padding:10px 12px;border-radius:10px;background:#142b20;color:var(--mint);font-size:13px;margin:10px 0;line-height:1.8}
 .status.err{background:#3b2020;color:#ffb8b8}
 .status.warn{background:#342d18;color:#ffe19a}
 .divider{height:1px;background:var(--line);margin:18px 0}
@@ -64,19 +67,18 @@ textarea{min-height:100px;resize:vertical}
 .tabs button{flex:1}
 .admin{border:1px solid #4d765d;background:#0e1d16}
 .admin h3{color:var(--gold)}
-.item{padding:12px;border:1px solid var(--line);border-radius:12px;margin:9px 0;background:#0a1711}
+.item{padding:12px;border:1px solid var(--line);border-radius:12px;margin:9px 0;background:#0a1711;overflow-wrap:anywhere}
 .item small{color:var(--muted)}
 .item-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
 .item-actions .btn{padding:7px 11px;font-size:12px}
 .footer{border-top:1px solid var(--line);padding:25px 0;text-align:center;color:var(--muted);font-size:12px}
 #dashboard{padding-top:20px}
-.dashgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
 .notice{border-right:3px solid var(--green);padding:10px 13px;background:#10251b;color:var(--muted);font-size:12px;line-height:1.8;margin:12px 0}
 @media(max-width:650px){.nav{align-items:flex-start;flex-direction:column}.links{gap:12px}.hero{padding:60px 0}.hero h1{font-size:34px}}
 </style>
 </head>
-<body>
 
+<body>
 <header class="top">
 <div class="wrap nav">
 <div class="brand">CRAFTING <span>ABAD</span></div>
@@ -87,7 +89,7 @@ textarea{min-height:100px;resize:vertical}
 <a href="#rules">قوانین</a>
 <a href="#report">گزارش</a>
 </nav>
-<button class="btn" id="authOpen">ورود / ثبت‌نام</button>
+<button class="btn" id="authOpen" type="button">ورود / ثبت‌نام</button>
 </div>
 </header>
 
@@ -99,8 +101,9 @@ textarea{min-height:100px;resize:vertical}
 <p>به دنیای کرافتینگ آباد خوش اومدی؛ جایی برای ساختن، رقابت، همکاری و شکل دادن به امپراطوری خودت.</p>
 <div class="ip">
 <span>craftingabad.pfmc.ir</span>
-<button class="btn" id="copyIp">کپی IP</button>
+<button class="btn" id="copyIp" type="button">کپی IP</button>
 </div>
+<div id="copyStatus" aria-live="polite"></div>
 <p class="muted">نسخه سرور: 26.3</p>
 </div>
 </section>
@@ -112,24 +115,9 @@ textarea{min-height:100px;resize:vertical}
 <p>امپراطوری موردنظرت رو انتخاب کن و درخواست عضویت بفرست.</p>
 </div>
 <div class="grid" id="empireCards">
-<div class="card">
-<span class="tag">EMPIRE 01</span>
-<h3>Crafting</h3>
-<p>امپراطوری Crafting</p>
-<button class="btn" onclick="requestJoin('crafting')">درخواست عضویت</button>
-</div>
-<div class="card">
-<span class="tag">EMPIRE 02</span>
-<h3>Novax</h3>
-<p>امپراطوری Novax</p>
-<button class="btn" onclick="requestJoin('novax')">درخواست عضویت</button>
-</div>
-<div class="card">
-<span class="tag">EMPIRE 03</span>
-<h3>Parsian</h3>
-<p>امپراطوری Parsian</p>
-<button class="btn" onclick="requestJoin('parsian')">درخواست عضویت</button>
-</div>
+<div class="card"><span class="tag">EMPIRE 01</span><h3>Crafting</h3><p>امپراطوری Crafting</p><button class="btn join-btn" data-empire="crafting">درخواست عضویت</button></div>
+<div class="card"><span class="tag">EMPIRE 02</span><h3>Novax</h3><p>امپراطوری Novax</p><button class="btn join-btn" data-empire="novax">درخواست عضویت</button></div>
+<div class="card"><span class="tag">EMPIRE 03</span><h3>Parsian</h3><p>امپراطوری Parsian</p><button class="btn join-btn" data-empire="parsian">درخواست عضویت</button></div>
 </div>
 <div id="empireStatus" aria-live="polite"></div>
 </div>
@@ -137,14 +125,11 @@ textarea{min-height:100px;resize:vertical}
 
 <section class="section" id="store">
 <div class="wrap">
-<div class="heading">
-<h2>فروشگاه سرور</h2>
-<p>قیمت‌های فروشگاه</p>
-</div>
+<div class="heading"><h2>فروشگاه سرور</h2><p>قیمت‌ها و محتویات پک‌های فروشگاه</p></div>
 <div class="grid">
-<div class="card"><h3>VIP</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>LEGEND</h3><p class="price">۱۰۰٬۰۰۰ تومان</p></div>
-<div class="card"><h3>CRAFTING</h3><p class="price">۱۶۰٬۰۰۰ تومان</p></div>
+<div class="card"><h3>VIP</h3><p class="price">۳۰٬۰۰۰ تومان</p><div class="divider"></div><p>🛡️ Full Iron Armor Set</p><p>⚔️ Full Iron Tools Set</p><p>🍞 64 Bread</p><p>🪵 32 Oak Logs</p></div>
+<div class="card"><h3>LEGEND</h3><p class="price">۱۰۰٬۰۰۰ تومان</p><div class="divider"></div><p>💎 Full Diamond Armor Set (Protection III)</p><p>⚔️ Full Diamond Tools Set</p><p>🥧 32 Pumpkin Pies</p></div>
+<div class="card"><h3>CRAFTING</h3><p class="price">۱۶۰٬۰۰۰ تومان</p><div class="divider"></div><p>💎 Full Diamond Armor Set (Protection IV)</p><p>⚔️ Full Diamond Tools Set</p><p>🥕 32 Golden Carrots</p><p>🟫 1 Netherite Ingot</p><p>🍎 1 Enchanted Golden Apple</p></div>
 <div class="card"><h3>Amethyst Pickaxe</h3><p class="price">۵٬۰۰۰ تومان / روز</p></div>
 <div class="card"><h3>Mystery Box Simple</h3><p class="price">۳۰٬۰۰۰ تومان</p></div>
 <div class="card"><h3>Mystery Box Rare</h3><p class="price">۵۰٬۰۰۰ تومان</p></div>
@@ -158,10 +143,7 @@ textarea{min-height:100px;resize:vertical}
 
 <section class="section" id="rules">
 <div class="wrap">
-<div class="heading">
-<h2>قوانین سرور</h2>
-<p>برای تجربه بهتر همه بازیکنان، قوانین را رعایت کنید.</p>
-</div>
+<div class="heading"><h2>قوانین سرور</h2><p>برای تجربه بهتر همه بازیکنان، قوانین را رعایت کنید.</p></div>
 <div class="card">
 <ol class="rules">
 <li>به بازیکنان دیگر احترام بگذارید.</li>
@@ -169,6 +151,7 @@ textarea{min-height:100px;resize:vertical}
 <li>استفاده از چیت، هک و ابزارهای غیرمجاز ممنوع است.</li>
 <li>از باگ‌ها سوءاستفاده نکنید و آن‌ها را گزارش دهید.</li>
 <li>تصمیم نهایی مدیریت سرور در موارد بررسی‌شده لازم‌الاجراست.</li>
+<li>وقتی صاحب بیس آفلاینه، رید کردن بیسش ممنوعه.</li>
 </ol>
 </div>
 </div>
@@ -176,31 +159,16 @@ textarea{min-height:100px;resize:vertical}
 
 <section class="section" id="report">
 <div class="wrap">
-<div class="heading">
-<h2>گزارش بازیکن</h2>
-<p>برای ثبت گزارش باید وارد حساب کاربری شده باشی.</p>
-</div>
+<div class="heading"><h2>گزارش بازیکن</h2><p>برای ثبت گزارش باید وارد حساب کاربری شده باشی.</p></div>
 <div class="card formbox">
 <form id="reportForm">
-<div class="field">
-<label>نام بازیکن متخلف</label>
-<input id="reportedPlayer" required maxlength="40" placeholder="نام بازیکن">
-</div>
-<div class="field">
-<label>نوع گزارش</label>
+<div class="field"><label for="reportedPlayer">نام بازیکن متخلف</label><input id="reportedPlayer" required maxlength="40" placeholder="نام بازیکن"></div>
+<div class="field"><label for="reportType">نوع گزارش</label>
 <select id="reportType" required>
 <option value="">انتخاب کن</option>
-<option>چیت یا هک</option>
-<option>توهین و آزار</option>
-<option>خرابکاری</option>
-<option>سوءاستفاده از باگ</option>
-<option>مورد دیگر</option>
-</select>
-</div>
-<div class="field">
-<label>توضیحات گزارش</label>
-<textarea id="reportMessage" required maxlength="2000" placeholder="جزئیات اتفاق را بنویس..."></textarea>
-</div>
+<option>چیت یا هک</option><option>توهین و آزار</option><option>خرابکاری</option><option>سوءاستفاده از باگ</option><option>مورد دیگر</option>
+</select></div>
+<div class="field"><label for="reportMessage">توضیحات گزارش</label><textarea id="reportMessage" required maxlength="2000" placeholder="جزئیات اتفاق را بنویس..."></textarea></div>
 <button class="btn" type="submit">ثبت گزارش</button>
 <div id="reportStatus" aria-live="polite"></div>
 </form>
@@ -210,43 +178,26 @@ textarea{min-height:100px;resize:vertical}
 
 <section class="section hidden" id="dashboard">
 <div class="wrap">
-<div class="heading">
-<h2>پنل مدیریت</h2>
-<p id="welcome"></p>
-</div>
+<div class="heading"><h2>پنل مدیریت</h2><p id="welcome"></p></div>
 <div id="dashNotice" class="notice"></div>
 <div id="dashContent"></div>
 </div>
 </section>
 </main>
 
-<footer class="footer">
-<div class="wrap">CRAFTING ABAD · سرور ماینکرفت · craftingabad.pfmc.ir</div>
-</footer>
+<footer class="footer"><div class="wrap">CRAFTING ABAD · سرور ماینکرفت · craftingabad.pfmc.ir</div></footer>
 
 <div class="modal hidden" id="authModal">
 <div class="modalbox">
-<div class="modalhead">
-<h3>حساب کاربری</h3>
-<button class="close" id="authClose">×</button>
-</div>
+<div class="modalhead"><h3>حساب کاربری</h3><button class="close" id="authClose" type="button">×</button></div>
 <div class="tabs">
-<button class="btn" id="loginTab">ورود</button>
-<button class="btn alt" id="signupTab">ثبت‌نام</button>
+<button class="btn" id="loginTab" type="button">ورود</button>
+<button class="btn alt" id="signupTab" type="button">ثبت‌نام</button>
 </div>
 <form id="authForm">
-<div class="field" id="usernameField">
-<label>نام کاربری</label>
-<input id="username" maxlength="24" autocomplete="username">
-</div>
-<div class="field">
-<label>ایمیل</label>
-<input id="email" type="email" required autocomplete="email">
-</div>
-<div class="field">
-<label>رمز عبور</label>
-<input id="password" type="password" minlength="8" required autocomplete="current-password">
-</div>
+<div class="field hidden" id="usernameField"><label for="username">نام کاربری</label><input id="username" maxlength="24" autocomplete="username"></div>
+<div class="field"><label for="email">ایمیل</label><input id="email" type="email" required autocomplete="email"></div>
+<div class="field"><label for="password">رمز عبور</label><input id="password" type="password" minlength="8" required autocomplete="current-password"></div>
 <button class="btn" id="authSubmit" type="submit">ورود</button>
 <div id="authStatus" aria-live="polite"></div>
 </form>
@@ -257,67 +208,108 @@ textarea{min-height:100px;resize:vertical}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+'use strict';
+
 const SUPABASE_URL = 'https://ayletedbkwpwfsvkyprn.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nfBiemi0RzmQiWg03cDHdA_4WKcQXeu';
+
+const $ = id => document.getElementById(id);
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let currentUser = null;
 let profile = null;
 let authMode = 'login';
 let empires = [];
-
-const $ = id => document.getElementById(id);
+let refreshing = false;
 
 function msg(id, text, error = false) {
   const el = $(id);
-  if (el) {
-    el.textContent = text;
-    el.className = 'status' + (error ? ' err' : '');
-  }
+  if (!el) return;
+  el.textContent = text || '';
+  el.className = text ? 'status' + (error ? ' err' : '') : '';
 }
 
-function esc(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;'
+function esc(value) {
+  return String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[c]));
 }
 
-$('copyIp').onclick = async () => {
+function openAuth(mode = 'login') {
+  $('authModal').classList.remove('hidden');
+  setAuthMode(mode);
+}
+function closeAuth() {
+  $('authModal').classList.add('hidden');
+}
+
+$('authOpen').addEventListener('click', () => {
+  if (currentUser) $('dashboard').scrollIntoView({behavior:'smooth'});
+  else openAuth('login');
+});
+$('authClose').addEventListener('click', closeAuth);
+$('authModal').addEventListener('click', e => {
+  if (e.target === $('authModal')) closeAuth();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeAuth();
+});
+
+/* کپی IP */
+$('copyIp').addEventListener('click', async () => {
+  const ip = 'craftingabad.pfmc.ir';
+  const button = $('copyIp');
+
   try {
-    await navigator.clipboard.writeText('craftingabad.pfmc.ir');
-    $('copyIp').textContent = 'کپی شد';
-    setTimeout(() => $('copyIp').textContent = 'کپی IP', 1500);
-  } catch (e) {
-    alert('IP: craftingabad.pfmc.ir');
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(ip);
+    } else {
+      const temp = document.createElement('textarea');
+      temp.value = ip;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      const copied = document.execCommand('copy');
+      temp.remove();
+      if (!copied) throw new Error('کپی انجام نشد');
+    }
+    button.textContent = 'کپی شد ✓';
+    msg('copyStatus', 'IP سرور کپی شد: ' + ip);
+  } catch (error) {
+    msg('copyStatus', 'کپی خودکار انجام نشد؛ IP را از پنجره بازشده کپی کن.', true);
+    window.prompt('IP سرور:', ip);
   }
-};
 
-$('authOpen').onclick = () => $('authModal').classList.remove('hidden');
-$('authClose').onclick = () => $('authModal').classList.add('hidden');
+  setTimeout(() => button.textContent = 'کپی IP', 1800);
+});
 
-$('loginTab').onclick = () => setAuthMode('login');
-$('signupTab').onclick = () => setAuthMode('signup');
+/* ورود و ثبت‌نام */
+$('loginTab').addEventListener('click', () => setAuthMode('login'));
+$('signupTab').addEventListener('click', () => setAuthMode('signup'));
 
 function setAuthMode(mode) {
   authMode = mode;
-  $('usernameField').classList.toggle('hidden', mode === 'login');
-  $('username').required = mode === 'signup';
-  $('authSubmit').textContent = mode === 'login' ? 'ورود' : 'ساخت حساب';
-  $('loginTab').className = mode === 'login' ? 'btn' : 'btn alt';
-  $('signupTab').className = mode === 'signup' ? 'btn' : 'btn alt';
+  const signup = mode === 'signup';
+  $('usernameField').classList.toggle('hidden', !signup);
+  $('username').required = signup;
+  $('password').autocomplete = signup ? 'new-password' : 'current-password';
+  $('authSubmit').textContent = signup ? 'ساخت حساب' : 'ورود';
+  $('loginTab').className = signup ? 'btn alt' : 'btn';
+  $('signupTab').className = signup ? 'btn' : 'btn alt';
   msg('authStatus', '');
 }
 
-$('authForm').onsubmit = async e => {
+$('authForm').addEventListener('submit', async e => {
   e.preventDefault();
-  msg('authStatus', 'در حال انجام...');
 
+  const submit = $('authSubmit');
   const email = $('email').value.trim();
   const password = $('password').value;
+
+  submit.disabled = true;
+  submit.textContent = 'لطفاً صبر کن...';
+  msg('authStatus', 'در حال اتصال به Supabase...');
 
   try {
     let result;
@@ -325,167 +317,188 @@ $('authForm').onsubmit = async e => {
     if (authMode === 'signup') {
       const username = $('username').value.trim();
 
-      if (username.length < 3) {
-        throw Error('نام کاربری باید حداقل ۳ حرف باشد.');
-      }
+      if (username.length < 3) throw new Error('نام کاربری باید حداقل ۳ کاراکتر باشد.');
+      if (password.length < 8) throw new Error('رمز عبور باید حداقل ۸ کاراکتر باشد.');
 
       result = await db.auth.signUp({
         email,
         password,
-        options: {
-          data: { username }
-        }
+        options: {data:{username}}
       });
 
       if (result.error) throw result.error;
 
-      msg(
-        'authStatus',
-        'حساب ساخته شد. اگر تأیید ایمیل فعال باشد، ایمیلت را تأیید کن و سپس وارد شو.'
-      );
+      if (result.data.session) {
+        await refreshSession();
+        msg('authStatus', 'ثبت‌نام موفق بود و وارد حساب شدی.');
+      } else {
+        msg('authStatus', 'حساب ساخته شد. ایمیلت را بررسی کن و لینک تأیید را بزن؛ سپس وارد شو.');
+      }
     } else {
-      result = await db.auth.signInWithPassword({ email, password });
-
+      result = await db.auth.signInWithPassword({email,password});
       if (result.error) throw result.error;
-
+      await refreshSession();
       msg('authStatus', 'با موفقیت وارد شدی.');
     }
-
-    await refreshSession();
-  } catch (err) {
-    msg('authStatus', err.message || 'خطا در ورود یا ثبت‌نام', true);
+  } catch (error) {
+    console.error('Auth error:', error);
+    msg('authStatus', error.message || 'خطا در ورود یا ثبت‌نام رخ داد.', true);
+  } finally {
+    submit.disabled = false;
+    submit.textContent = authMode === 'signup' ? 'ساخت حساب' : 'ورود';
   }
-};
+});
 
 async function refreshSession() {
-  const { data: { session } } = await db.auth.getSession();
+  if (refreshing) return;
+  refreshing = true;
 
-  currentUser = session?.user || null;
-  profile = null;
+  try {
+    const {data,error} = await db.auth.getSession();
+    if (error) throw error;
 
-  if (currentUser) {
-    const { data, error } = await db
-      .from('profiles')
-      .select('id,username,role')
-      .eq('id', currentUser.id)
-      .single();
+    currentUser = data.session?.user || null;
+    profile = null;
 
-    if (!error) profile = data;
+    if (currentUser) {
+      const result = await db.from('profiles')
+        .select('id,username,role')
+        .eq('id',currentUser.id)
+        .maybeSingle();
+
+      if (result.error) console.warn('Profile:',result.error.message);
+      else profile = result.data;
+
+      if (!profile) {
+        profile = {
+          id:currentUser.id,
+          username:currentUser.user_metadata?.username || currentUser.email,
+          role:'user'
+        };
+      }
+    }
+
+    renderSession();
+    await loadEmpires();
+    await renderDashboard();
+  } catch (error) {
+    console.error('Session error:',error);
+  } finally {
+    refreshing = false;
   }
-
-  renderSession();
-  await loadEmpires();
-  await renderDashboard();
 }
 
-db.auth.onAuthStateChange(() => setTimeout(refreshSession, 0));
+db.auth.onAuthStateChange((event,session) => {
+  currentUser = session?.user || null;
+  setTimeout(() => refreshSession(),0);
+});
 
 function renderSession() {
   if (currentUser) {
     $('authOpen').textContent = 'پنل من';
-
     $('sessionArea').innerHTML =
       `وارد شده‌ای: <b>${esc(profile?.username || currentUser.email)}</b> · نقش: ${esc(profile?.role || 'user')}<br>
-      <button class="btn alt" id="logoutBtn" style="margin-top:10px">خروج از حساب</button>`;
+      <button class="btn alt" id="logoutBtn" type="button" style="margin-top:10px">خروج از حساب</button>`;
 
-    $('logoutBtn').onclick = async () => {
-      await db.auth.signOut();
+    $('logoutBtn').addEventListener('click',async () => {
+      const {error} = await db.auth.signOut();
+      if (error) return msg('authStatus',error.message,true);
+      currentUser = null;
+      profile = null;
       $('dashboard').classList.add('hidden');
-    };
+      renderSession();
+      closeAuth();
+    });
   } else {
     $('authOpen').textContent = 'ورود / ثبت‌نام';
     $('sessionArea').textContent = 'برای استفاده از پنل‌ها وارد حساب شو.';
   }
 }
 
+/* امپراطوری‌ها */
 async function loadEmpires() {
-  const { data, error } = await db
-    .from('empires')
-    .select('*')
-    .order('id');
-
-  if (!error && data) {
+  const {data,error} = await db.from('empires').select('*').order('id');
+  if (error) {
+    console.warn('Empires:',error.message);
+    return;
+  }
+  if (data?.length) {
     empires = data;
     renderEmpires();
   }
 }
 
 function renderEmpires() {
-  const box = $('empireCards');
-
-  box.innerHTML = empires.map((e, i) => `
+  $('empireCards').innerHTML = empires.map((e,i) => `
     <article class="card">
-      <span class="tag">EMPIRE 0${i + 1}</span>
+      <span class="tag">EMPIRE 0${i+1}</span>
       <h3>${esc(e.name)}</h3>
       <p>${esc(e.description || '')}</p>
-      <button class="btn" onclick="requestJoin('${esc(e.id)}')">درخواست عضویت</button>
+      <button class="btn join-btn" type="button" data-empire="${esc(e.id)}">درخواست عضویت</button>
     </article>
   `).join('');
+
+  document.querySelectorAll('.join-btn').forEach(button => {
+    button.addEventListener('click',() => requestJoin(button.dataset.empire));
+  });
 }
 
-window.requestJoin = async id => {
+async function requestJoin(id) {
   if (!currentUser) {
-    $('authModal').classList.remove('hidden');
-    msg('authStatus', 'برای درخواست عضویت ابتدا وارد حساب شو.');
+    openAuth('login');
+    msg('authStatus','برای درخواست عضویت ابتدا وارد حساب شو.');
     return;
   }
 
-  msg('empireStatus', 'در حال ثبت درخواست...');
+  msg('empireStatus','در حال ثبت درخواست...');
 
-  const { error } = await db
-    .from('join_requests')
-    .insert({
-      empire_id: id,
-      user_id: currentUser.id,
-      status: 'pending'
-    });
+  const {error} = await db.from('join_requests').insert({
+    empire_id:id,
+    user_id:currentUser.id,
+    status:'pending'
+  });
 
   if (error) {
-    msg(
-      'empireStatus',
-      error.code === '23505'
-        ? 'قبلاً برای این امپراطوری درخواست داده‌ای.'
-        : error.message,
-      true
-    );
+    msg('empireStatus',error.code === '23505'
+      ? 'قبلاً برای این امپراطوری درخواست داده‌ای.'
+      : error.message,true);
   } else {
-    msg(
-      'empireStatus',
-      'درخواست عضویت ثبت شد و برای مدیر همان امپراطوری ارسال شد.'
-    );
+    msg('empireStatus','درخواست عضویت ثبت شد و برای مدیر امپراطوری ارسال شد.');
     await renderDashboard();
   }
-};
+}
 
-$('reportForm').onsubmit = async e => {
+/* گزارش بازیکن */
+$('reportForm').addEventListener('submit',async e => {
   e.preventDefault();
 
   if (!currentUser) {
-    $('authModal').classList.remove('hidden');
-    msg('reportStatus', 'برای ثبت گزارش ابتدا وارد حساب شو.', true);
+    openAuth('login');
+    msg('authStatus','برای ثبت گزارش ابتدا وارد حساب شو.');
     return;
   }
 
-  msg('reportStatus', 'در حال ثبت گزارش...');
+  msg('reportStatus','در حال ثبت گزارش...');
 
   const payload = {
-    reporter_id: currentUser.id,
-    reported_player: $('reportedPlayer').value.trim(),
-    report_type: $('reportType').value,
-    message: $('reportMessage').value.trim(),
-    status: 'pending'
+    reporter_id:currentUser.id,
+    reported_player:$('reportedPlayer').value.trim(),
+    report_type:$('reportType').value,
+    message:$('reportMessage').value.trim(),
+    status:'pending'
   };
 
-  const { error } = await db.from('reports').insert(payload);
+  const {error} = await db.from('reports').insert(payload);
 
   if (error) {
-    msg('reportStatus', error.message, true);
+    msg('reportStatus',error.message,true);
   } else {
     $('reportForm').reset();
-    msg('reportStatus', 'گزارش با موفقیت ثبت شد و برای ادمین ارسال شد.');
+    msg('reportStatus','گزارش با موفقیت ثبت شد و برای ادمین ارسال شد.');
   }
-};
+});
 
+/* داشبورد */
 async function renderDashboard() {
   if (!currentUser || !profile) {
     $('dashboard').classList.add('hidden');
@@ -498,126 +511,5 @@ async function renderDashboard() {
   const isAdmin = profile.role === 'admin';
   const myEmpires = empires.filter(e => e.leader_id === currentUser.id);
 
-  if (!isAdmin && !myEmpires.length) {
-    $('dashContent').innerHTML =
-      '<div class="card"><p>پنل مدیریتی ویژه ادمین اصلی و رهبران امپراطوری‌هاست.</p></div>';
-    return;
-  }
-
-  let out = '';
-
-  if (isAdmin) {
-    out += await adminPanel();
-  }
-
-  for (const empire of myEmpires) {
-    out += await leaderPanel(empire);
-  }
-
-  $('dashContent').innerHTML = out;
-  bindDashboard();
-}
-
-async function adminPanel() {
-  const [
-    { data: users, error: uerr },
-    { data: reports, error: rerr }
-  ] = await Promise.all([
-    db.from('profiles')
-      .select('id,username,role,created_at')
-      .order('created_at', { ascending: false }),
-
-    db.from('reports')
-      .select('*')
-      .order('created_at', { ascending: false })
-  ]);
-
-  let h = `
-    <div class="card admin">
-      <h3>پنل ادمین اصلی</h3>
-      <p>مدیریت کاربران، رهبران هر سه امپراطوری و گزارش‌ها.</p>
-      <div class="divider"></div>
-      <h4>تعیین رهبر امپراطوری</h4>
-  `;
-
-  h += empires.map(e => `
-    <div class="field">
-      <label>${esc(e.name)}</label>
-      <select id="leader-${esc(e.id)}">
-        <option value="">انتخاب کاربر</option>
-        ${(users || []).map(u => `
-          <option value="${u.id}" ${e.leader_id === u.id ? 'selected' : ''}>
-            ${esc(u.username)} · ${esc(u.role)}
-          </option>
-        `).join('')}
-      </select>
-      <button class="btn" onclick="assignLeader('${esc(e.id)}')">ثبت رهبر</button>
-    </div>
-  `).join('');
-
-  h += '<div class="divider"></div><h4>کاربران ثبت‌نام‌شده</h4>';
-
-  if (uerr) h += `<p class="muted">${esc(uerr.message)}</p>`;
-
-  h += (users || []).map(u => `
-    <div class="item">
-      <b>${esc(u.username)}</b>
-      <small>· ${esc(u.role)} · ${esc(u.id)}</small>
-    </div>
-  `).join('') || '<p class="muted">کاربری پیدا نشد.</p>';
-
-  h += '<div class="divider"></div><h4>گزارش‌های بازیکنان</h4>';
-
-  if (rerr) h += `<p class="muted">${esc(rerr.message)}</p>`;
-
-  h += (reports || []).map(r => `
-    <div class="item">
-      <b>${esc(r.reported_player)}</b>
-      · ${esc(r.report_type)}
-      <span class="tag">${esc(r.status)}</span>
-      <p>${esc(r.message)}</p>
-      <small>${esc(r.created_at)}</small>
-      <div class="item-actions">
-        <button class="btn alt" onclick="setReportStatus(${r.id},'reviewed')">بررسی شد</button>
-        <button class="btn" onclick="setReportStatus(${r.id},'closed')">بستن گزارش</button>
-      </div>
-    </div>
-  `).join('') || '<p class="muted">گزارشی ثبت نشده.</p>';
-
-  return h + '</div>';
-}
-
-async function leaderPanel(empire) {
-  const [
-    { data: requests, error: re },
-    { data: members, error: me }
-  ] = await Promise.all([
-    db.from('join_requests')
-      .select('id,user_id,status,created_at')
-      .eq('empire_id', empire.id)
-      .order('created_at', { ascending: false }),
-
-    db.from('empire_members')
-      .select('user_id,joined_at')
-      .eq('empire_id', empire.id)
-  ]);
-
-  const ids = [
-    ...(requests || []).map(x => x.user_id),
-    ...(members || []).map(x => x.user_id)
-  ];
-
-  let profiles = [];
-
-  if (ids.length) {
-    const { data } = await db
-      .from('profiles')
-      .select('id,username')
-      .in('id', [...new Set(ids)]);
-
-    profiles = data || [];
-  }
-
-  const name = id =>
-    profile
+  if (!isA
   
